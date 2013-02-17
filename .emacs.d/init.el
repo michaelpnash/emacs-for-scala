@@ -4,6 +4,10 @@
 (add-to-list 'load-path "~/.emacs.d/ensime/ensime_2.10.0-RC3-0.9.8.2/elisp")
 (require 'ensime)
 
+(add-to-list 'load-path "~/.emacs.d/sunrise-commander")
+(require 'sunrise-commander)
+(require 'sunrise-x-tree)
+
 ;; This step causes the ensime-mode to be started whenever
 ;; scala-mode is started for a buffer. You may have to customize this step
 ;; if you're not using the standard scala mode.
@@ -50,6 +54,7 @@
 
 (global-linum-mode 1)
 (global-set-key (kbd "s-o") 'find-grep-dired)
+(global-set-key (kbd "s-d") 'sunrise)
 (global-set-key (kbd "s-/") 'comment-or-uncomment-region)
 (global-set-key (kbd "s-O") 'find-name-dired)
 (global-set-key (kbd "C-c C-r r") 'ensime-refactor-rename)
