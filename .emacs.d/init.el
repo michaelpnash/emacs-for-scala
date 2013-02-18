@@ -84,3 +84,8 @@
   (find-grep-dired (format "%s/src" project-dir) (format "class %s" name))
   )
 
+(defun make-slick-doc-url (type &optional member) 
+  (ensime-make-java-doc-url-helper 
+      "http://slick.typesafe.com/doc/1.0.0/api/" type member)) 
+(add-to-list 'ensime-doc-lookup-map '("^scala\\.slick\\." . make-slick-doc-url)) 
+
