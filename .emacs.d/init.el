@@ -61,7 +61,7 @@
 
 (global-linum-mode 1)
 (global-set-key (kbd "s-o") 'find-grep-dired)
-(global-set-key (kbd "s-g") 'magit-status)
+(global-set-key (kbd "s-k") 'magit-status)
 (global-set-key (kbd "s-d") 'sunrise)
 (global-set-key (kbd "s-/") 'comment-or-uncomment-region)
 (global-set-key (kbd "s-O") 'find-name-dired)
