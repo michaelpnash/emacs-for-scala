@@ -12,6 +12,9 @@
 
 (require 'table)
 
+(add-to-list 'load-path "~/.emacs.d/magit")
+(require 'magit)
+
 ;; This step causes the ensime-mode to be started whenever
 ;; scala-mode is started for a buffer. You may have to customize this step
 ;; if you're not using the standard scala mode.
@@ -58,6 +61,7 @@
 
 (global-linum-mode 1)
 (global-set-key (kbd "s-o") 'find-grep-dired)
+(global-set-key (kbd "s-g") 'magit-status)
 (global-set-key (kbd "s-d") 'sunrise)
 (global-set-key (kbd "s-/") 'comment-or-uncomment-region)
 (global-set-key (kbd "s-O") 'find-name-dired)
@@ -71,8 +75,15 @@
 
 (global-set-key (kbd "s-N") 'scala-find-name)
 (global-set-key (kbd "s-n") 'scala-find-class)
+(global-set-key (kbd "s-i") 'ensime-inspect-type-at-point)
+(global-set-key (kbd "s-t") 'scala-test)
 
 (setq project-dir (getenv "PWD"))
+
+(defun scala-test ()
+  "Try the current test"
+  (interactive)
+  (shell-command (format "%s/sbt.sh \"test-only *.%s\"" project-dir (file-name-nondirectory (file-name-sans-extension buffer-file-name)))))
 
 (defun scala-find-name ()
   "Find-name-dired in current directory"
