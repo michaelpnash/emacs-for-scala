@@ -102,3 +102,9 @@
       "http://slick.typesafe.com/doc/1.0.0/api/" type member)) 
 (add-to-list 'ensime-doc-lookup-map '("^scala\\.slick\\." . make-slick-doc-url)) 
 
+(global-set-key [kp-subtract] 'undo) ; [Undo] 
+(global-set-key [insert]    'overwrite-mode) ; [Ins] 
+(global-set-key [kp-insert] 'overwrite-mode) ; [Ins] 
+(global-set-key "\C-l" 'goto-line) ; [Ctrl]-[L] 
+(global-set-key [f2] 'split-window-vertically) 
+(global-set-key [f1] 'remove-split) 
