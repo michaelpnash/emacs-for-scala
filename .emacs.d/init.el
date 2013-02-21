@@ -50,7 +50,7 @@
                              (package . font-lock-preprocessor-face)
                                    ))
 
-(add-to-list 'load-path "~/emacs/color-theme-6.6.0/")
+(add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/")
 (require 'color-theme)
 (eval-after-load "color-theme"
   '(progn
