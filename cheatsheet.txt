@@ -228,3 +228,6 @@ General Emacs Keybindings
 |C-x b   |Select another buffer                   |                   |
 +--------+----------------------------------------+-------------------+
 
+In Ensime-Sbt Window
+M-p Previously Entered Command
+M-n Next Entered Command
