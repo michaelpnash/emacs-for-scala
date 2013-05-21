@@ -1,7 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/scala-mode2")
 (require 'scala-mode)
 ;; Load the ensime lisp code...
-(add-to-list 'load-path "~/.emacs.d/ensime/HEAD/elisp")
+(add-to-list 'load-path "~/.emacs.d/ensime/ensime-2.10-0.9.8.9/elisp")
 (require 'ensime)
 
 (add-to-list 'load-path "~/.emacs.d/sunrise-commander")
@@ -108,3 +108,11 @@
 (global-set-key "\C-l" 'goto-line) ; [Ctrl]-[L] 
 (global-set-key [f2] 'split-window-vertically) 
 (global-set-key [f1] 'remove-split) 
+;; Set to the location of your Org files on your local system
+(setq org-directory "~/Dropbox/org")
+;; Set to the name of the file where new notes will be stored
+(setq org-mobile-inbox-for-pull "~/Dropbox/org/inbox.org")
+;; Set to <your Dropbox root directory>/MobileOrg.
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+(setq org-agenda-files (quote ("~/Dropbox/org/mnash.org")))
+
