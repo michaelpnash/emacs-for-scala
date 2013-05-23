@@ -1,7 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/scala-mode2")
 (require 'scala-mode)
 ;; Load the ensime lisp code...
-(add-to-list 'load-path "~/.emacs.d/ensime/ensime-2.10-0.9.8.9/elisp")
+(add-to-list 'load-path "~/.emacs.d/ensime/HEAD/elisp")
 (require 'ensime)
 
 (add-to-list 'load-path "~/.emacs.d/sunrise-commander")
@@ -14,6 +14,10 @@
 
 (add-to-list 'load-path "~/.emacs.d/magit")
 (require 'magit)
+
+(add-to-list 'load-path "~/.emacs.d/tree")
+(add-to-list 'load-path "~/.emacs.d/dirtree")
+(require 'dirtree)
 
 ;; This step causes the ensime-mode to be started whenever
 ;; scala-mode is started for a buffer. You may have to customize this step
@@ -111,8 +115,6 @@
 ;; Set to the location of your Org files on your local system
 (setq org-directory "~/Dropbox/org")
 ;; Set to the name of the file where new notes will be stored
-(setq org-mobile-inbox-for-pull "~/Dropbox/org/inbox.org")
+(setq org-mobile-inbox-for-pull "~/Dropbox/org/mnash.org")
 ;; Set to <your Dropbox root directory>/MobileOrg.
 (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-(setq org-agenda-files (quote ("~/Dropbox/org/mnash.org")))
-
