@@ -19,6 +19,10 @@
 (add-to-list 'load-path "~/.emacs.d/dirtree")
 (require 'dirtree)
 
+(add-to-list 'load-path "~/.emacs.d/move-text")
+(require 'move-text)
+(move-text-default-bindings)
+
 ;; This step causes the ensime-mode to be started whenever
 ;; scala-mode is started for a buffer. You may have to customize this step
 ;; if you're not using the standard scala mode.
