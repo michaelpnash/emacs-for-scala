@@ -7,6 +7,9 @@
 (add-to-list 'load-path "~/.emacs.d/sunrise-commander")
 (require 'sunrise-commander)
 (require 'sunrise-x-tree)
+(require 'sunrise-x-buttons)
+(require 'sunrise-x-loop)
+(require 'sunrise-x-mirror)
 
 (require 'flymake)
 
@@ -18,6 +21,7 @@
 (add-to-list 'load-path "~/.emacs.d/tree")
 (add-to-list 'load-path "~/.emacs.d/dirtree")
 (require 'dirtree)
+(global-set-key (kbd "s-d") 'sunrise)
 
 (add-to-list 'load-path "~/.emacs.d/multiple-cursors")
 (require 'multiple-cursors)
@@ -77,7 +81,7 @@
 (global-linum-mode 1)
 (global-set-key (kbd "s-o") 'find-grep-dired)
 (global-set-key (kbd "s-k") 'magit-status)
-(global-set-key (kbd "s-d") 'sunrise)
+(global-set-key (kbd "s-D") 'sunrise)
 (global-set-key (kbd "s-/") 'comment-or-uncomment-region)
 (global-set-key (kbd "s-O") 'find-name-dired)
 (global-set-key (kbd "C-c C-r r") 'ensime-refactor-rename)
@@ -112,6 +116,10 @@
   (find-grep-dired (format "%s/src" project-dir) (format "class %s" name))
   )
 
+(defun make-play-doc-url (type &optional member)
+  (ensime-make-java-doc-url-helper "http://www.playframework.com/documentation/api/2.1.1/scala/" type member))
+(add-to-list 'ensime-doc-lookup-map '("^play\\." . make-play-doc-url))
+
 (defun make-slick-doc-url (type &optional member) 
   (ensime-make-java-doc-url-helper 
       "http://slick.typesafe.com/doc/1.0.0/api/" type member)) 
@@ -123,9 +131,3 @@
 (global-set-key "\C-l" 'goto-line) ; [Ctrl]-[L] 
 (global-set-key [f2] 'split-window-vertically) 
 (global-set-key [f1] 'remove-split) 
-;; Set to the location of your Org files on your local system
-(setq org-directory "~/Dropbox/org")
-;; Set to the name of the file where new notes will be stored
-(setq org-mobile-inbox-for-pull "~/Dropbox/org/mnash.org")
-;; Set to <your Dropbox root directory>/MobileOrg.
-(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
