@@ -138,3 +138,8 @@
 (setq ido-use-filename-at-point 'guess)
 (setq ido-create-new-buffer 'always)
 (setq ido-file-extensions-order '(".scala" ".org" ".txt" ".py" ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
+
+(add-to-list 'load-path "~/.emacs.d/dired-details")
+(require 'dired-details)
+(dired-details-install)
+
