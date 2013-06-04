@@ -21,7 +21,7 @@
 (add-to-list 'load-path "~/.emacs.d/tree")
 (add-to-list 'load-path "~/.emacs.d/dirtree")
 (require 'dirtree)
-(global-set-key (kbd "s-d") 'sunrise)
+(global-set-key (kbd "s-d") 'dirtree)
 
 (add-to-list 'load-path "~/.emacs.d/multiple-cursors")
 (require 'multiple-cursors)
@@ -131,3 +131,10 @@
 (global-set-key "\C-l" 'goto-line) ; [Ctrl]-[L] 
 (global-set-key [f2] 'split-window-vertically) 
 (global-set-key [f1] 'remove-split) 
+
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+(setq ido-use-filename-at-point 'guess)
+(setq ido-create-new-buffer 'always)
+(setq ido-file-extensions-order '(".scala" ".org" ".txt" ".py" ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
