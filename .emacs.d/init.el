@@ -170,4 +170,6 @@
                 (member major-mode '(scala-mode emacs-lisp-mode lisp-mode clojure-mode scheme-mode haskell-mode ruby-mode rspec-mode python-mode c-mode c++-mode objc-mode latex-mode plain-tex-mode))
            (let ((mark-even-if-inactive transient-mark-mode))
                (indent-region (region-beginning) (region-end) nil))))))
+(show-paren-mode 1)
+(setq show-paren-delay 0)
 
