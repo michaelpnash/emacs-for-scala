@@ -150,6 +150,8 @@
   "Emacs quick move minor mode"
  t)
 (define-key global-map (kbd "C-0") 'ace-jump-mode)
+(define-key global-map (kbd "C-1") 'ace-jump-line-mode)
+(define-key global-map (kbd "C-2") 'ace-jump-char-mode)
 
 (autoload
   'ace-jump-mode-pop-mark
@@ -157,5 +159,8 @@
   "Ace jump back:-)"
  t)
 (eval-after-load "ace-jump-mode"
-    '(ace-jump-mode-enable-mark-sync))
-     (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+'(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
