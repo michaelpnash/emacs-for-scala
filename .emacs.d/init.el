@@ -173,3 +173,11 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+(setq exec-path (append exec-path (list "/usr/bin/sbt")))
+
+
