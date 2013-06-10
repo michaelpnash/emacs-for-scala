@@ -189,4 +189,8 @@
 
 (setq exec-path (append exec-path (list "/usr/bin/sbt")))
 
+(add-to-list 'load-path "~/.emacs.d/key-chord")
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define-global "}}" 'forward-sexp)
 
