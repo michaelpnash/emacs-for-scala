@@ -95,19 +95,28 @@
 (global-set-key (kbd "s-N") 'scala-find-name)
 (global-set-key (kbd "s-n") 'scala-find-class)
 (global-set-key (kbd "s-i") 'ensime-inspect-type-at-point)
-(global-set-key (kbd "s-t") 'scala-test)
+(global-set-key (kbd "s-t") 'scala-test-only)
+(global-set-key (kbd "s-T") 'jump-to-test)
 
 (setq project-dir (getenv "PWD"))
-
-(defun scala-test ()
-  "Try the current test"
-  (interactive)
-  (shell-command (format "%s/sbt.sh \"test-only *.%s\"" project-dir (file-name-nondirectory (file-name-sans-extension buffer-file-name)))))
 
 (defun scala-find-name ()
   "Find-name-dired in current directory"
   (interactive)
   (find-name-dired (format "%s/src" project-dir) (format "%s%s" (read-from-minibuffer "Scala File:") ".scala")))   
+
+(defun scala-test-only ()
+  "Run the tests in the current file"
+  (setq current-file (format "test-only *.%s" (file-name-nondirectory (file-name-sans-extension buffer-file-name)))) 
+  (interactive)
+  (ensime-sbt-switch)
+  (insert (format "%s" current-file))
+  (comint-send-input))
+
+(defun jump-to-test ()
+  "Jump to the corresponding test file"
+  (interactive)
+  (switch-to-buffer (format "%s%sTest.scala" (replace-regexp-in-string "app\/" "test/" (file-name-directory buffer-file-name)) (file-name-nondirectory (file-name-sans-extension buffer-file-name)))))
 
 (defun scala-find-class ()
   "Find-name-grep in current directory for class trait or object"
