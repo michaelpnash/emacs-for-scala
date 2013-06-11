@@ -193,4 +193,11 @@
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define-global "}}" 'forward-sexp)
+(key-chord-define-global ".." 'ensime-expand-selection-command)
+(key-chord-define-global "oo" 'split-line)
 
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+(setq indent-line-function 'insert-tab)
+
+(define-key global-map (kbd "<backtab>") 'scala-indent:indent-with-reluctant-strategy)
