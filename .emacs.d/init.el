@@ -57,24 +57,24 @@
 
 (setq ensime-sem-high-faces
   '(
-     (var . (:foreground "#ff2222"))
-     (val . (:foreground "#dddddd"))
-        (varField . (:foreground "#ff3333"))
-           (valField . (:foreground "#dddddd"))
-              (functionCall . (:foreground "#84BEE3"))
-                (param . (:foreground "#ffffff"))
-                   (class . font-lock-type-face)
-                       (trait . (:foreground "#084EA8"))
-                          (object . (:foreground "#026DF7"))
-                             (package . font-lock-preprocessor-face)
-                                   ))
+  (var . (:foreground "#ff2222"))
+    (val . (:foreground "#dddddd"))
+    (varField . (:foreground "#ff3333"))
+    (valField . (:foreground "#dddddd"))
+    (functionCall . (:foreground "#84BEE3"))
+    (param . (:foreground "#ffffff"))
+    (class . font-lock-type-face)
+    (trait . (:foreground "#084EA8"))
+    (object . (:foreground "#026DF7"))
+    (package . font-lock-preprocessor-face)
+))
 
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/")
 (require 'color-theme)
 (eval-after-load "color-theme"
   '(progn
-       (color-theme-initialize)
-            (color-theme-hober)))
+    (color-theme-initialize)
+    (color-theme-hober)))
 
 (set-face-attribute 'default nil :height 160)
 
@@ -174,11 +174,11 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 (dolist (command '(yank yank-pop))
-       (eval `(defadvice ,command (after indent-region activate)
-             (and (not current-prefix-arg)
-                (member major-mode '(scala-mode emacs-lisp-mode lisp-mode clojure-mode scheme-mode haskell-mode ruby-mode rspec-mode python-mode c-mode c++-mode objc-mode latex-mode plain-tex-mode))
-           (let ((mark-even-if-inactive transient-mark-mode))
-               (indent-region (region-beginning) (region-end) nil))))))
+  (eval `(defadvice ,command (after indent-region activate)
+    (and (not current-prefix-arg)
+      (member major-mode '(scala-mode emacs-lisp-mode lisp-mode clojure-mode scheme-mode haskell-mode ruby-mode rspec-mode python-mode c-mode c++-mode objc-mode latex-mode plain-tex-mode))
+      (let ((mark-even-if-inactive transient-mark-mode))
+        (indent-region (region-beginning) (region-end) nil))))))
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 
