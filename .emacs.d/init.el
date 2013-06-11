@@ -124,7 +124,7 @@
   (setq name (read-from-minibuffer "Object/Trait/Class:"))
   (find-grep-dired (format "%s/src" project-dir) (format "class %s" name))
   )
-
+  
 (defun make-play-doc-url (type &optional member)
   (ensime-make-java-doc-url-helper "http://www.playframework.com/documentation/api/2.1.1/scala/" type member))
 (add-to-list 'ensime-doc-lookup-map '("^play\\." . make-play-doc-url))
@@ -187,18 +187,55 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
-(setq exec-path (append exec-path (list "/usr/bin/sbt")))
+(setq exec-paths (append exec-path (list "/usr/bin/sbt")))
 
 (add-to-list 'load-path "~/.emacs.d/key-chord")
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define-global "}}" 'forward-sexp)
 (key-chord-define-global ".." 'ensime-expand-selection-command)
-(key-chord-define-global "ol" 'split-line)
+(key-chord-define-global "sl" 'split-line)
 (key-chord-define-global "dl" 'kill-whole-line)
+  
+(defun search-to-brace ()
+  "Jump to the next open brace"
+  (interactive)
+  (search-forward "{"))
+(key-chord-define-global "s[" 'search-to-brace)
+
+(defun search-to-prev-brace ()
+    "Jump to the previous brace"
+    (interactive)
+    (search-backward "{"))
+(key-chord-define-global "p[" 'search-to-prev-brace)
+
+(defun search-to-close-brace ()
+  "Jump to the next close brace"
+  (interactive)
+  (search-forward "}"))
+(key-chord-define-global "s]" 'search-to-close-brace)
+
+(defun search-to-prev-close-brace ()
+  "Jump to the previous close brace"
+  (interactive)
+  (search-backward "}"))
+(key-chord-define-global "p]" 'search-to-prev-brace)
+
+(defun search-to-next-def ()
+  "Jump to the next def"
+  (interactive)
+  (search-forward "def "))
+(key-chord-define-global "sd" 'search-to-next-def)
+
+(defun search-to-prev-def ()
+  "Jump to the previous def"
+  (interactive)
+  (search-backward "def "))
+(key-chord-define-global "pd" 'search-to-prev-def)
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq indent-line-function 'insert-tab)
 
 (define-key global-map (kbd "<backtab>") 'scala-indent:indent-with-reluctant-strategy)
+
