@@ -239,3 +239,9 @@
 
 (define-key global-map (kbd "<backtab>") 'scala-indent:indent-with-reluctant-strategy)
 
+(require 'whitespace)
+(setq whitespace-line-column 120) ;; limit line length
+(setq whitespace-style '(face lines-tail))
+
+(add-hook 'prog-mode-hook 'whitespace-mode)
+
