@@ -103,7 +103,7 @@
 (defun scala-find-name ()
   "Find-name-dired in current directory"
   (interactive)
-  (find-name-dired (format "%s/src" project-dir) (format "%s%s" (read-from-minibuffer "Scala File:") ".scala")))   
+  (find-name-dired (format "%s/src" project-dir) (format "%s%s" (read-from-minibuffer "Scala File:") ".scala")))    
 
 (defun scala-test-only ()
   "Run the tests in the current file"
@@ -194,7 +194,8 @@
 (key-chord-mode 1)
 (key-chord-define-global "}}" 'forward-sexp)
 (key-chord-define-global ".." 'ensime-expand-selection-command)
-(key-chord-define-global "oo" 'split-line)
+(key-chord-define-global "ol" 'split-line)
+(key-chord-define-global "dl" 'kill-whole-line)
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
