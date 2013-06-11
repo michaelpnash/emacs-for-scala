@@ -92,6 +92,12 @@
 (menu-bar-mode -1)
 (setq ensime-sbt-compile-on-save nil)
 
+(defun save-silently ()
+  "Save all buffers without prompting"
+  (interactive)
+  (save-some-buffers t))
+(global-set-key (kbd "s-s") 'save-silently)
+
 (global-set-key (kbd "s-N") 'scala-find-name)
 (global-set-key (kbd "s-n") 'scala-find-class)
 (global-set-key (kbd "s-i") 'ensime-inspect-type-at-point)
