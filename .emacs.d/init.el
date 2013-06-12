@@ -146,6 +146,7 @@
 (global-set-key "\C-l" 'goto-line) ; [Ctrl]-[L] 
 (global-set-key [f2] 'split-window-vertically) 
 (global-set-key [f1] 'remove-split) 
+(key-chord-define-global "OO" 'overwrite-mode)
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -200,8 +201,8 @@
 (key-chord-mode 1)
 (key-chord-define-global "}}" 'forward-sexp)
 (key-chord-define-global ".." 'ensime-expand-selection-command)
-(key-chord-define-global "sl" 'split-line)
-(key-chord-define-global "dl" 'kill-whole-line)
+(key-chord-define-global "SL" 'split-line)
+(key-chord-define-global "DL" 'kill-whole-line)
   
 (defun search-to-brace ()
   "Jump to the next open brace"
@@ -231,13 +232,13 @@
   "Jump to the next def"
   (interactive)
   (search-forward "def "))
-(key-chord-define-global "sd" 'search-to-next-def)
+(key-chord-define-global "SD" 'search-to-next-def)
 
 (defun search-to-prev-def ()
   "Jump to the previous def"
   (interactive)
   (search-backward "def "))
-(key-chord-define-global "pd" 'search-to-prev-def)
+(key-chord-define-global "PD" 'search-to-prev-def)
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
