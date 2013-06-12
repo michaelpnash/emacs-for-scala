@@ -146,7 +146,6 @@
 (global-set-key "\C-l" 'goto-line) ; [Ctrl]-[L] 
 (global-set-key [f2] 'split-window-vertically) 
 (global-set-key [f1] 'remove-split) 
-(key-chord-define-global "OO" 'overwrite-mode)
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -203,6 +202,7 @@
 (key-chord-define-global ".." 'ensime-expand-selection-command)
 (key-chord-define-global "SL" 'split-line)
 (key-chord-define-global "DL" 'kill-whole-line)
+(key-chord-define-global "OO" 'overwrite-mode)
   
 (defun search-to-brace ()
   "Jump to the next open brace"
