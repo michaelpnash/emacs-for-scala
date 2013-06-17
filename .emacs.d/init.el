@@ -122,7 +122,7 @@
 (defun jump-to-test ()
   "Jump to the corresponding test file"
   (interactive)
-  (switch-to-buffer (format "%s%sTest.scala" (replace-regexp-in-string "app\/" "test/" (file-name-directory buffer-file-name)) (file-name-nondirectory (file-name-sans-extension buffer-file-name)))))
+  (find-file-other-window (format "%s%sTest.scala" (replace-regexp-in-string "app\/" "test\/" (file-name-directory buffer-file-name)) (file-name-nondirectory (file-name-sans-extension buffer-file-name)))))
 
 (defun scala-find-class ()
   "Find-name-grep in current directory for class trait or object"
@@ -251,4 +251,3 @@
 (setq whitespace-style '(face lines-tail))
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
-
