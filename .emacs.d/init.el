@@ -122,7 +122,7 @@
 (defun jump-to-test ()
   "Jump to the corresponding test file"
   (interactive)
-  (find-file-other-window (format "%s%sTest.scala" (replace-regexp-in-string "app\/" "test\/" (file-name-directory buffer-file-name)) (file-name-nondirectory (file-name-sans-extension buffer-file-name)))))
+  (switch-to-buffer (format "%s%sTest.scala" (replace-regexp-in-string "app\/" "test/" (file-name-directory buffer-file-name)) (file-name-nondirectory (file-name-sans-extension buffer-file-name)))))
 
 (defun scala-find-class ()
   "Find-name-grep in current directory for class trait or object"
@@ -251,3 +251,19 @@
 (setq whitespace-style '(face lines-tail))
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
+
+(add-to-list 'load-path "~/.emacs.d/window-number")
+(autoload 'window-number-mode "window-number"
+   "A global minor mode that enables selection of windows according to
+ numbers with the C-x C-j prefix.  Another mode,
+ `window-number-meta-mode' enables the use of the M- prefix."
+   t)
+
+(autoload 'window-number-meta-mode "window-number"
+   "A global minor mode that enables use of the M- prefix to select
+ windows, use `window-number-mode' to display the window numbers in
+ the mode-line."
+   t)
+
+(window-number-mode 1)
+(window-number-meta-mode 1)
