@@ -267,3 +267,8 @@
 
 (window-number-mode 1)
 (window-number-meta-mode 1)
+(add-to-list 'load-path "~/.emacs.d/rudel-0.2-4")
+(add-to-list 'load-path "~/.emacs.d/rudel-0.2-4/obby")
+(load-file "~/.emacs.d/rudel-0.2-4/rudel-loaddefs.el")
+
+

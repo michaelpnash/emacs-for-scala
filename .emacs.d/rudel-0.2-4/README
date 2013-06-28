@@ -1,0 +1,88 @@
+* INTRODUCTION
+
+  Rudel is collaborative editing environment for GNU Emacs. Its
+  purpose is to share buffers with other users in order to edit the
+  contents of those buffers collaboratively. Rudel supports multiple
+  backends to enable communication with other collaborative editors
+  using different protocols, though currently Obby (for use with the
+  Gobby editor) is the only fully-functional one.
+
+  Since Rudel is not an application, but an extension to Emacs, it is
+  not started and used like most applications (not even Emacs
+  applications like Gnus). Rudel mostly works in the background to
+  change the behavior of the set of Emacs buffers for which it has
+  been activated.
+
+  The user interface consists of a set of key bindings, a menu entry
+  and some visual status indicators, which are added to the text and
+  mode line of buffers for which Rudel has been activated.
+
+* GETTING STARTED
+
+  Assuming Rudel has already been installed and auto loading has been
+  set up, a global Rudel mode can be enabled as follows:
+
+  : M-x global-rudel-minor-mode
+
+  This will enabled Rudel's key bindings and menu entry.
+
+** JOINING A SESSION
+
+   : M-x rudel-join-session [ C-c c j ]
+
+   Depending on the installed Rudel backends, system environment and
+   configuration, a number of questions will be asked, followed by an
+   attempt to join session described by your answers.
+
+   A typical example of the questions asked when joining a session may
+   look like this:
+
+   Server: localhost RET
+   Port (default 6522): RET
+   Username: jan RET
+   Color: light sky blue RET
+   Use Encryption (y or n): n RET
+   Global Password: RET
+   User Password: RET
+
+   IMPORTANT: For sessions using the obby backend (like in the example
+   above), the following restriction has to be taken into account:
+   + When the server is Rudel inside an Emacs process:
+     Encryption cannot be used currently in this case. Consequently
+     the answer to the `Use Encryption (y or n):' prompt above has to
+     be `n RET'.
+   + When the server is a Gobby process:
+     Gobby only supports encrypted connections. So the answer has to
+     be `y RET' is this case.
+
+   It is possible to configure frequently used sessions using the
+   customization options `rudel-configured-sessions'. When one or more
+   sessions are configured, `rudel-join-session' will provide choices
+   like "my-configured-session", ... and "ask-protocol". Selecting
+   "ask-protocol" invokes the behavior described above. Selecting one
+   of the configured sessions connects to that session without asking
+   for all the data.
+
+** HOSTING A SESSION
+
+   : M-x rudel-host-session [ C-c c h ]
+
+   Note that the session starts out without any participating users
+   (This is sometimes referred to as being a dedicated server). If you
+   want to participate in the session you host, you have to join it as
+   described above.
+
+* KNOWN ISSUES
+
+   + Publishing eshell buffers will cause your session to be
+     disconnected since eshell disables the hooks that Rudel uses to
+     catch changes to the buffer. As a workaround, you can use M-x
+     ansi-term or another terminal emulator.
+
+* LICENSE
+
+  Rudel is licensed under the same terms as GNU Emacs.
+
+Local variables:
+mode: org
+end:

@@ -1,0 +1,2390 @@
+2010-02-02  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	Define spinning progress reporter unconditionally
+	* rudel-compat.el (header): updated copyright
+	(progress-spinner-values):
+	(progress-reporter-update):
+	(make-progress-reporter):
+	(progress-reporter-force-update):
+	(progress-reporter-spinner-p):
+	(progress-reporter-spin): move out of conditional definition since
+	Emacs does not contain the patch in any version
+
+	Added require rudel to rudel-obby-server.el
+	* obby/rudel-obby-server.el (require rudel): required for
+	`rudel-obby-user'
+
+2009-11-16  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-loaddefs.el (require rudel-zeroconf): check presence of
+	feature dbusbind before attempting to load zeroconf stuff
+
+2009-10-14  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-loaddefs.el (eval-after-load rudel): before loading the
+	zeroconf backend, make sure Emacs's dbus and zeroconf features are
+	there
+
+	* rudel.el (rudel-version): bumped to 0.2
+
+2009-10-12  Phil Hagelberg  <phil@enigma>
+
+        * rudel-mode.el, rudel-overlay.el: Move use of :safe flag from
+	defcustom to a separate put. Required for Emacs 22 compatibility.
+
+        * rudel-loaddefs.el: Only require rudel-zeroconf if zeroconf is
+	available.
+
+2009-10-10  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* zeroconf/rudel-zeroconf.el: removed autoload cookies
+	* wave/rudel-wave.el: removed autoload cookies
+	* telepathy/rudel-telepathy.el: removed autoload cookies
+	* rudel.el: removed autoload cookies
+	* rudel-speedbar.el: removed autoload cookies
+	* rudel-session-initiation.el: removed autoload cookies
+	* rudel-mode.el: removed autoload cookies
+	* rudel-backend.el: removed autoload cookies
+	* obby/rudel-obby.el: removed autoload cookies
+
+2009-10-07  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* doc/card.tex (Session Initiation): mention configured sessions;
+	explain Zeroconf-advertised session in more detail
+
+2009-10-06  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* doc/card.tex (Joining a Session ...): added global and user
+	passwords
+
+	* rudel.el (rudel-version): use list representation instead of
+	float
+        (rudel-allocate-buffer-function): added documentation string
+
+	* INSTALL (COMPILING): fixed typo
+
+2009-10-06  Phil Hagelberg  <phil@enigma>
+
+        * README (JOINING): Mention `rudel-configured-sessions'
+	customization.
+
+	* README (INTRODUCTION): emphasize obby backend being the only
+	supported one so far
+	(JOINING): update example session with passwords.
+
+	* rudel-loaddefs.el: Add autoloads for rudel-host-session and
+	rudel-speedbar
+
+2009-10-05  Phil Hagelberg  <phil@enigma>
+
+	* README: Mention Eshell issue and license.
+
+2009-10-03  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-compat.el (make-pulsing-progress-reporter): removed;
+	`make-progress-reporter' is sufficient
+	(progress-reporter-pulse): store index in the car of the reporter;
+	set last update time of the reporter
+	* obby/rudel-obby.el (rudel-connect): use `make-progress-reporter'
+	instead of `make-pulsing-progress-reporter'
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-subscribe-to): cosmetic changes in
+	status messages
+
+	* ChangeLog: updated
+
+2009-10-02  Phil Hagelberg  <phil@enigma>
+
+	* INSTALL: Mention CEDET's inclusion in Emacs
+
+	* rudel-state-machine.el (rudel-state-wait): update progress
+	reporter usage to match rudel-compat.el
+
+	* rudel-compat.el: Use updated progress reporters
+	(progress-reporter-update): may be used by pulsing reporters too
+	(make-progress-reporter): nil max value returns pulsing reporter
+	(progress-reporter-force-update): may be used by pulsing reporters
+	too
+	(progress-reporter-pulsing-p): added
+	(progress-reporter-pulse): removed message change option
+
+2009-10-02  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-state-machine.el (rudel-state-wait): accept callback
+	function instead of message; adjusted documentation string
+        * obby/rudel-obby.el (rudel-obby-backend::rudel-connect): when
+	calling `rudel-state-wait', provide a callback; the callback
+	controls a progress reporter
+        * obby/rudel-obby-client.el
+        (rudel-obby-connection::rudel-subscribe-to): when calling
+	`rudel-state-wait', provide a callback; the callback controls a
+	progress reporter
+
+        * rudel-compat.el (progress-reporter-pulse): store index as float
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-idle::rudel-obby/obby_document_create):
+	cosmetic changes of printed messages
+	(rudel-obby-client-state-idle::rudel-obby/obby_document_remove):
+	cosmetic changes of printed messages
+
+	* rudel.el (rudel-session::rudel-remove-document): when necessary,
+	detach document first; added documentation string
+	(rudel-document::rudel-attached-p): new method; return non-nil
+	when document is attached to a buffer
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-idle::rudel-obby/net6_client_part):
+	promoted warning severity to :warning
+	(rudel-obby-client-state-idle::rudel-obby/obby_document_remove):
+	fixed lookup of document; added warning message in case it is not
+	found
+	(rudel-obby-client-state-idle::rudel-obby/obby_document/rename):
+	promoted warning severity to :warning
+	(rudel-obby-connection::rudel-unpublish): new method; ask server
+	to remove a document
+
+2009-10-01  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-state-machine.el (rudel-state-wait): fixed progress range
+	[0, 100] -> [0, 1]; fixed reference to reporter object
+	* obby/rudel-obby.el (rudel-obby-send): removed remnants of calls
+	to `working-*' functions; call `progress-reporter-pulse' just
+	before `progress-reporter-done'
+
+2009-09-30  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-compat.el: only define pulsing progress reporter when
+	Emacs does not have one itself
+	(header): downcased keywords
+	(make-pulsing-progress-reporter): renamed
+	`make-progress-reporter-pulse' ->
+	`make-pulsing-progress-reporter'; cosmetic changes; explanatory
+	comment
+	(progress-reporter-pulse): added documentation string
+	Suggested by Phil Hagelberg
+
+	* rudel-compat.el (progress-pulse-values): new variable; indicator
+	strings used by pulsing progress reporter
+	(make-progress-reporter-pulse): new function; creates pulsing
+	progress reporter
+	(progress-reporter-pulse): new function; updates pulsing progress
+	reporter
+	Suggested by Phil Hagelberg
+
+2009-09-29  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-server-state-before-join::rudel-obby/net6_client_login):
+	accept two additional arguments: global-password and user-password
+
+	* rudel-session-initiation.el (rudel-configured-sessions):
+	improved documentation string
+
+2009-09-29  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* INSTALL (REQUIREMENTS): wording
+	(INSTALLING): mention other things that cause rudel to be
+	autoloaded; minor cosmetic changes
+	(COMPILING): fixed filename compile.el -> rudel-compile.el
+
+	* rudel-compile.el (header): added copyright and meta data
+	(code): let-bind rudel-dir; call `byte-recompile-directory' just
+	once since it operates recursively
+
+2009-09-28  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-server.el (header): better documentation
+	(require rudel-state-machine): now required for state machine
+	style handling of client connections
+	(require rudel-obby-state): now required; provides base class for
+	states
+	(rudel-obby-server-state-new): new class; client connection state
+	new
+	(rudel-obby-server-state-encryption-negotiate): new class; client connection state
+	for negotiating encryption
+	(rudel-obby-server-state-before-join): new class; client connection state
+	for waiting for login request
+	(rudel-obby-server-state-new): new class; client connection state
+	entered after session setup and joining is complete
+	(rudel-obby-server-connection-states): new variable; list of
+	states and their symbolic names
+	(rudel-obby-client): now derived from rudel-state-machine
+
+	* obby/rudel-obby.el (rudel-obby-backend::rudel-ask-connect-info):
+	check for :global-password and :user-password correctly; do not
+	put them into the list when they are ""
+	(rudel-obby-backend::rudel-connect): comment
+
+	* rudel-session-initiation.el
+	(rudel-configured-sessions-backend::rudel-discover): let
+	`rudel-session-initiation-adjust-info' do the heavy lifting
+	(rudel-session-initiation-adjust-info): new function; adjust
+	arguments that need adjusting in a session information property
+	list
+
+	* rudel-session-initiation.el (rudel-configured-sessions): more
+	precise specification of the customization type
+
+2009-09-27  Phil Hagelberg <technomancy@gmail.com>
+
+	* compile.el: renamed compile.el -> rudel-compile.el
+
+	* INSTALL: Mention new install process using compile.el and
+	rudel-loaddefs.el.
+
+	* rudel-loaddefs.el: Autoload rudel as one unit instead of
+	piece-by-piece. Remove eieio dependency from autoloads.
+
+	* compile.el: Perform compilation from Elisp
+
+	* Makefile: Remove error-prone CEDET-autogenerated build scripts.
+
+2009-09-27  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-session-initiation.el
+	(rudel-configured-sessions-backend::rudel-discover): fixed a bug
+	that dropped the last option in each configured session
+
+	* rudel-session-initiation.el (rudel-configured-sessions): new
+	customization option; contains a list of session information lists
+	(rudel-ask-protocol-backend::initialize-instance): maybe call next
+	method
+	(rudel-configured-sessions-version): new constant; version of the
+	configured-sessions backend
+	(rudel-configured-sessions-backend): new class;
+	configured-sessions backend
+	(rudel-configured-sessions-backend::initialize-instance): new
+	method; set version slot
+	(rudel-configured-sessions-backend::rudel-discover): new method;
+	"discover" configured sessions
+	(autoload rudel-add-backend): register
+	rudel-configured-sessions-backend as a protocol backend
+
+	* rudel-chat.el (rudel-chat-buffer-name): new constant; name chat
+	log buffer
+	(rudel-chat-handle-buffer): raise buffer when logging a chat
+	message
+
+	* rudel-debug.el (header): fixed meta-data and license
+	(rudel-debug-sent-data-face): added documentation string
+	(rudel-debug-received-data-face): added documentation string
+	(rudel-debug-received-processed-data-face): added documentation
+	string
+	(rudel-debug-state-face): added documentation string
+	(rudel-debug-special-face): added documentation string
+	(rudel-suspend-session-socket): added documentation string
+	(rudel-resume-session-socket): added documentation string
+
+	* obby/rudel-obby-util.el (rudel-obby-dispatch): use
+	`display-warning' instead of `warn'
+	* obby/rudel-obby-state.el (rudel-obby-state::rudel-accept): use
+	`display-warning' instead of `warn'
+	(rudel-obby-document-handler::rudel-obby/obby_document): use
+	`display-warning' instead of `warn'
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-idle::rudel-obby/net6_client_part): use
+	`display-warning' instead of `warn'
+	(rudel-obby-client-state-idle::rudel-obby/obby_document/record):
+	use `display-warning' instead of `warn'
+	* rudel-backend.el (rudel-backend-factory::rudel-load-backends):
+	use `display-warning' instead of `warn'
+
+	* obby/rudel-obby-client.el (require rudel-chat): used when
+	handling chat messages
+	(rudel-obby-client-state-idle::rudel-obby/obby_message): new
+	method; handles obby 'message' messages by dispatching to
+	`rudel-chat-dispatch-message'
+	* rudel-chat.el (whole file): new file; handling of incoming chat
+	messages
+	* Project.ede (target rudel): added rudel-chat.el
+	* Makefile (target rudel_LISP): added rudel-chat.el
+
+2009-09-26  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-state.el (rudel-obby-server-connection-state):
+	new class; base class for server connection states
+	(rudel-obby-server-connection-state::rudel-broadcast): new method;
+	broadcast message to a set of receivers
+
+2009-09-25  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby.el (rudel-obby-backend::rudel-connect): new
+	error state they-finalized; handle join-failed error specially
+	* obby/rudel-obby-client.el (rudel-obby-client-state-join-failed):
+	improved comments
+	(rudel-obby-client-state-they-finalized): new state class; used to
+	indicate that the connection was closed by the peer
+	(rudel-obby-client-connection-states): added they-finalized
+	(rudel-obby-connection::rudel-close): switch state machine to
+	they-finalized
+	(rudel-obby-connection::rudel-subscribe-to): new error state
+	they-finalized
+
+	* rudel.el (rudel-client-session::connection): allow nil value
+	(rudel-client-session::rudel-end): only try to disconnect the
+	connection if it is non-nil; ignore errors during disconnect
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-encryption-start::rudel-obby/net6_encryption_begin):
+	do not require rudel-tls; do not try to start TLS encryption if
+	the connection does not support it
+	* rudel-tls.el (rudel-tls-make-process): mark process as
+	supporting TLS encryption
+
+	* obby/rudel-obby-state.el (rudel-obby/net6_ping): return nil to
+	prevent erratic behavior of the state machine
+
+	* rudel-interactive.el (rudel-allocate-buffer-clear-existing):
+	added missing whitespace in prompt string
+
+2009-09-24  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-tls.el (rudel-tls-start-tls): changed displayed message
+	(rudel-tls-wait-init): ignore all lines until "- Simple Client
+	Mode.*" is received; then switch back old filter
+	(rudel-tls-wait-handshake): ignore all lines until "-
+	Compression.*" is received; then switch to established filter
+	(rudel-tls-established): do not ignore any lines other than
+	"- Peer has closed the GNUTLS connection"
+
+	* obby/rudel-obby.el (rudel-ask-connect-info): ask for global and
+	user passwords
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-joining::rudel-enter): transmit global
+	and user passwords when available
+
+	* obby/rudel-obby-errors.el
+	(rudel-obby-error-wrong-global-password): fixed error code
+	(rudel-obby-error-wrong-user-password): fixed error code
+	(rudel-obby-error-protocol-version-mismatch): fixed error code
+	(rudel-obby-error-not-encrypted): fixed error code
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-joining::rudel-obby/net6_login_failed):
+	recognize wrong global/user password error codes
+
+	* obby/rudel-obby-debug.el (whole file): new file; debugging
+	functions for the obby backend
+	* rudel-debug.el (whole file): new file; debugging functions
+
+	* obby/rudel-obby-errors.el
+	(rudel-obby-error-wrong-global-password): new constant; error code
+	for wrong global password
+	(rudel-obby-error-wrong-user-password): new constant; error code
+	for wrong user password
+	(rudel-obby-error-protocol-version-mismatch): new constant; error
+	code for protocol version mismatch
+	(rudel-obby-error-not-encrypted): new constant; error code for not
+	encrypted
+
+	* Project.ede (target rudel): added rudel-transport.el
+	* Makefile (target rudel_LISP): added rudel-transport.el
+	* rudel-transport.el (whole file): new file; interface for
+	transport backends
+
+2009-09-20  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-remote-operation): added byte -> char
+	conversion before the operation is applied to the server-side
+	document; updated comments
+
+	* obby/rudel-obby-server.el (rudel-obby-client::rudel-broadcast):
+	cosmetic changes
+	(rudel-obby-client::rudel-obby/net6_client_login): cosmetic
+	changes; improved comments
+	(rudel-obby-client::rudel-obby/obby_document): changed
+	documentation string; cosmetic changes
+	(rudel-obby-client::rudel-obby/obby_document/record): added a
+	comment
+	(rudel-obby-client::rudel-remote-operation): improved comments
+
+	* obby/rudel-obby-server.el (header): added header comment
+	(rudel-obby-client::rudel-obby/obby_document_create): changed
+	documentation comment
+	(rudel-obby-client::rudel-obby/obby_document/subscribe): changed
+	documentation comment; cosmetic changes
+	(rudel-obby-client::rudel-obby/obby_document/unsubscribe):
+	cosmetic changes
+	(rudel-obby-server::initialize-instance): do not run :after; call
+	next method
+	(rudel-obby-server::rudel-broadcast): signal wrong-type-argument
+	instead of just error; cosmetic changes
+	(rudel-obby-server::rudel-check-username-and-color): changed
+	comments
+	(rudel-obby-server::object-print): new method; generate string
+	representation with number of clients
+
+2009-09-19  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/obby_document/record/ins):
+	construct the operation and use	`rudel-remote-operation'
+	(rudel-obby-client::rudel-obby/obby_document/record/del):
+	construct the operation and use `rudel-remote-operation'
+	(rudel-obby-client::rudel-remote-operation): new method; transform
+	and apply an operation object to the server-side document; send
+	operation to all other clients
+	(rudel-obby-server::rudel-broadcast): cosmetic changes
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/obby_document/record/del): swapped
+	local and remote revisions in the operation name to be consistent
+	with record/ins; does not affect behavior
+
+2009-09-12  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-mode.el (rudel-header-subscriptions--update-from-document):
+	force mode line update
+	(rudel-header-subscriptions--update-from-buffer): force mode line
+	update
+	(rudel-header-subscriptions-minor-mode): force mode line update
+
+	* rudel-mode.el
+	(rudel-mode-line-publish-state-unpublished-string): new
+	customization option; string used to indicate that a buffer is not
+	published
+	(rudel-mode-line-publish-state-published-string): new
+	customization option; string used to indicate that a buffer is
+	published
+	(rudel-mode-line-publish-state--update-string): use
+	`rudel-mode-line-publish-state-unpublished-string' and
+	`rudel-mode-line-publish-state-unpublished-string'
+
+	* rudel.el (rudel-session::end-hook): new slot; stores handlers of
+	the end hook
+	(rudel-session::rudel-end): run end hook
+	(rudel-session::rudel-join-session): install handler on session
+	end hook to set `rudel-current-session' to nil
+	(rudel-session::rudel-end-session): no need to run
+	rudel-session-end-hook or reset `rudel-current-session'
+	* rudel-hooks.el (rudel-hooks--session-start): add handler for the
+	end hook of the session
+	(rudel-hooks--session-end): remove the handler from end hook of
+	the session; run the rudel-session-end hook
+	(rudel-hooks--install-handlers): do install handler for
+	rudel-session-end hook; this is now done by installing the in the
+	session object
+	(rudel-hooks--uninstall-handlers): no need to remove
+	rudel-session-end hook
+
+	* rudel-util.el (rudel-socket-owner::rudel-state-change): cover
+	more states
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-idle::rudel-obby/obby_document_remove):
+	implemented, was stub; untested though
+
+2009-09-10  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-idle::rudel-obby/net6_client_join): check
+	whether we have a user object for the specified user id; modify
+	the existing object if there is one
+
+2009-09-09  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* zeroconf/Makefile (whole file): regenerated
+	* wave/Makefile (whole file): regenerated
+	* Makefile (target all): build target doc
+	(target doc): new target; build documentation
+	(target tags): build target tags in doc directory
+	(target dist): build target dist in doc directory
+
+2009-09-06  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* telepathy/rudel-telepathy.el (header): fixes
+	(require rudel-backend): required, since we define a backend
+	(require rudel-transport): it is a transport backend
+	(class rudel-telepathy-backend): derived from
+	rudel-transport-backend
+	(rudel-telepathy-backend::initialize-instance): new method; set
+	version slot
+	(autoloading): upgraded to new backend registration style
+
+	* INSTALL (REQUIREMENTS): mention Avahi
+
+2009-09-05  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (require rudel-util): required for `rudel-hook-object'
+
+	* rudel-util.el (property svn:executable): removed property
+	* rudel-overlay.el (property svn:executable): removed property
+
+	* doc/Project.ede (whole file): new file; project file for the
+	documentation directory
+	* doc/Makefile (whole file): new file; generated Makefile for the
+	documentation directory
+	* doc/card.tex (whole file): new file; reference card for Rudel;
+	source
+	* doc/card.pdf (whole file): new file; reference card for Rudel;
+	PDF
+
+2009-09-04  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-interactive.el (rudel-read-document): added comment
+	(rudel-allocate-buffer-clear-existing): handle the case in which
+	case a buffer with the desired name exists and is attached to a
+	different document; added some comments
+
+	* rudel-mode.el (header): list all provided modes; bump version
+	(require rudel-hooks): required for global hooks
+	(rudel-mode-line-publish-state-string): new variable; buffer
+	local, holds publish state string for buffer
+	(rudel-mode-line-publish-state--add-indicator-to-mode-line): new
+	function; add publish state indicator to mode line
+	(rudel-mode-line-publish-state--remove-indicator-from-mode-line):
+	new function; remove publish state indicator from mode line
+	(rudel-mode-line-publish-state--update-string): new function;
+	update publish state indicator according to buffer state
+	(rudel-mode-line-publish-state--document-attach): new function;
+	handle document attaching to buffer
+	(rudel-mode-line-publish-state--document-detach): new function;
+	handle document detaching from buffer
+	(rudel-mode-line-publish-state-minor-mode): new minor mode;
+	displays publish state of buffer in mode line
+	(global-rudel-mode-line-publish-state-mode): new minor mode;
+	globalization of `rudel-mode-line-publish-state-minor-mode'
+	(rudel-minor-keymap): menu entries for buffer local and global
+	mode line publish state mode
+
+	* rudel.el (require rudel-hooks): required or hook variables
+	(rudel-session-start-hook): moved to rudel-hooks.el
+	(rudel-session-end-hook): moved to rudel-hooks.el
+	* rudel-hooks.el (whole file): new file; contains hook variables
+	and mapping from object hooks to global hooks
+	* Project.ede (target rudel): added file rudel-hooks.el
+	* Makefile (target rudel_LISP): added file rudel-hooks.el
+
+2009-09-03  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-mode.el (rudel-header-subscriptions-minor-mode): improved
+	documentation string
+
+2009-08-30  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* zeroconf/Makefile (whole file): new file; generated Makefile for
+	the zeroconf subproject
+
+	* wave/rudel-wave.el (whole file): new file; main class of the
+	wave backend
+	* wave/Project.ede (whole file): new file; project file for the
+	wave subproject
+	* wave/Makefile (whole file): new file; generated Makefile for the
+	wave subproject
+	* Project.ede (target autoloads): added wave directory
+	* Makefile (LOADDIRS): added wave and zeroconf directories
+	(VERSION): bumped to 0.2
+	(target all): added wave and zeroconf
+	(tags): descend into zeroconf and wave directories
+	(dist): descend into zeroconf and wave directories
+
+2009-08-28  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (rudel-change-color): run the change hook of the self
+	user
+
+	* rudel-overlay.el (rudel-overlay-set-face-attributes): check the
+	face actually exists
+
+2009-08-27  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-mode.el (rudel-header-subscriptions-use-images): new
+	variable; controls whether images are used when formatting user
+	names
+	(rudel-header-subscriptions-separator): new variable; separator
+	used when formatting user names
+	(rudel-header-subscriptions--make-format): new function; make a
+	format object for header line
+	(rudel-header-subscriptions--update-from-document): new function;
+	update header line from document
+	(rudel-header-subscriptions--update-from-buffer): new function;
+	update header line from buffer
+	(rudel-header-subscriptions--options-changed): new function;
+	update header line in all buffers that have
+	rudel-header-subscriptions-minor-mode enabled after customization
+	option change
+	(rudel-header-subscriptions--user-change): new function; update
+	header line after a user object change
+	(rudel-header-subscriptions--add-user): new function; watch newly
+	subscribed user and update header line
+	(rudel-header-subscriptions--remove-user): new function; stop
+	watching user and update header line
+	(minor mode rudel-header-subscriptions-minor-mode): new minor
+	mode; display subscribed users in buffer's header line
+	(rudel-header-subscriptions--attach): new function; enable header
+	subscription minor mode when attaching
+	(rudel-header-subscriptions--detach): new function; disable header
+	subscription minor mode when detaching
+	(rudel-header-subscriptions--add-document): new function; monitor
+	attaching/detaching of new document
+	(rudel-header-subscriptions--remove-document): new function; stop
+	monitoring attaching/detaching of new document
+	(rudel-header-subscriptions--session-start): new function; watch
+	documents being added/removed to/from the session
+	(rudel-header-subscriptions--session-end): new function; stop
+	watching documents being added/removed to/from the session
+	(minor mode global-rudel-header-subscriptions-mode): global minor
+	mode that controls `rudel-header-subscriptions-minor-mode' in
+	buffers
+	(advice global-rudel-header-subscriptions-mode): controls
+	adding/removing watches for added/removed documents when the
+	global mode is enabled/disabled
+	(rudel-minor-keymap): Added entries for
+	`rudel-header-subscriptions-minor-mode' and
+	`global-rudel-header-subscriptions-mode'
+
+2009-08-26  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* . (property svn:ignore): added patterns
+	* jupiter (property svn:ignore): added patterns
+	* obby (property svn:ignore): added patterns
+
+	* rudel.el (rudel-session::add-user-hook): new slot; add user hook
+	function list
+	(rudel-session::remove-user-hook): new slot; remove user hook
+	function list
+	(rudel-session::add-document-hook): updated documentation string
+	(rudel-session::remove-document-hook): updated documentation
+	string
+	(rudel-session::rudel-add-user): run add user hook
+	(rudel-session::rudel-remove-user): run remove user hook
+
+	* rudel.el (rudel-session-start-hook): new variable; session start
+	hook function list
+	(rudel-session-end-hook): new variable; session end hook function
+	list
+	(rudel-join-session): run session start hook
+	(rudel-end-session): run session end hook
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/obby_document_create): call
+	`generate-new-buffer-name' on complete buffer name; not just name
+	part
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/obby_document/subscribe): send
+	number of bytes instead of number of characters
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-document-synching::remaining-bytes):
+	fixed initarg num-bytes -> remaining-bytes
+
+	* rudel.el (rudel-session::add-document-hook): new slot; run when
+	a document gets added to the session
+	(rudel-session::remove-document-hook): new slot; run when a
+	document gets removed from the session
+	(rudel-session::rudel-add-document): run add document hook
+	(rudel-session::rudel-remove-document): run remove document hook
+	(rudel-document::unsubscribe-hook): fixed initarg subscribe-hook
+	-> unsubscribe-hook
+
+2009-08-25  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* www/index.html (Download): link to http://bazaar-vcs.org;
+	improved wording
+
+	* www/index.html (Download): changed link to source; add browse
+	source link for bzr
+
+	* INSTALL (REQUIREMENTS): precise CEDET release version
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/obby_user_colour): run change hook
+	after setting slot
+	(rudel-obby-server::rudel-remove-client): run change hook after
+	setting slot
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-idle::rudel-obby/net6_client_part): run
+	change hook after setting slots
+	(rudel-obby-client-state-idle::rudel-obby/obby_user_colour): run
+	change hook after setting slot
+	* rudel.el (class rudel-user): derive from `rudel-hook-object'
+	(rudel-user::change-hook): new slot; stores change hook functions
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/obby_user_colour): cosmetic changes
+	(rudel-obby-client::rudel-obby/obby_document/subscribe): use
+	`rudel-add-user'
+	(rudel-obby-client::rudel-obby/obby_document/unsubscribe): use
+	`rudel-remove-user'
+	(rudel-obby-server::rudel-check-username-and-color): whitespace
+	fixes
+
+2009-08-23  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (rudel-document::attach-hook): new slot; attach hook
+	function list
+	(rudel-document::detach-hook): new slot; detach hook function list
+	(rudel-document::rudel-attach-to-buffer): run hook `attach-hook'
+	(rudel-document::rudel-detach-from-buffer): run hook `detach-hook'
+	(rudel-document::rudel-add-user): improved documentation string
+	(rudel-document::rudel-remove-user): improved documentation string
+
+	* obby/rudel-obby.el
+	(rudel-obby-user::eieio-speedbar-object-buttonname): fixed typo
+
+2009-08-21  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-idle::rudel-obby/obby_document/subscribe):
+	call `rudel-add-user'
+	(rudel-obby-client-state-idle::rudel-obby/obby_document/unsubscribe):
+	call `rudel-remove-user'
+	* rudel.el (class rudel-document): mixin rudel-hook-object
+	(rudel-document::subscribe-hook): new slot; subscribe-hook
+	function list
+	(rudel-document::unsubscribe-hook): new slot; unsubscribe-hook
+	function list
+	(rudel-document::rudel-add-user): new method; add user to list of
+	subscribed users and run subscribe-hook
+	(rudel-document::rudel-remove-user): new method; remove user from
+	list of subscribed users and run unsubscribe-hook
+
+	* obby/rudel-obby.el (header): cosmetic changes
+	(include rudel-icons): `rudel-display-string' uses icons
+	(rudel-obby-user::eieio-speedbar-object-buttonname): use
+	`rudel-display-string'
+	(rudel-obby-user::rudel-display-string): new method; textual
+	representation of user object
+	(rudel-obby-parse-message): cosmetic changes
+	* rudel.el (include rudel-icons): `rudel-display-string' uses
+	icons
+	(rudel-user::rudel-display-string): new method; textual
+	representation of user object
+
+	* rudel-util.el (rudel-hook-object): new class; abstract mixin for
+	classes that offer hooks
+	(rudel-hook-object::object-add-hook): new method; add function to
+	hook list
+	(rudel-hook-object::object-remove-hook): new method; remove
+	function from hook list
+	(rudel-hook-object::object-run-hook-with-args): new method; run
+	hook functions
+
+2009-08-20  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* icons/plaintext.svg (new file): plaintext icon
+	* icons/person.svg (new file): person icon
+	* icons/encrypted.svg (new file): encrypted icon
+	* icons/document.svg (new file): document icon
+	* icons/disconnected.svg (new file): disconnected icon
+	* icons/connected.svg (new file): connected icon
+	* rudel-icons.el (new file): loading icons
+	* Project.ede (target rudel): added rudel-icons.el
+
+2009-08-19  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (rudel-join-session): renamed local variable backend to
+	session-initiation-backend
+
+2009-08-17  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-state.el (rudel-obby-state::rudel-accept): fixed
+	format of warning message
+
+	* rudel-state-machine.el (require working): needed by
+	`rudel-state-wait'
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-idle::rudel-obby/obby_user_colour): set
+	face attributes
+	* rudel.el (rudel-change-color): set face attributes
+	* rudel-overlay.el (rudel-overlay-make-face): use
+	`rudel-overlay-set-face-attributes'
+	(rudel-overlay-set-face-attributes): new function; set face
+	attributes
+
+	* rudel-overlay.el (rudel-overlay-author-set-properties): call
+	`rudel-overlay-make-face-symbol'
+	(rudel-overlay-make-face-symbol): new function; return face symbol
+
+2009-08-16  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-overlay.el (rudel-overlay-author-display): option that
+	controls display of author overlays
+	(rudel-make-author-overlay): call
+	`rudel-overlay-author-set-properties' to set the overlay
+	properties
+	(rudel-overlay-author-set-properties): new function; set overlay
+	properties; respects rudel-overlay-author-display
+	(rudel-overlay-author-update): new function; update overlay
+	properties based on associated user object
+	(rudel-overlay-options-changed): new function; call
+	`rudel-overlay-author-update' on all Rudel overlays in all buffers
+	* rudel-mode.el (header): cosmetic changes
+	(rudel-minor-menu): added menu entry to toggle display of author
+	overlays
+
+	* rudel-overlay.el (rudel-make-author-overlay): use `intern'
+	instead of `make-symbol' when allocating the face name; this way,
+	faces can actually be created lazily
+	(rudel-overlay-make-face): call `make-face' for the new face
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-document-synching::object-print): fixed
+	slot name remaining-bytes
+
+	* rudel.el (rudel-host-session): the backend object is the cdr of
+	the result of `rudel-backend-choose'
+
+2009-08-15  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* telepathy/rudel-telepathy.el (header): added file comment
+	* obby/rudel-obby-state.el (header): fixed email address
+	(whole file): whitespace fixes
+	* jupiter/jupiter.el (header): cosmetic changes
+	(whole file): whitespace fixes
+	* rudel-util.el (header): cosmetic changes
+	* rudel-mode.el (header): cosmetic changes
+	* rudel-errors.el (header): fixed type
+	(whole file): whitespace fixes
+
+	* obby/rudel-obby.el (rudel-ask-connect-info): added optional
+	argument info; do not ask for things that are already specified in
+	info
+	(autoload): register obby service with the Zeroconf backend
+	* zeroconf/rudel-zeroconf.el (new file): Zeroconf session
+	initiation for Rudel
+	* zeroconf/Project.ede (new file): subproject zeroconf
+	* rudel.el (rudel-join-session): call `rudel-ask-info' to augment
+	connect info
+	* Project.ede (target autoloads): added directory zeroconf
+	* INSTALL (INSTALLING): mention zeroconf subdirectory
+	(COMPILING): mention zeroconf target
+
+	* rudel-backend.el (rudel-backend-factory::rudel-get-backend):
+	return backend as a cons
+	(rudel-backend-get): new function; convenience function for
+	getting backends
+
+	* obby/rudel-obby.el (header): extended commentary and history
+	(rudel-obby-version): bumped to 0.2
+	(rudel-obby-backend::initialize-instance): set :version slot in
+	constructor instead of using obsolete lambda expression in
+	initform
+
+2009-08-14  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* Project.ede (project rudel): bumped version to 0.2; added
+	mailing list and path to web files
+
+	* rudel-backend.el (rudel-backend-factory): do not initialize
+	backends with lambda expression
+	(rudel-backend-factory::initialize-instance): new method;
+	initialize backends
+	(rudel-backend-cons-p): use `object-p' instead of `eieio-object-p'
+	(rudel-backend-dump): changed format slightly
+
+2009-08-13  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (include rudel-session-initiation): required for
+	`rudel-join-session'
+	(rudel-join-session): mostly rewritten; moved user interaction to
+	`interactive' form
+	* rudel-session-initiation.el (new file): session initiation
+	backend interface and high-level programming interface
+	* Project.ede (target rudel): added rudel-session-initiation.el
+	* Makefile (rudel_LISP): added rudel-session-initiation.el
+
+	* rudel-interactive.el (rudel-read-session): discriminate sessions
+	vs. session generating objects using `rudel-backend-cons-p'
+
+	* rudel-backend.el (rudel-backend-cons-p): new function; checks
+	whether a cons consists of a backend name and object
+
+2009-08-12  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-interactive.el (rudel-read-session): new function; read
+	session by name and return it
+
+	* rudel-interactive.el (rudel-read-backend): argument backends is
+	no longer optional; always return a cons of backend name and
+	object; updated documentation string
+	(whole file): whitespace fixes
+	* rudel-backend.el (rudel-backend-choose): always return a cons of
+	backend name and object; updated documentation string
+
+2009-08-11  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (file header): added project URL
+	(whole file): improved some comments
+
+2009-08-10  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (include eieio-base): needed for eieio-named
+
+2009-08-04  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-state-machine.el (header section commentary): updated
+	(rudel-state-machine::initialize-instance): use
+	`rudel--switch-to-return-value' to allow immediate switch to
+	another state
+	(rudel-state-machine::rudel-switch): use
+	`rudel--switch-to-return-value' to switch to successor state
+	(rudel-state-machine::rudel--switch-to-return-value): new function
+	switch to successor state for different kinds of specifications of
+	the successor state
+
+2009-08-03  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby.el (require rudel-backend): now necessary
+	(require rudel-protocol): now necessary
+	(class rudel-obby-backend): now derived from `rudel-backend';
+	autoloaded
+	(autoloading): use `rudel-add-backend'
+	* rudel.el (require rudel-backend): backends have their own file
+	(class rudel-backend): moved to rudel-backend.el
+	(rudel-load-backends): moved to rudel-backend.el
+	(rudel-suitable-backends): moved to rudel-backend.el
+	(rudel-choose-backend): moved to rudel-backend.el
+	(rudel-join-session): use `rudel-backend-choose'
+	(rudel-host-session): use `rudel-backend-choose'
+
+	* rudel-protocol.el (new file): interface for Rudel protocol
+	backends
+	* Project.ede (target rudel): added rudel-protocol.el
+	* Makefile (rudel_LISP): added rudel-protocol.el
+
+	* rudel-backend.el (rudel-backend-factory::rudel-get-backend):
+	improved documentation string
+	(rudel-backend-factory::rudel-suitable-backends): improved
+	documentation string
+	(rudel-backend-suitable-backends): improved documentation string
+	(rudel-backend-choose): When only one backend matches, do not
+	check interactivity using `interactive-p', that does not work;
+	call `sit-for' correctly
+
+2009-08-02  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* jupiter/Makefile (whole file): regenerated; reflects CEDET
+	changes
+	* rudel-backend.el (new file): generic backend management, query
+	and loading functions
+	* Project.ede (target rudel): added rudel-backend.el to sources
+	* Makefile (rudel_LISP): added rudel-backend.el
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/net6_client_login): use slot
+	:object-name instead of calling object-name-string
+	(rudel-obby-server::rudel-add-context): use slot :object-name
+	instead of calling object-name-string
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-idle::rudel-obby/obby_document/rename):
+	use slot :object-name instead of calling object-name-string
+	(rudel-obby-connection::rudel-add-context): use slot :object-name
+	instead of calling object-name-string
+	(rudel-obby-connection::rudel-publish): use slot :object-name
+	instead of calling object-name-string
+	* rudel.el (class rudel-user): added base class eieio-named for
+	virtual slot :object-name; made abstract
+	(class rudel-document): added base class eieio-named for virtual
+	slot :object-name
+	* rudel-overlay.el (rudel-make-author-overlay): use slot
+	:object-name instead of calling object-name-string
+
+	* rudel-state-machine.el
+	(rudel-state-machine::initialize-instance): use &rest slots
+	instead of just slots
+
+2009-07-15  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (rudel-document::rudel-detach-from-buffer): call
+	`rudel-overlays-remove-all'; remove `rudel-unpublish-buffer' hook
+	early
+	* rudel-overlay.el (rudel-overlays-remove-all): new function;
+	remove all overlays from the current buffer
+	(whole file): cosmetic changes; typo fixes; whitespace fixes
+
+	* obby/rudel-obby.el (rudel-obby-document::rudel-unique-name):
+	Check `next-method-p' before calling the next method
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::initialize-instance): Check
+	`next-method-p' before calling the next method
+	(rudel-obby-connection::rudel-register-state): Check
+	`next-method-p' before calling the next method
+	(rudel-obby-connection::rudel-disconnect): Check
+	`next-method-p' before calling the next method
+	* rudel.el (rudel-client-session::rudel-end): Check
+	`next-method-p' before calling the next method
+
+2009-07-13  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby.el (rudel-obby-backend::rudel-connect): only
+	start the network process after everything is ready; wait for the
+	connection state machine to reach a success or error state
+	(rudel-obby-backend::rudel-host): cosmetic changes
+	(class rudel-obby-user): cosmetic changes
+	* rudel.el (rudel-join-session): reversed order of creation for
+	session and connection; do not catch errors to give error messages
+	a chance
+
+	* jupiter/jupiter-insert.el (jupiter-insert::jupiter-transform):
+	cosmetic changes
+	(whole file): whitespace fixes
+
+	* rudel.el (rudel-session::rudel-find-user): added documentation
+	string; cosmetic changes
+	(rudel-session::rudel-find-document): added documentation string;
+	cosmetic changes
+	(whole file): whitespace fixes
+
+2009-07-12  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-speedbar.el (eieio-speedbar-object-buttonname): use
+	`rudel-unique-name' instead of `object-name-string'
+
+	* obby/rudel-obby-state.el (rudel-enter): return nil
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-client-state-joining::rudel-enter): return nil
+	(rudel-obby-client-state-join-failed::rudel-enter): return nil
+	(rudel-obby-client-state-session-synching::rudel-enter): return
+	nil
+	(rudel-obby-client-state-session-synching::object-print): new
+	method; add number of remaining items to string representation
+	(rudel-obby-client-state-subscribing::rudel-enter): nil
+	(rudel-obby-client-state-document-synching::rudel-enter): nil
+	(rudel-obby-client-state-document-synching::object-print): new
+	method; add number of remaining bytes to string representation
+
+2009-07-11  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-util.el (with-parsed-arguments): added debug
+	declaration
+	(whole file): whitespace fixes
+	* rudel-util.el (rudel-assemble-line-fragments): added debug
+	declaration
+	(rudel-loop-lines): added debug declaration
+	(rudel-loop-chunks): fixed documentation string; added debug
+	declaration
+
+	* rudel-state-machine.el (rudel-no-start-state): new error symbol
+	(rudel-state-machine::initialize-instance): try hard to find a
+	suitable start sate; call `rudel-switch' instead of just
+	`rudel-enter'
+	(rudel-state-machine::rudel-switch): always return the new current
+	state; accept successor state from `rudel-enter'
+	(rudel-state-machine::object-print): new method; add current state
+	of state machine to string representation
+	(rudel-state-machine::rudel-state-wait): whitespace fixes
+
+2009-07-07  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby.el (class rudel-obby-backend): better
+	documentation string
+	(rudel-obby-backend::rudel-ask-connect-info): added documentation
+	string
+	(rudel-obby-backend::rudel-connect): added documentation string
+	(rudel-obby-backend::rudel-ask-host-info): added documentation
+	string
+	(rudel-obby-backend::rudel-host): added documentation string
+	(rudel-obby-backend::rudel-make-document): added documentation
+	string
+	(rudel-obby-send): cosmetic changes
+	(whole file): whitespace fixes
+
+2009-07-05  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* INSTALL (REQUIREMENTS): added Emacs itself and GNUTls
+
+	* rudel-tls.el (rudel-tls-start-tls): added a message
+	(rudel-tls-wait-handshake): switch to filter
+	`rudel-tls-established' instead of restoring the original filter
+	(rudel-tls-established): new function; filters GNUTls messages in
+	encrypted connections
+	(whole file): whitespace fixes
+
+2009-07-04  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* README (INTRODUCTION): extended a bit
+	(JOINING A SESSION): added prompt/input example and an explanation
+	of encryption issues in the obby backend
+	(KNOWN BUGS): new section; no known bugs yet, though
+
+2009-06-17  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-client.el (require rudel-state-machine): the
+	connection now is a state machine
+	(require rudel-obby-errors): used when analyzing login failures
+	(require rudel-obby-state): useful base classes for states
+	(rudel-obby-client-state-new): new class; initial state of new
+	connections
+	(rudel-obby-client-state-encryption-negotiate): new class;
+	first encryption state
+	(rudel-obby-client-state-encryption-start): new class; second
+	encryption state
+	(rudel-obby-client-state-joining): new class
+	(rudel-obby-client-state-join-failed): new class; entered after
+	failed login attempt
+	(rudel-obby-client-state idle): new class; default state of
+	established connections
+	(rudel-obby-client-state-session-synching): new class;
+	synchronizing session state to client
+	(rudel-obby-client-state-subscribing): new class; first state of
+	document subscription
+	(rudel-obby-client-state-document-synching): new class;
+	synchronizing document state to client
+	(rudel-obby-client-connection-states): new variable; alist of
+	name symbols and associated state classes
+	(rudel-obby-connection::initialize-instance): register states
+	(rudel-obby-connection::rudel-register-state): new method; set
+	connection slot of state to its connection
+	(rudel-obby-connection::rudel-add-context): cleanup
+	(rudel-obby-connection::rudel-message): dispatch message using
+	`rudel-accept'
+	(rudel-obby-connection::rudel-subscribe-to): initiate subscription
+	by switching to state 'subscribing'
+
+	* obby/rudel-obby-state.el (rudel-obby-document-handler): new
+	class; mixin class that provides handling of obby 'document'
+	messages
+
+	* rudel-state-machine.el
+	(rudel-state-machine::initialize-instance): find start state in
+	slots and switch into it
+	(while-file): whitespace fixes
+
+2009-06-15  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* www/index.html (section download): fixed link to download area
+	(whole file): whitespace cleanup
+
+	* obby/rudel-obby-state.el (new file): finite state machine states
+	for the rudel backend
+	* obby/Project.ede (target rudel/obby): added rudel-obby-state.el
+	* obby/Makefile (target obby_LISP): added rudel-obby-state.el
+
+	* rudel-util.el (require rudel-errors): required for dispatch
+	errors
+	(symbol rudel-dispatch-error): new condition symbol for dispatch
+	errors
+	(rudel-dispatch): new function; dispatch to method based on method
+	name
+	(whole file): whitespace fixes
+
+2009-06-14  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-mode.el (global-rudel-minor-mode): removed; the variable
+	is created by `define-minor-mode'
+	(minor-mode-alist): managed by `define-minor-mode'
+
+	* rudel-mode.el (require easy-mmode): used to define global rudel
+	minor mode
+	(rudel-minor-keymap): cosmetic changes
+	(global-rudel-minor-mode): use `define-minor-mode' to define the
+	mode
+	(whole file): whitespace cleanup
+
+	* rudel-telepathy.el (whole file): moved to
+	telepathy/rudel-telepathy.el
+	* telepathy/rudel-telepathy.el (whole file): moved from
+	rudel-telepathy.el
+
+	* obby/rudel-obby-server.el (whole file): whitespace cleanup
+	* obby/rudel-obby-client.el (require rudel-obby): removed;
+	unnecessary
+	(rudel-obby-connection::initialize-instance): use &rest for `slots'
+	argument; cosmetic changes
+	(rudel-obby-connection::rudel-change-color-): use own `rudel-send'
+	method instead of the socket's
+	(rudel-obby-connection::rudel-subscribe-to): cosmetic changes
+	(rudel-obby-connection::rudel-unsubscribe-from): cosmetic changes
+	(rudel-obby-connection::rudel-local-operation): cosmetic changes
+	(whole file): whitespace cleanup
+
+2009-06-13  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-errors.el (new file): error data
+	* rudel-state-machine.el (new file): a simple finite state machine
+	implementation
+	* Project.ede (target rudel): added rudel-errors.el and
+	rudel-state-machine.el
+	* Makefile (target rudel_LISP): added rudel-errors.el and
+	rudel-state-machine.el
+
+2009-06-12  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-server.el (require rudel-obby-errors): now
+	required
+	(rudel-obby-client::rudel-obby/net6_client_login): check username
+	and color before adding the client
+	(rudel-obby-server::rudel-check-username-and-color): new method;
+	make sure username and color are valid and there are no duplicates
+	* obby/rudel-obby-errors.el (new file): error data for the obby
+	backend
+	* obby/Project.ede (rudel/obby): added rudel-obby-errors.el
+	* obby/Makefile (obby_LISP): added rudel-obby-errors.el
+
+	* rudel.el (rudel-user::rudel-color): added accessor `rudel-color'
+
+	* obby/rudel-obby-server.el (require cl): required
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/net6_client_login): send suffices
+	of synchronized documents
+
+2009-06-11  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/obby_document_create): send
+	document/rename message to client when the document suffix changes
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/net6_client_login): use
+	`with-parsed-arguments'
+	(rudel-obby-client::rudel-obby/obby_user_colour): use
+	`with-parsed-arguments'
+	(rudel-obby-client::rudel-obby/obby_document_create): use
+	`with-parsed-arguments'
+	(rudel-obby-client::rudel-obby/obby_document): use
+	`with-parsed-arguments'
+	(rudel-obby-client::rudel-obby/obby_document/subscribe): use
+	`with-parsed-arguments'
+	(rudel-obby-client::rudel-obby/obby_document/unsubscribe): use
+	`with-parsed-arguments'
+	(rudel-obby-client::rudel-obby/obby_document/record): use
+	`with-parsed-arguments'
+	(rudel-obby-client::rudel-obby/obby_document/record/ins): use
+	`with-parsed-arguments'
+	(rudel-obby-client::rudel-obby/obby_document/record/del): use
+	`with-parsed-arguments'
+
+	* obby/rudel-obby-server.el (header): fixed version
+
+2009-06-10  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-local-operation): fixed wording in
+	comment
+
+	* www/images/development.png (whole file): changed size 48x48 ->
+	64x64
+	* www/images/development.svg (whole file): changed size 48x48 ->
+	64x64
+	* www/images/download.png (whole file): changed size 48x48 ->
+	64x64
+	* www/images/download.svg (whole file): changed size 48x48 ->
+	64x64
+	* www/images/info.png (whole file): changed size 48x48 -> 64x64
+	* www/images/info.svg (whole file): changed size 48x48 -> 64x64
+
+	* index.html (section introduction): wording fixes; link to Gobby
+	(whole file): removed external link class for sourceforge links
+	(section download): added link to INSTALL file in svn code browser
+	(section footer): fixed copyright
+
+	* compatibility.html (section footer): fixed copyright
+
+2009-06-09  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* INSTALL (section REQUIREMENTS): removed ERT which is not
+	currently used
+	(section INSTALL): some wording and file name fixes
+	(section COMPILING): precise make command
+
+	* www/index.html (section development): fixed mailing list and
+	issue tracker links; removed email address
+
+	* www/compatibility.html (head): fixed charset
+	(section semantic): added missing <p> tag
+
+	* www/compatibility.html (new file): compatibility information
+	* www/index.html (new file): start page
+	* www/style.css (new file): stylesheet
+	* www/images/development.png (new file): development icon
+	* www/images/development.svg (new file): development icon
+	* www/images/download.png (new file): download icon
+	* www/images/download.svg (new file): download icon
+	* www/images/email-link.png (new file): icon for email links
+	* www/images/external-link.png (new file): icon for external links
+	* www/images/info.png (new file): info icon
+	* www/images/info.svg (new file): info icon
+	* www/images/screenshot.png (new file): screenshot for the start
+	page
+
+	* obby/rudel-obby-serverl.el
+	(rudel-obby-client::rudel-obby/obby_document_create): find unique
+	suffix for the new document; send suffix to clients
+
+	* obby/rudel-obby.el (header): fixed license text
+	* obby/rudel-obby-util.el (header): fixed license text
+	* obby/rudel-obby-server.el (header): fixed license text
+	* obby/rudel-obby-client.el (header): fixed license text
+	* jupiter/jupiter.el (header): fixed license text
+	* jupiter/jupiter-operation.el (header): fixed license text
+	* jupiter/jupiter-nop.el (header): fixed license text
+	* jupiter/jupiter-insert.el (header): fixed license text
+	* jupiter/jupiter-delete.el (header): fixed license text
+	* jupiter/jupiter-compound.el (header): fixed license text
+	* rudel.el (header): fixed license text
+	* rudel-util.el (header): fixed license text
+	* rudel-tls.el (header): fixed license text
+	* rudel-telepathy.e (header): fixed license text
+	* rudel-speedbar.el (header): fixed license text
+	* rudel-overlay.el (header): fixed license text
+	* rudel-operators.el (header): fixed license text
+	* rudel-operations.el (header): fixed license text
+	* rudel-mode.el (header): fixed license text
+	* rudel-interactive.el (header): fixed license text
+	* rudel-compat.el (header): fixed license text
+
+	* obby/rudel-obby-util.el (require cl): now required
+	(generic rudel-obby-char->byte): new generic; char positions ->
+	byte positions
+	(jupiter-insert::rudel-obby-char->byte): new method; char
+	positions -> byte positions
+	(jupiter-delete::rudel-obby-char->byte): new method; char
+	positions -> byte positions
+	(jupiter-compound::rudel-obby-char->byte): new method; char
+	positions -> byte positions
+	(jupiter-nop::rudel-obby-char->byte): new method; char positions
+	-> byte positions
+	(generic rudel-obby-byte->char): new generic; byte positions ->
+	char positions
+	(jupiter-insert::rudel-obby-byte->char): new method; byte
+	positions -> char positions
+	(jupiter-delete::rudel-obby-byte->char): new method; byte
+	positions -> char positions
+	(jupiter-compound::rudel-obby-byte->char): new method; byte
+	positions -> char positions
+	(jupiter-nop::rudel-obby-byte->char): new method; byte positions
+	-> char positions
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-local-operation): call
+	`rudel-obby-char->byte' before processing
+	(rudel-obby-connection::rudel-remote-operation): call
+	`rudel-obby-byte->char' before processing
+	* rudel.el (rudel-buffer-change-workaround-data): new variable;
+	holds change data for later use
+	(rudel-document::rudel-attach-to-buffer): add
+	`rudel-buffer-change-workaround' to 'before-change-functions'
+	(rudel-document::rudel-detach-from-buffer): remove
+	`rudel-buffer-change-workaround' from 'before-change-functions'
+	(rudel-buffer-change-workaround): new function; stores change data
+	for later use
+
+2009-06-07  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-obby/net6_client_join): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/net6_client_part): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_welcome): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_sync_init): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_sync_usertable_user): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_user_colour): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_sync_doclist_document):
+	use `with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_document_create): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_document_remove): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_document): use
+	`with-parsed-arguments'; cleanup
+	(rudel-obby-connection::rudel-obby/obby_document/rename): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_document/subscribe): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_document/unsubscribe): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_document/sync_chunk): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_document/record): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_document/record/ins): use
+	`with-parsed-arguments'
+	(rudel-obby-connection::rudel-obby/obby_document/record/del): use
+	`with-parsed-arguments'
+
+2009-06-06  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-obby/net6_client_part): use `eql',
+	not `=' when calling `rudel-find-user' since the client id can be
+	nil
+
+	* obby/rudel-obby-util.el (require jupiter): silence byte compiler
+
+	* obby/rudel-obby-util.el (rudel-obby-dispatch): moved inside file
+	(with-parsed-arguments): new macro; executed forms with variables
+	bound to parsed arguments
+
+2009-06-04  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (require rudel-interactive): interactive functions use
+	`rudel-read-backend' and `rudel-read-document'
+
+	* rudel.el (rudel-buffer-document): mark as permanent local
+	variable to prevent deletion in the event of a major-mode change
+	(rudel-document::rudel-attach-to-buffer): add (buffer-locally)
+	`rudel-handle-major-mode-change' to 'change-major-mode-hook' such
+	that it can repair damage caused by major-mode changes
+	(rudel-document::rudel-detach-from-buffer): remove
+	`rudel-handle-major-mode-change' from 'change-major-mode-hook'
+	(rudel-mode-changed-buffers) new variable; temporarily stores
+	buffers that underwent major-mode changes
+	(rudel-handle-major-mode-change): new function; schedules buffers
+	for repair after major-mode changes
+	(rudel-after-major-mode-change): new function; repairs buffer
+	objects after major-mode changes
+
+2009-06-03  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (rudel-buffer-has-document-p): use `buffer-local-value'
+	(rudel-buffer-document): use `buffer-local-value'
+	(rudel-set-buffer-document): added documentation string
+
+2009-06-02  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (rudel-handle-buffer-change): There are three cases
+	now: insert, delete and arbitrary changes; arbitrary changes
+	generate a delete and insert operation
+
+	* rudel-mode.el (rudel-minor-keymap): added some comments
+	(global-rudel-minor-mode): extended documentation string; cleaned
+	up code; added comments
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-obby/net6_client_part): fixed typo
+	in variable name client-id-numeric
+
+2009-05-28  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-util.el (header): Fixed version (1.0 -> 0.1)
+
+	* obby/rudel-obby-client.el (header): Fixed version (1.0 -> 0.1)
+	(rudel-obby-connection::rudel-obby/obby_document/record/split):
+	introduced temporary variable
+
+2009-??-??  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (rudel-buffer-document): removed; replaced by
+	rudel-buffer-documents hash-table
+	(rudel-buffer-documents): new variable; a hash-table, which
+	associates documents to buffers
+	(rudel-buffer-has-document-p):
+	(rudel-buffer-document):
+	(rudel-set-buffer-document):
+
+2009-03-16  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-obby/net6_client_part): do not crash
+	if the client id cannot be found
+
+	* obby/rudel-obby.el (rudel-obby-backend::rudel-make-document):
+	specify value 1 for slot suffix
+	(rudel-obby-document::suffix): new slot; contains the suffix
+	number of the document
+	(rudel-obby-document::rudel-unique-name): new method; return
+	unique name based on document name and suffix
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-obby/obby_sync_doclist_document): do
+	not ignore the suffix when creating the document object
+	(rudel-obby-connection::rudel-obby/obby_document_create): do not
+	ignore the suffix when creating the document object
+	(rudel-obby-connection::rudel-obby/obby_document/rename): change
+	document name and suffix as requested
+	* rudel.el (rudel-document::rudel-unique-name): new method;
+	returns a unique name for the document
+	(rudel-document::rudel-suggested-buffer-name): new method; returns
+	a suggested name for the buffer attached to the document
+	(rudel-subscribe): use `rudel-suggested-buffer-name' instead of
+	the object name
+	* rudel-interactive.el (rudel-read-document): use the unique names
+	of the documents instead of the object names
+
+2009-02-27  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (rudel-document::rudel-attach-to-buffer): add hook to
+	detach document from the buffer when the buffer is killed
+	(rudel-document::rudel-detach-from-buffer): remove unpublish
+	function kill buffer hook
+
+2009-02-23  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (rudel-document): minor cleanup
+	(rudel-document::rudel-attach-to-buffer): stylistic changes
+	(rudel-document::rudel-detach-from-buffer): fixed argument order in
+	call to `rudel-set-buffer-document'
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-server::rudel-remove-client): Make sure there is a
+	user object before setting the status to offline
+
+	* obby/rudel-obby-client.el (rudel-obby/net6_encryption_failed):
+	only fail if encryption has been requested in the first
+	place. otherwise, just carry on
+
+	* rudel.el (rudel-document::rudel-attach-to-buffer): use
+	`rudel-set-buffer-document'
+	(rudel-document::rudel-detach-from-buffer): use
+	`rudel-set-buffer-document'
+	(rudel-buffer-has-document-p): new function; test whether a buffer
+	has an associated document object
+	(rudel-buffer-document): new function; returns associated document
+	object of a buffer
+	(rudel-set-buffer-document): new functions; sets associated
+	document object of a buffer
+	(rudel-handle-buffer-change): use `rudel-buffer-has-document-p'
+	(rudel-publish-buffer): use `rudel-buffer-has-document-p'
+	(rudel-unpublish-buffer): use `rudel-buffer-has-document-p' and
+	`rudel-buffer-document'
+	* rudel-mode.el (rudel-minor-keymap): use
+	`rudel-buffer-has-document-p'
+
+	* obby/rudel-obby-client.el (rudel-obby/obby_document/rename):
+	new method; dummy implementation
+
+	* obby/rudel-obby-client.el (rudel-obby/net6_client_join):
+	stylistic change
+
+2009-02-21  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-util.el (generic rudel-operation->message): new
+	generic function; serializes an operation
+	(jupiter-insert::rudel-operation->message): new method
+	(jupiter-delete::rudel-operation->message): new method
+	(jupiter-compound::rudel-operation->message): new method
+	(jupiter-nop::rudel-operation->message): new method
+	(rudel-message->operation): new function; deserializes an
+	operation from a received message
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-local-insert): do not construct
+	message string; use `rudel-operation->message'
+	(rudel-obby-connection::rudel-local-delete): do not construct
+	message string; use `rudel-operation->message'
+	(rudel-obby-connection::rudel-local-operation): new method;
+	handles operation objects that represent local operations
+	(rudel-obby-connection::rudel-remote-operation): new method;
+	handles operation objects that represent remote operations
+	(rudel-obby-connection::rudel-obby/obby_document/record/ins):
+	construct operation name correctly; do not call jupiter context to
+	transform operation
+	(rudel-obby-connection::rudel-obby/obby_document/record/del):
+	construct operation name correctly; do not call jupiter context to
+	transform operation
+	(rudel-obby-connection::rudel-obby/obby_document/record/split):
+	new method; handles split operation messages
+	(rudel-obby-connection::rudel-obby/obby_document/record/noop): new
+	method; handles nop messages
+
+2009-02-12  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby.el (rudel-obby-backend::rudel-ask-connect-info):
+	ask whether to encrypt the connection
+	(rudel-obby-backend::rudel-connect): create connection object
+	capable of StartTLS encryption when encryption was requested
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-obby/net6_encryption): do not fail
+	when the server requests encryption
+	(rudel-obby-connection::rudel-obby/net6_encryption_begin): start
+	TLS encryption for the connection
+	(rudel-obby-connection::rudel-obby/net6_encryption_failed): new
+	method; stub
+	* rudel-tls.el (new file): StartTLS encryption for Rudel
+	* Project.ede ("rudel"): added rudel-tls.el
+	* Makefile (rudel_LISP): added rudel-tls.el
+
+2009-02-06  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-compat.el (header): fixed email address, keywords, legal
+	notice and file commentary
+
+2009-02-05  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby.el (rudel-compat): require rudel-compat for
+	`read-color'
+	* rudel.el (rudel-compat): require rudel-compat for `read-color'
+	* rudel-interactive.el (rudel-compat): require rudel-compat for
+	`read-color'
+	* rudel-compat.el (new file): compatibility code
+	* Project.ede (rudel): added rudel-compat.el
+	* Makefile (rudel_LISP): regenerated: added rudel-compat.el
+
+2009-02-04  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby.el (require rudel)
+	* obby/rudel-obby-util.el (require rudel)
+	* obby/rudel-obby-client.el (require rudel-obby): make compilation
+	succeed
+
+	* rudel.el (include eieio-speedbar): I need it for now; I should
+	get rid of it later
+
+	* INSTALL (REQUIREMENTS): added note that CVS version of cedet is
+	required
+	(INSTALLING): added subdirectories jupiter and obby in load path
+	listing; fixed name of autoload file
+
+2009-02-02  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby.el (rudel-obby-backend::rudel-ask-connect-info)
+	(rudel-obby-backend::rudel-host, rudel-obby-replace-in-string)
+	* obby/rudel-obby-util.el (rudel-obby-dispatch)
+	* obby/rudel-obby-server.el (rudel-obby-client::rudel-obby/obby_document)
+	(rudel-obby-server::rudel-broadcast, rudel-obby-server::rudel-make-user)
+	* obby/rudel-obby-client.el (rudel-obby-connection::rudel-obby/net6_client_join)
+	(rudel-obby-connection::rudel-obby/obby_document)
+	* jupiter/jupiter-operation.el (jupiter-operation)
+	* rudel.el (rudel-backend, rudel-session, rudel-server-session)
+	(rudel-connection, rudel-document)
+	(rudel-document::rudel-attach-to-buffer)
+	(rudel-document::rudel-detach-from-buffer)
+	(rudel-document::rudel-insert, rudel-document::rudel-delete)
+	(rudel-change-color)
+	* rudel-util.el (rudel-assemble-line-fragments, rudel-loop-lines)
+	* rudel-overlay.el (rudel-make-author-overlay)
+	* rudel-interactive.el (rudel-read-backend, rudel-read-user-color)
+	(rudel-read-user, rudel-read-document): replaced 't by t
+
+	* rudel-operators.el (rudel-overlay-operators::rudel-insert):
+	Fixed computation of insertion offset when appending to the end of
+	the buffer string
+
+	* rudel.el (rudel-document::rudel-chunks): fixed invalid access to
+	last chunk for empty buffer
+
+	* rudel.el (rudel-document::rudel-attach-to-buffer): fixed
+	incorrect slot reference
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/obby_document/subscribe): minor
+	rearrangement of expressions
+	(rudel-obby-client::rudel-obby/obby_document/unsubscribe): minor
+	rearrangement of expressions
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/obby_document/record/ins): added
+	documentation string
+	(rudel-obby-client::rudel-obby/obby_document/record/del): added
+	documentation string
+	(rudel-obby-server): cosmetic change
+
+	* jupiter/jupiter.el (jupiter-context::jupiter-remote-operation):
+	improved documentation string; cosmetic changes
+
+	* jupiter/jupiter-insert.el (jupiter-insert::jupiter-transform):
+	improved some comments
+
+	* rudel.el (rudel-document::rudel-attach-to-buffer): renamed
+	some variables; added documentation string
+	(rudel-document::rudel-insert): improved documentation string
+	(rudel-document::rudel-chunks): do not create chunks when buffer
+	string is empty; improved comments
+	(rudel-choose-backend): compare number using `=' not `eq'
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/obby_document/record/ins): use
+	`rudel-remote-operation' instead of `rudel-remote-insert'
+	(rudel-obby-client::rudel-obby/obby_document/record/del): use
+	`rudel-remote-operation' instead of `rudel-remote-delete'
+	* obby/rudel-obby-client.el (include rudel-operations): for
+	rudel-insert-op and rudel-delete-op
+	(rudel-obby-connection::rudel-obby/obby_document/sync_chunk): use
+	`rudel-remote-operation' with rudel-insert-op to insert chunks
+	(rudel-obby-connection::rudel-obby/obby_document/record/ins): use
+	`rudel-remote-operation' instead of `rudel-remote-insert'
+	(rudel-obby-connection::rudel-obby/obby_document/record/del): use
+	`rudel-remote-operation' instead of `rudel-remote-delete'
+	* jupiter/jupiter-operation.el (include rudel-operations): for
+	rudel-operation
+	(jupiter-operation): derived from rudel-operation
+	(jupiter-operation::jupiter-apply): removed; replaced by generic
+	`rudel-apply'
+	* jupiter/jupiter-nop.el (jupiter-nop::jupiter-apply): removed;
+	replaced by `rudel-apply'
+	(jupiter-nop::rudel-apply): new method; implements generic
+	`rudel-apply'
+	* jupiter/jupiter-insert.el (include rudel-operations): for
+	jupiter-insert-op
+	(jupiter-insert): derived from jupiter-insert-op
+	(jupiter-insert::jupiter-apply): removed; inherited from
+	jupiter-insert-op
+	(jupiter-insert::slot-missing): removed; inherited from
+	jupiter-insert-op
+	* jupiter/jupiter-delete.el (include rudel-operations): for
+	jupiter-delete-op
+	(jupiter-delete): derived from jupiter-delete-op
+	(jupiter-delete::jupiter-apply): removed; inherited from
+	jupiter-delete-op
+	(jupiter-delete::slot-missing): removed; inherited from
+	jupiter-delete-op
+	* jupiter/jupiter-compound.el (jupiter-compound::jupiter-apply):
+	removed; replaced by `rudel-apply'
+	(jupiter-compound::rudel-apply): new method; implements generic
+	`rudel-apply'
+	* rudel.el (include rudel-operations): everything is represented
+	in terms of operations
+	(include rudel-operators): operations apply changes to objects
+	through operators
+	(rudel-document::rudel-insert): new method; performs insert
+	operation
+	(rudel-document::rudel-delete): new method; performs delete
+	operation
+	(rudel-document::rudel-local-insert): removed; document does not
+	deal with aspects other than the actual insert and delete
+	(rudel-document::rudel-local-delete): removed; document does not
+	deal with aspects other than the actual insert and delete
+	(rudel-document::rudel-remote-insert): removed; document does not
+	deal with aspects other than the actual insert and delete
+	(rudel-document::rudel-remote-delete): removed; document does not
+	deal with aspects other than the actual insert and delete
+	(rudel-document::rudel-local-operation): new method; apply
+	operation using overlay and connection operators
+	(rudel-document::rudel-remote-operation): new method; apply
+	operation using document and overlay operators
+	(rudel-handle-buffer-change): realize buffer changes using
+	operations
+	* rudel-operators.el (new file): collections of operations on
+	Rudel data types
+	* rudel-operations.el (new file): operation classes
+
+2009-02-01  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* jupiter/jupiter-insert.el (jupiter-insert::jupiter-transform):
+	handle jupiter-nop
+
+	* jupiter/jupiter-delete.el (jupiter-delete::jupiter-transform):
+	in inner cond, use matching pattern but empty body for
+	no-operation cases; in outer cond, handle jupiter-nop
+
+	* jupiter/jupiter-compound.el (jupiter-compound): now derived from
+	jupiter-operation; should have been right from the start
+
+2009-01-31  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (rudel-default-username): Default name used when
+	prompting for user name; required by rudel-interactive
+
+	* rudel-interactive.el (rudel-read-backend): fixed typo
+
+2009-01-30  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* jupiter/jupiter-insert.el (jupiter-insert::jupiter-transform):
+	fixed two offset calculations
+	* jupiter/jupiter-delete.el (jupiter-delete::jupiter-transform):
+	fixed offset calculation
+
+	* rudel.el (rudel-backend::rudel-ask-connect-info): changed from
+	method to generic
+	(rudel-backend::rudel-connect): changed from method to generic
+	(rudel-backend::rudel-ask-host-info): changed from method to
+	generic
+	(rudel-backend::rudel-host): changed from method to generic
+	(rudel-backend::rudel-make-document): changed from method to
+	generic
+	(rudel-session::rudel-disconnect): changed from method to generic
+	(rudel-session::rudel-change-color-): changed from method to
+	generic
+	(rudel-session::rudel-publish): changed from method to generic
+	(rudel-session::rudel-subscribe-to): changed from method to
+	generic
+	(rudel-session::rudel-unsubscribe-from): changed from method to
+	generic
+	(rudel-session::rudel-local-insert): changed from method to
+	generic
+	(rudel-session::rudel-local-delete): changed from method to
+	generic
+	(rudel-session::rudel-remote-insert): changed from method to
+	generic
+	(rudel-session::rudel-remote-delete): changed from method to
+	generic
+
+2009-01-28  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-overlay.el (header): fixed version
+	(whole file): cosmetic changes
+	(rudel-author-overlay-p): added documentation string
+	(rudel-author-overlays): added documentation string
+
+	* rudel-mode.el (rudel-minor-keymap): cosmetic changes
+
+	* rudel-mode.el (rudel-minor-keymap): Separated session
+	participation and hosting items
+
+	* obby/rudel-obby.el (rudel-obby-long-message-threshold): Added
+	documentation string
+	(rudel-obby-long-message-chunk-size): Added documentation string
+	(rudel-obby-backend::rudel-connect): Do not set process object;
+	this is done in the `initialize-instance' method of the base class
+	(rudel-obby-format-color): retrieve color components with
+	`color-values'
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-remove-context): improved
+	documentation string
+	(rudel-obby-connection::rudel-publish): added a comment
+	(rudel-obby-connection::rudel-subscribe-to): added some comments;
+	cleaned up code
+	(rudel-obby-connection::rudel-unsubscribe-from): added a comment
+	(rudel-obby-connection::rudel-obby/net6_ping): added documentation
+	string
+	(rudel-obby-connection::rudel-obby/net6_encryption): added
+	documentation string
+	(rudel-obby-connection::rudel-obby/net6_login_failed): added
+	documentation string
+	(rudel-obby-connection::rudel-obby/net6_client_part): use `='
+	instead of `eq' to compare client ids; fixed documentation string;
+	improved comments
+	(rudel-obby-connection::rudel-obby/obby_user_colour): use `='
+	instead of `eq' to compare user ids
+	(rudel-obby-connection::rudel-obby/obby_document/sync_chunk): use
+	`=' instead of `eq' to compare user ids; use accessor
+	`user-id-numeric'
+
+	* obby/rudel-obby-util.el (rudel-obby-dispatch): new functions;
+	dispatches to class methods based on message name; handles errors
+	properly
+	* obby/rudel-obby-server.el (rudel-obby-client::rudel-message):
+	use `rudel-obby-dispatch' to dispatch message
+	(rudel-obby-client::rudel-obby/obby_document): use
+	`rudel-obby-dispatch' to dispatch message
+	(rudel-obby-client::rudel-obby/obby_document/record): use
+	`rudel-obby-dispatch' to dispatch message
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-message): use `rudel-obby-dispatch'
+	to dispatch message; moved to a different location
+	(rudel-obby-connection::rudel-obby/obby_document): use
+	`rudel-obby-dispatch' to dispatch message
+	(rudel-obby-connection::rudel-obby/obby_document/record): use
+	`rudel-obby-dispatch' to dispatch message
+
+	* obby/rudel-obby-util.el (generic rudel-message): made the method
+	a generic function and updated the documentation string
+
+2009-01-26  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby.el (rudel-obby-document::revision): removed; The
+	slot is no longer needed
+	* obby/rudel-obby-server.el (require jupiter): uses jupiter
+	algorithm
+	(rudel-obby-client::rudel-obby/obby_document_create): add a
+	jupiter context for the document
+	(rudel-obby-client::rudel-obby/obby_document/subscribe): add a
+	jupiter context for the document
+	(rudel-obby-client::rudel-obby/obby_document/unsubscribe): remove
+	the jupiter context associated to the document
+	(rudel-obby-client::rudel-obby/obby_document/record/ins):
+	transformed the operation before applying it to the buffer; use
+	the respective jupiter contexts of the receivers when sending the
+	operation
+	(rudel-obby-client::rudel-obby/obby_document/record/del):
+	transformed the operation before applying it to the buffer; use
+	the respective jupiter contexts of the receivers when sending the
+	operation
+	(rudel-obby-server::contexts): new slot; stores jupiter contexts
+	for pairs of clients and documents
+	(rudel-obby-server::initialize-instance): new method; store an
+	empty hash-table in the `contexts' slot
+	(rudel-obby-server::rudel-find-context): find the jupiter context
+	for a pair of a client and a document
+	(rudel-obby-server::rudel-add-context): add a jupiter context for
+	a pair of a client and a document
+	(rudel-obby-server::rudel-remove-context): remove the jupiter
+	context for a pair of a client and a document
+	(rudel-obby-context-key): return a list of client id and document
+	id
+	* obby/rudel-obby-client.el (require jupiter): uses jupiter
+	algorithm
+	(rudel-obby-connection::contexts): new slot; stores jupiter
+	contexts for documents
+	(rudel-obby-connection::initialize-instance): new method; store an
+	empty hash-table in the `contexts' slot
+	(rudel-obby-connection::rudel-find-context): new method; return
+	the jupiter context for a document
+	(rudel-obby-connection::rudel-add-context): new method; add a
+	jupiter context for a document
+	(rudel-obby-connection::rudel-remove-context): new method; remove
+	the jupiter context for a document
+	(rudel-obby-connection::rudel-publish): add a jupiter context for
+	the new document
+	(rudel-obby-connection::rudel-subscribe-to): add a jupiter context
+	for the new document
+	(rudel-obby-connection::rudel-unsubscribe-from): remove the
+	jupiter context associated to the document
+	(rudel-obby-connection::rudel-local-insert): use revision
+	information from the jupiter context instead of the document;
+	supply the operation to the jupiter context
+	(rudel-obby-connection::rudel-local-delete): use revision
+	information from the jupiter context instead of the document;
+	supply the operation to the jupiter context
+	(rudel-obby-connection::rudel-obby/obby_document/record/ins):
+	transform the operation using the jupiter context instead of using
+	it unmodified
+	(rudel-obby-connection::rudel-obby/obby_document/record/del):
+	transform the operation using the jupiter context instead of using
+	it unmodified
+
+2009-01-22  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby-client.el (rudel-obby-connection): removed
+	redundant slot `socket' (inherited from base class)
+
+2009-01-21  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel-interactive.el (rudel-read-user): added comments
+	(rudel-allocate-buffer-clear-existing): added documentation string
+	(rudel-allocate-buffer-make-unique): added documentation string
+
+2009-01-19  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el, rudel-util.el, rudel-telepathy.el, rudel-speedbar.el,
+	rudel-overlay.el, rudel-mode.el, jupiter/jupiter.el,
+	jupiter/jupiter-operation.el, jupiter/jupiter-nop.el,
+	jupiter/jupiter-insert.el, jupiter/jupiter-delete.el,
+	jupiter/jupiter-compound.el, obby/rudel-obby.el,
+	obby/rudel-obby-util.el, obby/rudel-obby-server.el,
+	obby/rudel-obby-client.el (header): changed email address
+	<scymtym@users.sourceforge.net> ->
+	<scymtym@users.sourceforge.net>
+
+	* rudel-interactive.el (header): added keywords to file header
+	comment
+
+	* jupiter/jupiter.el (new file): core Jupiter algorithm
+	* jupiter/jupiter-operation.el (new file): base class for Jupiter
+	operations
+	* jupiter/jupiter-insert.el (new file): insert operation for
+	Jupiter algorithm
+	* jupiter/jupiter-delete.el (new file): delete operation for
+	Jupiter algorithm
+	* jupiter/jupiter-nop.el (new file): no-operation for Jupiter
+	algorithm
+	* jupiter/jupiter-compound.el (new file): compound operation for
+	Jupiter algorithm
+
+2009-01-11  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby.el (rudel-obby-user::client-id): added rationale
+	for type (or null integer)
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-obby/net6_client_join): added
+	documentation string; cosmetic changes
+	(rudel-obby-connection::rudel-obby/net6_client_part): use accessor
+	`rudel-client-id' when searching for the user object; set
+	client-id to nil in the user object; added documentation string
+	(rudel-obby-connection::rudel-obby/obby_sync_usertable_user):
+	store parsed user-id and color in temporaries
+	(rudel-obby-connection::rudel-obby/obby_user_colour):store parsed
+	color in a temporary; use accessor `rudel-id' when finding the
+	user object
+
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-change-color-): new function;
+	implements changing the color
+
+	* obby/rudel-obby-util.el
+	(rudel-obby-socket-owner::rudel-receive): improved documentation
+	string
+
+2009-01-05  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* INSTALL (REQUIREMENTS): proper list of requirements and sources
+	from which they can be obtained
+	(INSTALLING): initial version of installation instructions
+	(COMPLETING): some notes about compiling
+	* README (INTRODUCTION): short introduction
+	(GETTING STARTED): some notes about enabling Rudel, joining and
+	hosting sessions
+
+2009-01-04  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby.el (rudel-obby-long-message-threshold): new
+	variable; threshold for message size, above which messages are
+	sent in multiple chunks
+	(rudel-obby-long-message-chunk-size): Chunk size used, when
+	chunking long messages.
+	(rudel-obby-user::client-id): allow value nil; added accessor;
+	added documentation string
+	(rudel-obby-send): new function; handles low-level aspects of
+	sending obby protocol messages
+	* obby/rudel-obby-util.el: new file; contains helper
+	functionality, mainly the class `rudel-obby-socket-owner', which
+	handles sending and receiving message
+	* obby/rudel-obby-server.el (includes): replaced rudel-obby with
+	rudel-obby-util, since it contains `rudel-obby-socket-owner'
+	(class rudel-obby-client): added base class
+	`rudel-obby-socket-owner'
+	(rudel-obby-client::rudel-receive): deleted, the functionality is
+	provided by the base class `rudel-obby-socket-owner'
+	(rudel-obby-client::rudel-send): deleted, the functionality is
+	provided by the base class `rudel-obby-socket-owner'
+	(rudel-obby-client::rudel-message): new method; called by base
+	class when a message is received; dispatches to appropriate
+	handler method
+	(rudel-obby-client::rudel-obby/obby_user_colour): minor change in
+	documentation string
+	* obby/rudel-obby-client.el (includes): replaced rudel-obby with
+	rudel-obby-util, since it contains `rudel-obby-socket-owner'
+	(class rudel-obby-connection): added base class
+	`rudel-obby-socket-owner'
+	(rudel-obby-connection::rudel-disconnect): just call next method;
+	it does what this method formerly did
+	(rudel-obby-connection::rudel-close): new method; end the session,
+	when the connection is closed
+	(rudel-obby-connection::rudel-receive): deleted, the functionality
+	is provided by the base class `rudel-obby-socket-owner'
+	(rudel-obby-connection::rudel-send): deleted, the functionality is
+	provided by the base class `rudel-obby-socket-owner'
+	(rudel-obby-connection::rudel-message): new method; called by
+	base class when a message is received; dispatches to appropriate
+	handler method
+
+	* rudel.el (rudel-document::rudel-detach-from-buffer): do nothing,
+	if the document is not attached to any buffer
+
+	* obby/rudel-obby.el (rudel-obby-user): added missing accessor
+	`rudel-connected'
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/net6_client_login): transmit number
+	of synchronization items; transmit list of disconnected users
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/obby_document/record/ins):
+	broadcast only to clients, which are subscribed to the document;
+	send user id of author instead of client id
+	(rudel-obby-client::rudel-obby/obby_document/record/del):
+	broadcast only to clients, which are subscribed to the document;
+	send user id of author instead of client id
+	(rudel-obby-client::rudel-subscribed-clients-not-self): new
+	method; return a list of clients subscribed to a document
+	excluding the client itself.
+
+	* obby/rudel-obby-server.el (rudel-obby-server::next-client-id):
+	first id should be 1, not 0; fixed initform accordingly
+	(rudel-obby-server::next-user-id):
+	first id should be 1, not 0; fixed initform accordingly
+
+	* rudel.el (rudel-document::rudel-chunks): fixed void variable
+	`chunks-' -> `augmented-chunks'
+
+	* obby/rudel-obby-server.el
+	(rudel-obby-client::rudel-obby/obby_document/subscribe): send
+	individual buffer chunks with their respective authors instead of
+	one large string without author information
+	* rudel.el (rudel-document::rudel-chunks): new method; return a
+	list of buffer position ranges and the respective authors, that
+	wrote the text
+
+2009-01-03  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby/rudel-obby.el (rudel-obby-backend::rudel-host): cleanup
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-local-insert): accept arguments
+	`position' and `data' instead of `from', `to' and `what'; since
+	position is zero-based, transmit it literally
+	(rudel-obby-connection::rudel-local-delete): instead of `from' and
+	`to' accept argument `position'; since position is
+	zero-based. transmit it literally
+	(rudel-obby-connection::rudel-obby/obby_document/record):
+	identified remaining arguments; dispatch actions to appropriate
+	methods; identify methods by interning their symbols
+	(rudel-obby-connection::rudel-obby/obby_document/record/ins): new
+	method; handle remote insert actions
+	(rudel-obby-connection::rudel-obby/obby_document/record/del): new
+	method; handle remote delete actions
+	* rudel.el (includes): include rudel-overlay
+	(rudel-document::rudel-detach-from-buffer): improved readability
+	(rudel-document::rudel-local-insert): instead of redundant
+	arguments `from', `to' and `what' accept only `position' and
+	`data'; update overlays
+	(rudel-document::rudel-local-delete): instead of redundant
+	arguments `from', `to' and `length' accept only `position' and
+	`length'; update overlays
+	(rudel-document::rudel-remote-insert): renamed arguments `from' ->
+	`position', `what' -> `data'; update overlays
+	(rudel-document::rudel-remote-delete): replaced arguments `from'
+	and `to' by `position'; update overlays
+	(rudel-handle-buffer-change): call rudel-local-{insert, delete}
+	with changed arguments
+
+2009-01-01  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (rudel-session::rudel-unsubscribed-documents): new
+	method; returns documents, to which the user associated with the
+	session is not yet subscribed
+	(rudel-subscribe): when called interactively, use
+	`rudel-unsubscribed-documents' to offer only unsubscribed
+	documents in completing read
+
+	* rudel-interactive.el (rudel-read-user-name): new function; read
+	a user name; could be used to enforce certain constraints on the
+	name
+	(rudel-read-user-color): new function; read a user color; could be
+	used to enforce certain constraints on the color
+
+	* obby/rudel-obby.el (rudel-obby-backend::rudel-ask-host-info):
+	new method; ask user for port number
+	(rudel-obby-backend::rudel-host): new method; require obby server
+	component, make the network process and construct the server
+	* obby/rudel-obby-server.el (new file): initial revision of obby
+	server for rudel
+	* obby/rudel-obby-client.el (header section): added keyword and
+	x-rcs
+	(rudel-obby-connection::rudel-publish): new method; send document
+	to server
+	(rudel-obby-connection::rudel-unsubscribe-from): send unsubscribe
+	notification to server
+	(rudel-obby-connection::rudel-local-insert): cleanup
+	(rudel-obby-connection::rudel-local-delete): new method; send
+	delete record to server and increase local revision
+	(rudel-obby-connection::rudel-obby/obby_document/sync_chunk):
+	improved user locating code; do not complain, when the user is not
+	found
+	(rudel-obby-connection::rudel-obby/obby_document/record): removed
+	useless debug message
+	* rudel.el (class rudel-session): update documentation string
+	(class rudel-server-session): new class; base class for server
+	sessions
+	(rudel-choose-backend): fixed void-variable when called
+	interactively
+	(rudel-host-session): provided initial implementation, which uses
+	the selected backend to create a server
+	(rudel-subscribe): call `set-window-buffer' instead of
+	`show-buffer'
+
+	* obby/rudel-obby.el (header section): fixed history
+	(rudel-obby-version): new constant; holds version of the obby
+	backend
+	(rudel-obby-protocol-version): new constant; holds the obby
+	protocol version understood by the backend
+	(rudel-obby-document::rudel-both-ids): new method; useful when
+	locating documents by means of owner and document id
+
+	* rudel-mode.el (header section): added keywords
+
+	* rudel-interactive.el (header section): added file comment
+
+2008-12-30  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (class rudel-session): converted to base class for
+	other session classes; removed slots `connection' and `self' which
+	are specific for client sessions
+	(rudel-session::rudel-end): empty now; derived classes do the work
+	(rudel-session::rudel-add-user): use `object-add-to-list'
+	(rudel-session::rudel-remove-user): use `object-remove-from-list'
+	(rudel-session::rudel-add-document): use `object-add-to-list'
+	(rudel-session::rudel-remove-document): use
+	`object-remove-from-list'
+	(class rudel-client-session): derived from `rudel-session';
+	additional slots `connection' and `self'
+	(rudel-client-session::rudel-end): detach buffers from documents
+	and call `rudel-disconnect' on connection
+	(class rudel-connection): documentation string
+	(rudel-connection::rudel-disconnect): remove hook
+	`after-change-functions' only locally
+	(rudel-join-session): construct a proper session name; store
+	backend object in the session; some comments
+
+	* obby/rudel-obby.el (rudel-obby-document): cleanup; improved
+	documentation strings
+
+	* rudel-overlay.el (new file): functions for managing overlays,
+	which indicate the authors of contributions in collaborative
+	buffers
+
+	* rudel.el (rudel-allocate-buffer-function): customization option
+	for buffer allocation function
+	(rudel-subscribe): call buffer allocation function instead of just
+	using the provided name
+	* rudel-interactive.el (rudel-allocate-buffer-clear-existing): new
+	function; in case of a conflict, allocate buffer for subscription
+	by clearing the existing buffer
+	(rudel-allocate-buffer-make-unique): new function; in case of a
+	conflict, allocate buffer for subscription by producing a unique
+	name
+
+	* rudel.el (customization): added customization group definition
+	for `rudel'
+
+	* obby/rudel-obby.el (includes): require `rudel-util' instead of
+	`rudel'
+	(rudel-connect): attach connection to socket object
+	(rudel-obby-document): removed slot `subscribed' as it is now
+	contained in the base class `rudel-document'
+	(rudel-obby-escape-string): call `rudel-obby-replace-in-string'
+	instead of `obby-replace-in-string'
+	(rudel-obby-unescape-string): call `rudel-obby-replace-in-string'
+	instead of `obby-replace-in-string'
+	* obby/rudel-obby-client.el
+	(rudel-obby-connection::rudel-state-change): required by
+	`rudel-sentinel-dispatch'
+	(rudel-obby-connection::rudel-subscribe-to): do not touch slot
+	`subscribed'
+	(rudel-obby-connection::rudel-obby/obby_sync_doclist_document):
+	retrieve subscribed users and add to `subscribed' slot
+	(rudel-obby-connection::rudel-obby/obby_document_create): add
+	document owner to `subscribed' slot
+	(rudel-obby-connection::rudel-obby/obby_document/subscribe): add
+	user to `subscribed' slot
+	(rudel-obby-connection::rudel-obby/obby_document/unsubscribe):
+	remove user from `subscribed' slot
+	* rudel.el (rudel-document): added slot `subscribed' which
+	contains a list of subscribed users
+	(rudel-subscribe): do not use `rudel-unsubscribed-documents';
+	instead list all documents for now
+	(rudel-publish-buffer): add self to `subscribed' slot
+
+	* rudel-util.el (rudel-state-change): cleanup; added comments
+
+	* rudel-mode.el (rudel-minor-keymap): Fixed invalid menu
+	definition
+
+	* obby/rudel-obby.el (whole file): moved class
+	`rudel-obby-connection' and related methods into file
+	`rudel-obby-client.el'
+	(rudel-obby-backend): added capability `track-subscriptions'
+	(rudel-obby-backend::rudel-connect): require `rudel-obby-client'
+	before constructing the connection object
+	* obby/rudel-obby-client.el (new file): moved class
+	`rudel-obby-connection' and related methods into this file
+
+2008-12-29  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* rudel.el (rudel-connection::rudel-change-color-): new method
+	handles color changes
+	(rudel-change-color): added basic implementation, which checks the
+	backend, asks the user for a new color and calls the connection
+	object
+
+	* rudel-util.el (rudel-socket-owner::rudel-state-change): called
+	when the state of the connection changes
+	(rudel-socket-owner::rudel-close): called when the connection is
+	closed
+	(rudel-sentinel-dispatch): the argument is a message, not the
+	actual state, the state is retrieved with `process-state'
+
+	* rudel-speedbar.el (whole file): cleanup; improved comments
+
+	* rudel-mode.el (whole file): improved comments
+	(rudel-read-{backend, document}): moved to rudel-interactive.el
+	(rudel-minor-keymap): added key binding for `rudel-change-color';
+	added `options' menu item
+
+	* rudel-interactive.el (whole file): user interaction functions
+	used by all Rudel components
+
+	* rudel-util.el (whole file): utility functions used by all Rudel
+	components
+
+	* rudel.el (whole file): improved comments
+	(rudel-backend::make-document): new function create an appropriate
+	document object for the backend
+	(rudel-session::rudel-end): added documentation string
+	(rudel-session::rudel-add-user): added documentation string
+	(rudel-session::rudel-remove-user): added documentation string
+	(rudel-session::rudel-remove-document): new method; remove
+	document from session
+	(rudel-connection::rudel-publish): new function; called when a
+	buffer is published
+	(rudel-connection::rudel-unsubscribe-from): new function; called
+	when a subscription is canceled
+	(class rudel-user): added documentation strings
+	(class rudel-document): added documentation strings
+	(rudel-document::rudel-attach-to-buffer): add to
+	`after-change-functions' hook only for the buffer in question;
+	added some comments
+	(rudel-document::rudel-detach-from-buffer): cleanup
+	(rudel-document::rudel-remote-insert): added comments
+	(rudel-document::rudel-remote-delete): added comments
+	(rudel-handle-buffer-change): added comments
+	(rudel-choose-backend): added comments
+	(rudel-end-session): additional error check
+	(rudel-subscribe): call `rudel-unsubscribed-documents' when
+	completing document name; added comments
+	(rudel-unpublish-buffer): call `rudel-detach-from-buffer' and
+	`rudel-unsubscribe-from'; added comments
+
+	* obby/rudel-obby.el (whole file): improved comments
+	(rudel-obby-backend::rudel-ask-connect-info): removed :override
+	tag; added comments
+	(rudel-obby-backend::rudel-connect): removed :override tag; use
+	`make-network-process' instead of `open-network-stream' and attach
+	filter and sentinel right away; removed some debug code
+	(rudel-obby-backend::rudel-disconnect): removed :override tag
+	(rudel-obby-backend::rudel-subscribe-to): removed :override tag
+	(rudel-obby-backend::rudel-local-insert): removed :override tag
+	(rudel-obby-backend::rudel-local-delete): removed :override tag
+	(rudel-obby-backend::rudel-make-document): new method; creates a
+	new rudel-obby-document object
+	(rudel-obby-backend::rudel-available-document-id): obtains an
+	unused document id, which can be assigned to a new document
+	(class rudel-obby-connection): removed useless `host' and `port'
+	slots
+	(rudel-obby-connection::rudel-receive): removed some debug code
+	(rudel-obby-connection::rudel-send): removed some debug code
+	(rudel-obby-connection::rudel-obby/net6_client_join): fixed syntax
+	error
+	(class rudel-obby-user): added accessors for slots `client-id' and
+	`user-id'
+	(rudel-obby-user::eieio-speedbar-description): removed :override
+	tag
+	(rudel-obby-user::eieio-speedbar-object-buttonname): removed
+	:override tag
+	(class rudel-obby-document): added accessors and documentation for
+	slot `id'
+	(rudel-obby-document::eieio-speedbar-object-buttonname): removed
+	:override tag
+	(rudel-obby-replace-in-string): new function; replace a set of
+	patterns in a string
+	(rudel-obby-escape-string): new function; replace obby control
+	characters with their escape sequences
+	(rudel-obby-unescape-string): new function; inverse of
+	`rudel-obby-escape-string'
+	(rudel-obby-parse-color): added documentation
+	(rudel-obby-format-color): added documentation
+	(rudel-obby-assemble-message): properly escape message components
+	(rudel-obby-parse-message): properly unescape message components
+
+	* README (whole file): some initial notes
+	* INSTALL (whole file): some initial notes
+
+2008-12-02  Jan Moringen  <scymtym@users.sourceforge.net>
+
+	* obby (directory): new directory for files belonging to the obby
+	backend
+	* rudel-obby.el (whole file): moved to `obby' directory
+	* obby/rudel-obby.el (whole file): moved here from parent
+	directory
+
+	* Changelog (whole file): renamed to `ChangeLog?'
+	* ChangeLog? (whole file): fixed name
+
+	* INSTALL (whole file): added
+
+	* rudel.el (whole file): fixed some comments, removed some test
+	code
+	(rudel-version): new variable; global Rudel version
+	(rudel-sessions): removed; we only allow one session for now
+	(rudel-session): cleaned up
+	(rudel-session::rudel-end): cleaned up; added some comments
+	(rudel-session::rudel-add-user): cosmetic changes
+	(rudel-session::rudel-remove-user): cosmetic changes
+	(rudel-session::rudel-find-user): cosmetic changes
+	(rudel-session::rudel-add-document): cosmetic changes
+	(rudel-session::rudel-find-document): cosmetic changes
+	(rudel-backend::rudel-connect): improved documentation string
+	(rudel-backend::rudel-ask-host-info): renamed from
+	`rudel-ask-listen-info'
+	(rudel-backend::rudel-host): renamed from `rudel-listen'
+	(rudel-document::rudel-attach-to-buffer): cosmetic changes
+	(rudel-document::rudel-remote-insert): cleaned up
+	(rudel-document::rudel-remote-delete): cleaned up
+	(rudel-load-backends): cosmetic changes
+	(rudel-choose-backend): fixed message display
+	(rudel-host-session): improved documentation string
+	(rudel-change-color): raise an error since this is not yet
+	implemented
+	(rudel-subscribe): added comments
+	(rudel-unpublish-buffer): raise an error if the buffer has not
+	been published
+
+	* rudel.el (whole file): cleanup up some obsolete code
