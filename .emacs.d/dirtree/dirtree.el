@@ -161,11 +161,16 @@ With prefix arguement select `dirtree-buffer'"
                      :tag ,(cdr file)))
                  files)))))
 
+(require 'rudel)
+
 (defun dirtree-select (node &rest ignore)
   "Open file in other window"
   (let ((file (widget-get node :file)))
     (and file
-         (find-file-other-window file))))
+         (find-file-other-window file))
+    )
+    (rudel-publish-buffer (get-file-buffer (widget-get node :file)))
+  )
 
 (defun dirtree-display ()
   "Open file under point"
