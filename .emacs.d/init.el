@@ -18,10 +18,6 @@
 (add-to-list 'load-path "~/.emacs.d/magit")
 (require 'magit)
 
-(add-to-list 'load-path "~/.emacs.d/tree")
-(add-to-list 'load-path "~/.emacs.d/dirtree")
-(require 'dirtree)
-(global-set-key (kbd "s-d") 'dirtree)
 
 (add-to-list 'load-path "~/.emacs.d/multiple-cursors")
 (require 'multiple-cursors)
@@ -43,16 +39,16 @@
 ;; Open .scala file. M-x ensime (once per project)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(tool-bar-mode nil))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 (setq ensime-sem-high-faces
@@ -270,5 +266,16 @@
 (add-to-list 'load-path "~/.emacs.d/rudel-0.2-4")
 (add-to-list 'load-path "~/.emacs.d/rudel-0.2-4/obby")
 (load-file "~/.emacs.d/rudel-0.2-4/rudel-loaddefs.el")
+(global-rudel-minor-mode 1)
+(global-rudel-header-subscriptions-mode 1)
+(global-rudel-mode-line-publish-state-mode 1)
 
+(add-to-list 'load-path "~/.emacs.d/tree")
+(add-to-list 'load-path "~/.emacs.d/dirtree")
+(require 'dirtree)
+(global-set-key (kbd "s-d") 'dirtree)
+;;(load-file "~/.emacs.d/auto-publish-subscribe-rudel.el")
+;;(global-rudel-auto-choose-mode-minor-mode 1)
+;;(global-rudel-auto-publish-minor-mode 1)
+;;(global-rudel-auto-subscribe-minor-mode 1)
 
