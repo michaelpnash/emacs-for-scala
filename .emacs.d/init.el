@@ -277,5 +277,5 @@
 ;;(global-rudel-auto-publish-minor-mode 1)
 ;;(global-rudel-auto-subscribe-minor-mode 1)
 
-(add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
 (load-theme 'solarized-dark)
