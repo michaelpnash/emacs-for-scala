@@ -74,12 +74,16 @@
 
 (set-face-attribute 'default nil :height 160)
 
+(load-file "~/.emacs.d/find-file-in-project.el")
+
 (global-linum-mode 1)
 (global-set-key (kbd "s-o") 'find-grep-dired)
 (global-set-key (kbd "s-k") 'magit-status)
 (global-set-key (kbd "s-D") 'sunrise)
+(global-set-key (kbd "s-B") 'list-buffers)
+(global-set-key (kbd "s-b") 'ido-switch-buffer)
 (global-set-key (kbd "s-/") 'comment-or-uncomment-region)
-(global-set-key (kbd "s-O") 'find-name-dired)
+(global-set-key (kbd "s-O") 'find-file-in-project)
 (global-set-key (kbd "C-c C-r r") 'ensime-refactor-rename)
 (global-set-key (kbd "C-c C-o i") 'ensime-refactor-organize-imports)
 (global-set-key (kbd "C-c C-i l") 'ensime-refactor-inline-local)
@@ -278,4 +282,5 @@
 ;;(global-rudel-auto-choose-mode-minor-mode 1)
 ;;(global-rudel-auto-publish-minor-mode 1)
 ;;(global-rudel-auto-subscribe-minor-mode 1)
+
 
