@@ -65,7 +65,6 @@
     (package . font-lock-preprocessor-face)
 ))
 
-(load-theme 'manoj-dark)
 
 (set-face-attribute 'default nil :height 160)
 
@@ -278,4 +277,5 @@
 ;;(global-rudel-auto-publish-minor-mode 1)
 ;;(global-rudel-auto-subscribe-minor-mode 1)
 
-
+(add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
+(load-theme 'solarized-dark)
