@@ -1,7 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/scala-mode2")
 (require 'scala-mode)
 ;; Load the ensime lisp code...
-(add-to-list 'load-path "~/.emacs.d/ensime/ensime_2.10.0-0.9.8.9/elisp")
+(add-to-list 'load-path "~/.emacs.d/ensime/ensime_2.10.2-0.9.8.10/elisp")
 (require 'ensime)
 
 (add-to-list 'load-path "~/.emacs.d/sunrise-commander")
@@ -82,6 +82,7 @@
 (global-set-key (kbd "C-c C-o i") 'ensime-refactor-organize-imports)
 (global-set-key (kbd "C-c C-i l") 'ensime-refactor-inline-local)
 (global-set-key (kbd "C-c C-t i") 'ensime-inspect-by-path)
+(global-set-key (kbd "s-.") 'ensime-edit-definition-other-window)
 (put 'dired-find-alternate-file 'disabled nil)
 (menu-bar-mode -1)
 (setq ensime-sbt-compile-on-save nil)
