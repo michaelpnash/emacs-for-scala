@@ -199,41 +199,41 @@
 ;;(key-chord-define-global "DL" 'kill-whole-line)
 ;;(key-chord-define-global "OO" 'overwrite-mode)
   
-(defun search-to-brace ()
-  "Jump to the next open brace"
-  (interactive)
-  (search-forward "{"))
-(key-chord-define-global "s[" 'search-to-brace)
+;;(defun search-to-brace ()
+;;  "Jump to the next open brace"
+;;  (interactive)
+;;  (search-forward "{"))
+;;(key-chord-define-global "s[" 'search-to-brace)
 
-(defun search-to-prev-brace ()
-    "Jump to the previous brace"
-    (interactive)
-    (search-backward "{"))
-(key-chord-define-global "p[" 'search-to-prev-brace)
+;;(defun search-to-prev-brace ()
+;;    "Jump to the previous brace"
+;;    (interactive)
+;;    (search-backward "{"))
+;;(key-chord-define-global "p[" 'search-to-prev-brace)
 
-(defun search-to-close-brace ()
-  "Jump to the next close brace"
-  (interactive)
-  (search-forward "}"))
-(key-chord-define-global "s]" 'search-to-close-brace)
+;;(defun search-to-close-brace ()
+;;  "Jump to the next close brace"
+;;  (interactive)
+;;  (search-forward "}"))
+;;(key-chord-define-global "s]" 'search-to-close-brace)
 
-(defun search-to-prev-close-brace ()
-  "Jump to the previous close brace"
-  (interactive)
-  (search-backward "}"))
-(key-chord-define-global "p]" 'search-to-prev-brace)
+;;(defun search-to-prev-close-brace ()
+;;  "Jump to the previous close brace"
+;;  (interactive)
+;;  (search-backward "}"))
+;;(key-chord-define-global "p]" 'search-to-prev-brace)
 
-(defun search-to-next-def ()
-  "Jump to the next def"
-  (interactive)
-  (search-forward "def "))
-(key-chord-define-global "SD" 'search-to-next-def)
+;;(defun search-to-next-def ()
+;;  "Jump to the next def"
+;;  (interactive)
+;;  (search-forward "def "))
+;;(key-chord-define-global "SD" 'search-to-next-def)
 
-(defun search-to-prev-def ()
-  "Jump to the previous def"
-  (interactive)
-  (search-backward "def "))
-(key-chord-define-global "PD" 'search-to-prev-def)
+;;(defun search-to-prev-def ()
+;;  "Jump to the previous def"
+;;  (interactive)
+;;  (search-backward "def "))
+;;(key-chord-define-global "PD" 'search-to-prev-def)
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
