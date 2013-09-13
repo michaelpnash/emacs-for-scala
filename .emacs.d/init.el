@@ -190,14 +190,14 @@
 
 (setq exec-paths (append exec-path (list "/usr/bin/sbt")))
 
-(add-to-list 'load-path "~/.emacs.d/key-chord")
-(require 'key-chord)
-(key-chord-mode 1)
-(key-chord-define-global "}}" 'forward-sexp)
-(key-chord-define-global ".." 'ensime-expand-selection-command)
-(key-chord-define-global "SL" 'split-line)
-(key-chord-define-global "DL" 'kill-whole-line)
-(key-chord-define-global "OO" 'overwrite-mode)
+;;(add-to-list 'load-path "~/.emacs.d/key-chord")
+;;(require 'key-chord)
+;;(key-chord-mode 1)
+;;(key-chord-define-global "}}" 'forward-sexp)
+;;(key-chord-define-global ".." 'ensime-expand-selection-command)
+;;(key-chord-define-global "SL" 'split-line)
+;;(key-chord-define-global "DL" 'kill-whole-line)
+;;(key-chord-define-global "OO" 'overwrite-mode)
   
 (defun search-to-brace ()
   "Jump to the next open brace"
@@ -284,4 +284,7 @@
 (add-to-list 'load-path "~/.emacs.d/evil")
 (require 'evil)
 (evil-mode 1)
+
+;; Always pick up the most recent file from the filesystem
+(global-auto-revert-mode 1)
 
