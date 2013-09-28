@@ -281,9 +281,9 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
 (load-theme 'solarized-dark)
 
-(add-to-list 'load-path "~/.emacs.d/evil")
-(require 'evil)
-(evil-mode 1)
+;;(add-to-list 'load-path "~/.emacs.d/evil")
+;;(require 'evil)
+;;(evil-mode 1)
 
 ;; Always pick up the most recent file from the filesystem
 (global-auto-revert-mode 1)
