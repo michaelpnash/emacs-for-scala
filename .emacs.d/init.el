@@ -288,4 +288,5 @@
 
 ;; Always pick up the most recent file from the filesystem
 (global-auto-revert-mode 1)
+(global-set-key (kbd "s-j") 'dired-jump)
 
