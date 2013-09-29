@@ -262,12 +262,13 @@
 
 (window-number-mode 1)
 (window-number-meta-mode 1)
-(add-to-list 'load-path "~/.emacs.d/rudel-0.2-4")
-(add-to-list 'load-path "~/.emacs.d/rudel-0.2-4/obby")
-(load-file "~/.emacs.d/rudel-0.2-4/rudel-loaddefs.el")
-(global-rudel-minor-mode 1)
-(global-rudel-header-subscriptions-mode 1)
-(global-rudel-mode-line-publish-state-mode 1)
+
+;;(add-to-list 'load-path "~/.emacs.d/rudel-0.2-4")
+;;(add-to-list 'load-path "~/.emacs.d/rudel-0.2-4/obby")
+;;(load-file "~/.emacs.d/rudel-0.2-4/rudel-loaddefs.el")
+;;(global-rudel-minor-mode 1)
+;;(global-rudel-header-subscriptions-mode 1)
+;;(global-rudel-mode-line-publish-state-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/tree")
 (add-to-list 'load-path "~/.emacs.d/dirtree")
@@ -281,9 +282,9 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
 (load-theme 'solarized-dark)
 
-(add-to-list 'load-path "~/.emacs.d/evil")
-(require 'evil)
-(evil-mode 1)
+;;(add-to-list 'load-path "~/.emacs.d/evil")
+;;(require 'evil)
+;;(evil-mode 1)
 
 ;; Always pick up the most recent file from the filesystem
 (global-auto-revert-mode 1)
