@@ -174,6 +174,13 @@
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+(defun todo-agenda-current-file ()
+  "Add the current file to the list of org files in the agenda, then open the global todo list"
+  (interactive)
+  (org-agenda-file-to-front)
+  (org-todo-list))
+(define-key global-map (kbd "s-T") 'todo-agenda-current-file)
+
 (dolist (command '(yank yank-pop))
   (eval `(defadvice ,command (after indent-region activate)
     (and (not current-prefix-arg)
