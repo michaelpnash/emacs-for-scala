@@ -2,17 +2,13 @@
 ;;; Copyright (c) 2012 Heikki Vesalainen
 ;;; For information on the License, see the LICENSE file
 
-(provide 'scala-mode-map)
+(require 'scala-mode2-indent)
 
-(require 'scala-mode-indent)
-
-(defmacro scala-mode-map:define-keys (key-map key-funcs)
-  (cons 'progn (mapcar 
-   #'(lambda (key-func)
-       `(define-key ,key-map ,(car key-func) ,(cadr key-func)))
-   key-funcs)))
-
-(defvar scala-mode-map nil
+(defvar scala-mode-map
+  (let ((map (make-sparse-keymap)))
+    (set-keymap-parent map prog-mode-map)
+    (substitute-key-definition 'delete-indentation 'scala-indent:join-line map global-map)
+    map)
   "Local key map used for scala mode")
 
 (defun scala-mode-map:add-self-insert-hooks ()
@@ -23,12 +19,8 @@
   (add-hook 'post-self-insert-hook
             'scala-indent:indent-on-scaladoc-asterisk))
 
-(when (not scala-mode-map)
-  (let ((keymap (make-sparse-keymap)))
-    (scala-mode-map:define-keys 
-     keymap
-     (
-;;      ([(control c)(control r)]   'scala-indent:rotate-run-on-strategy)
-      ))
-     (setq scala-mode-map keymap)))
-  
+(defun scala-mode-map:add-remove-indent-hook ()
+  (add-hook 'post-command-hook
+            'scala-indent:remove-indent-from-previous-empty-line))
+
+(provide 'scala-mode2-map)

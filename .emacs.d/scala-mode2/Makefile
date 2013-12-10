@@ -15,27 +15,35 @@ SOURCE_DIR		 = $(ROOT)
 ##############################################################################
 # Variables
 
+MODE_NAME               = scala-mode2
+
 # Emacs Lisp
 ELISP_COMMAND		?= emacs
-ELISP_OPTIONS		+= -batch -no-site-file
-ELISP_OPTIONS           += -L $(ROOT) 
-ELISP_OPTIONS		+= -f batch-byte-compile
+ELISP_OPTIONS		+= -batch -no-site-file -q
+ELISP_OPTIONS           += -L $(ROOT)
 
 
-ELISP_FILES		+= scala-mode-lib
-ELISP_FILES		+= scala-mode
-ELISP_FILES		+= scala-mode-syntax
-ELISP_FILES		+= scala-mode-indent
-ELISP_FILES		+= scala-mode-paragraph
-ELISP_FILES		+= scala-mode-fontlock
-ELISP_FILES		+= scala-mode-map
-
+ELISP_FILES		+= $(MODE_NAME)-lib
+ELISP_FILES		+= $(MODE_NAME)
+ELISP_FILES		+= $(MODE_NAME)-syntax
+ELISP_FILES		+= $(MODE_NAME)-indent
+ELISP_FILES		+= $(MODE_NAME)-paragraph
+ELISP_FILES		+= $(MODE_NAME)-fontlock
+ELISP_FILES		+= $(MODE_NAME)-map
+ELISP_FILES		+= $(MODE_NAME)-sbt
 ELISP_SOURCES		+= $(ELISP_FILES:%=$(SOURCE_DIR)/%.el)
+
+PKG_FILE		+= $(SOURCE_DIR)/$(MODE_NAME)-pkg.el
 
 ##############################################################################
 
 RM			?= rm -f
+RMDIR			?= rmdir
 TOUCH			?= touch
+
+# Strip the version out of the pkg file
+VERSION                 := $(shell ${ELISP_COMMAND} $(ELISP_OPTIONS) --eval '(princ (format "%s\n" (nth 2 (read (find-file "$(PKG_FILE)")))))')
+MODE_NAME_VERSION       = $(MODE_NAME)-$(VERSION)
 
 ##############################################################################
 # Commands
@@ -43,7 +51,9 @@ TOUCH			?= touch
 all: .latest-build
 
 clean:
-	$(RM) *.elc .latest-* autoloads.el
+	$(RM) *.elc .latest-* autoloads.el $(MODE_NAME_VERSION).tar
+	[ ! -d $(MODE_NAME_VERSION) ] || $(RM) $(MODE_NAME_VERSION)/*
+	[ ! -d $(MODE_NAME_VERSION) ] || $(RMDIR) $(MODE_NAME_VERSION)
 
 .PHONY: all
 .PHONY: clean
@@ -52,14 +62,18 @@ clean:
 # Rules
 
 .latest-build: $(ELISP_SOURCES)
-	$(ELISP_COMMAND) $(ELISP_OPTIONS) $(ELISP_SOURCES)
+	$(ELISP_COMMAND) $(ELISP_OPTIONS) -f batch-byte-compile $(ELISP_SOURCES)
 	@$(TOUCH) $@
 
 ##############################################################################
 
 autoloads: $(ELISP_SOURCES)
-	emacs -batch -q --no-site-file --eval "(setq make-backup-files nil)" --eval "(setq generated-autoload-file (expand-file-name \"autoloads.el\"))" -f batch-update-autoloads `pwd`
+	$(ELISP_COMMAND) $(ELISP_OPTIONS) --eval "(setq make-backup-files nil)" --eval "(setq generated-autoload-file (expand-file-name \"autoloads.el\"))" -f batch-update-autoloads `pwd`
 
+package:
+	mkdir -p $(MODE_NAME_VERSION)
+	cp $(ELISP_SOURCES) $(PKG_FILE) $(MODE_NAME_VERSION)
+	tar cf $(MODE_NAME_VERSION).tar $(MODE_NAME_VERSION)
 
 
 ## SCALA LICENSE

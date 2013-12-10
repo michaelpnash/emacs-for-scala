@@ -4,8 +4,6 @@
 
 ;;; Based on Scala Language Specification (SLS) Version 2.9
 
-(provide 'scala-mode-syntax)
-
 ;;;;
 ;;;; Scala syntax regular expressions
 ;;;;
@@ -29,8 +27,8 @@
 (defconst scala-syntax:letter-group (concat scala-syntax:lower-group scala-syntax:upper-group)) ;; TODO: add Lt, Lo, Nl
 (defconst scala-syntax:digit-group "0-9")
 (defconst scala-syntax:letterOrDigit-group (concat
-                                            scala-syntax:upperAndUnderscore-group 
-                                            scala-syntax:lower-group 
+                                            scala-syntax:upperAndUnderscore-group
+                                            scala-syntax:lower-group
                                             scala-syntax:digit-group))
 (defconst scala-syntax:opchar-safe-group "!%&*+/?\\\\^|~-") ;; TODO: Sm, So
 (defconst scala-syntax:opchar-unsafe-group "#:<=>@")
@@ -43,8 +41,8 @@
 ;; Integer Literal (Chapter 1.3.1)
 (defconst scala-syntax:nonZeroDigit-group "1-9")
 (defconst scala-syntax:octalDigit-group "0-7")
-(defconst scala-syntax:decimalNumeral-re 
-  (concat "0" 
+(defconst scala-syntax:decimalNumeral-re
+  (concat "0"
           "\\|[" scala-syntax:nonZeroDigit-group "][" scala-syntax:digit-group "]*"))
 (defconst scala-syntax:hexNumeral-re (concat "0x[" scala-syntax:hexDigit-group "]+"))
 (defconst scala-syntax:octalNumeral-re (concat "0[" scala-syntax:octalDigit-group "]+"))
@@ -58,16 +56,16 @@
 ;; Floating Point Literal (Chapter 1.3.2)
 (defconst scala-syntax:exponentPart-re (concat "\\([eE][+-]?[" scala-syntax:digit-group "]+\\)"))
 (defconst scala-syntax:floatType-re "[fFdD]")
-(defconst scala-syntax:floatingPointLiteral-re 
+(defconst scala-syntax:floatingPointLiteral-re
   (concat "-?" ;; added from definition of literal
-          "\\([" scala-syntax:digit-group "]+\\.[" scala-syntax:digit-group "]*" 
+          "\\([" scala-syntax:digit-group "]+\\.[" scala-syntax:digit-group "]*"
           scala-syntax:exponentPart-re "?" scala-syntax:floatType-re "?"
-          "\\|" "\\.[" scala-syntax:digit-group "]+" 
+          "\\|" "\\.[" scala-syntax:digit-group "]+"
           scala-syntax:exponentPart-re "?" scala-syntax:floatType-re "?"
           "\\|" "[" scala-syntax:digit-group "]+" scala-syntax:exponentPart-re
           "\\|" "[" scala-syntax:digit-group "]+" scala-syntax:floatType-re "\\)"))
 
-(defconst scala-syntax:number-safe-start-re 
+(defconst scala-syntax:number-safe-start-re
   (concat "[^_" scala-syntax:letter-group "]"))
 
 ;; Boolean Literals (Chapter 1.3.3)
@@ -76,58 +74,70 @@
 ;; Escape Sequences (Chapter 1.3.6)
 (defconst scala-syntax:escapeSequence-re "\\\\['btnfr\"\\\\]")
 
+;; Octal Escape Sequences (Chapter 1.3.6)
+(defconst scala-syntax:octalEscape-re (concat "\\\\[" scala-syntax:octalDigit-group "\\]\\{1,3\\}"))
+
 ;; Character Literals (Chapter 1.3.4)
-(defconst scala-syntax:characterLiteral-re 
+(defconst scala-syntax:characterLiteral-re
   (concat "\\('\\)\\(" "[^\\\\]" ;; should be just printable char, but this is faster
           "\\|" scala-syntax:escapeSequence-re
+          "\\|" scala-syntax:octalEscape-re
           "\\|" scala-syntax:UnicodeEscape-re "\\)\\('\\)"))
 
 (defconst scala-syntax:string-escape-re
-  (concat scala-syntax:escapeSequence-re 
+  (concat scala-syntax:escapeSequence-re
+          "\\|" scala-syntax:octalEscape-re
           "\\|" scala-syntax:UnicodeEscape-re))
 
 ;; String Literals (Chapter 1.3.5)
 (defconst scala-syntax:stringElement-re
-  (concat "\\(" "[^\n\"\\\\]" 
+  (concat "\\(" "[^\n\"\\\\]"
           "\\|" scala-syntax:string-escape-re  "\\)"))
 (defconst scala-syntax:oneLineStringLiteral-re (concat "\\(\"\\)" scala-syntax:stringElement-re "*\\(\"\\)"))
+(defconst scala-syntax:multiLineStringLiteral-start-re
+  "\\(\"\\)\"\"\\(\"?\"?[^\"]\\)*")
+(defconst scala-syntax:multiLineStringLiteral-end-re
+  "\"\"+\\(\"\\)")
 (defconst scala-syntax:multiLineStringLiteral-re
-  "\\(\"\\)\\(\"\"\\(\"?\"?[^\"]\\)*\"\"+\\)\\(\"\\)")
+  (concat scala-syntax:multiLineStringLiteral-start-re
+          scala-syntax:multiLineStringLiteral-end-re))
 (defconst scala-syntax:stringLiteral-re
-  (concat "\\(" scala-syntax:multiLineStringLiteral-re 
+  (concat "\\(" scala-syntax:multiLineStringLiteral-re
           "\\|" scala-syntax:oneLineStringLiteral-re "\\)" ))
 
 ;; If you change this or any of the used regex, be sure to
 ;; maintain this or update propertize function acordingly:
 ;; group 1 = char start, 3 = char end
-;; group 4 = multi-line string start, 7 = end
-;; group 8 = string start, 11 = end
+;; group 4 = multi-line string start, 6 = end
+;; group 7 = string start, 9 = end
 (defconst scala-syntax:relaxed-char-and-string-literal-re
-  (concat scala-syntax:characterLiteral-re 
-          "\\|" scala-syntax:multiLineStringLiteral-re
+  (concat scala-syntax:characterLiteral-re
+          "\\|" scala-syntax:multiLineStringLiteral-start-re
+          "\\(?:" scala-syntax:multiLineStringLiteral-end-re "\\)?"
           "\\|\\(\"\\)" "\\(\\\\.\\|[^\"\n\\]\\)*" "\\(\"\\)"))
 
 ;; Identifiers (Chapter 1.1)
-(defconst scala-syntax:op-re 
+(defconst scala-syntax:op-re
   (concat "[" scala-syntax:opchar-group "]+" ))
-(defconst scala-syntax:idrest-re 
+(defconst scala-syntax:idrest-re
   ;; Eagerness of regexp causes problems with _. The following is a workaround,
   ;; but the resulting regexp matches only what SLS demands.
   (concat "\\(" "[_]??" "[" scala-syntax:letter-group scala-syntax:digit-group "]+" "\\)*"
           "\\(" "_+" scala-syntax:op-re "\\|" "_" "\\)?"))
 (defconst scala-syntax:varid-re (concat "[" scala-syntax:lower-group "]" scala-syntax:idrest-re))
 (defconst scala-syntax:capitalid-re (concat "[" scala-syntax:upperAndUnderscore-group "]" scala-syntax:idrest-re))
-(defconst scala-syntax:plainid-re (concat "\\(" "[" scala-syntax:lower-group scala-syntax:upperAndUnderscore-group "]" scala-syntax:idrest-re
-                                          "\\|" scala-syntax:op-re "\\)"))
+;; alphaid introduce by SIP11
+(defconst scala-syntax:alphaid-re (concat "\\(" "[" scala-syntax:lower-group scala-syntax:upperAndUnderscore-group "]" scala-syntax:idrest-re "\\)"))
+(defconst scala-syntax:plainid-re (concat "\\(" scala-syntax:alphaid-re "\\|" scala-syntax:op-re "\\)"))
 ;; stringlit is referred to, but not defined Scala Language Specification 2.9
 ;; we define it as consisting of anything but '`' and newline
-(defconst scala-syntax:stringlit-re "[^`\n\r]") 
+(defconst scala-syntax:stringlit-re "[^`\n\r]")
 (defconst scala-syntax:quotedid-re (concat "`" scala-syntax:stringlit-re "`"))
-(defconst scala-syntax:id-re (concat "\\(" scala-syntax:plainid-re 
+(defconst scala-syntax:id-re (concat "\\(" scala-syntax:plainid-re
                               "\\|" scala-syntax:quotedid-re "\\)"))
 (defconst scala-syntax:id-first-char-group
-  (concat scala-syntax:lower-group 
-          scala-syntax:upperAndUnderscore-group 
+  (concat scala-syntax:lower-group
+          scala-syntax:upperAndUnderscore-group
           scala-syntax:opchar-group))
 
 ;; Symbol literals (Chapter 1.3.7)
@@ -141,17 +151,17 @@
           "\\|" scala-syntax:floatingPointLiteral-re
           "\\|" scala-syntax:booleanLiteral-re
           "\\|" scala-syntax:characterLiteral-re
-          "\\|" scala-syntax:stringLiteral-re 
-          "\\|" scala-syntax:symbolLiteral-re 
+          "\\|" scala-syntax:stringLiteral-re
+          "\\|" scala-syntax:symbolLiteral-re
           "\\|" "null" "\\)"))
 
 ;; Paths (Chapter 3.1)
 ;; emacs has a problem with these regex, don't use them
 ;; (defconst scala-syntax:classQualifier-re (concat "[[]" scala-syntax:id-re "[]]"))
-;; (defconst scala-syntax:stableId-re 
+;; (defconst scala-syntax:stableId-re
 ;;   (concat "\\(\\(" "this"
-;;           "\\|" "super" scala-syntax:classQualifier-re 
-;;           "\\|" scala-syntax:id-re 
+;;           "\\|" "super" scala-syntax:classQualifier-re
+;;           "\\|" scala-syntax:id-re
 ;;           "\\)\\.\\)*"
 ;;           scala-syntax:id-re))
 ;; (defconst scala-syntax:path-re
@@ -183,7 +193,7 @@
           (set-match-data `(,beg ,(match-end 0)))
           t)))))
 
-(defun scala-syntax:looking-at-stableIdOrPath (&optional path-p beg) 
+(defun scala-syntax:looking-at-stableIdOrPath (&optional path-p beg)
   (unless beg (setq beg (point)))
   (save-excursion
     (cond ((looking-at "\\<this\\>")
@@ -208,11 +218,27 @@
       (looking-at scala-syntax:literal-re)
       (scala-syntax:looking-at-stableIdOrPath)))
 
+
+(defun scala-syntax:regexp-for-id (id)
+  (let ((prefix-regex 
+         (if (string-match scala-syntax:alphaid-re id)
+             "\\b" (concat "\\(^\\|[^" scala-syntax:opchar-group "]\\)")))
+        (suffix-regex
+         (if (string-match scala-syntax:op-re (substring id -1 nil))
+             (concat "\\([^" scala-syntax:opchar-group "]\\|$\\)") "\\b")))
+    (concat prefix-regex id suffix-regex)))
+
 ;;;
 ;;; Other regular expressions
 ;;;
 
-(defconst scala-syntax:empty-line-re  
+(defconst scala-syntax:preamble-start-re
+  "\#\!")
+
+(defconst scala-syntax:preamble-end-re
+  "\!\\(\#\\)[ \t]*$")
+
+(defconst scala-syntax:empty-line-re
   "^\\s *$")
 
 (defconst scala-syntax:comment-start-re
@@ -237,17 +263,17 @@
   (concat "\\(^\\|[^`]\\)\\(" scala-syntax:value-keywords-unsafe-re "\\)"))
 
 (defconst scala-syntax:other-keywords-unsafe-re
-  (regexp-opt '("abstract" "case" "catch" "class" "def" "do" "else" "extends" 
-                "final" "finally" "for" "forSome" "if" "implicit" "import" 
-                "lazy" "match" "new" "object" "override" "package" "private" 
-                "protected" "return" "sealed" "throw" "trait" "try" "type" 
+  (regexp-opt '("abstract" "case" "catch" "class" "def" "do" "else" "extends"
+                "final" "finally" "for" "forSome" "if" "implicit" "import"
+                "lazy" "match" "new" "object" "override" "package" "private"
+                "protected" "return" "sealed" "throw" "trait" "try" "type"
                 "val" "var" "while" "with" "yield") 'words))
 
 (defconst scala-syntax:other-keywords-re
   (concat "\\(^\\|[^`]\\)\\(" scala-syntax:other-keywords-unsafe-re "\\)"))
 
 (defconst scala-syntax:keywords-unsafe-re
-  (concat "\\(" scala-syntax:path-keywords-unsafe-re 
+  (concat "\\(" scala-syntax:path-keywords-unsafe-re
           "\\|" scala-syntax:value-keywords-unsafe-re
           "\\|" scala-syntax:other-keywords-unsafe-re
           "\\)"))
@@ -260,7 +286,7 @@
 
 
 (defconst scala-syntax:after-reserved-symbol-underscore-re
-  (concat "$\\|" scala-syntax:comment-start-re 
+  (concat "$\\|" scala-syntax:comment-start-re
           "\\|[^" scala-syntax:letterOrDigit-group "]"))
 
 (defconst scala-syntax:reserved-symbol-underscore-re
@@ -278,26 +304,26 @@
   "\\(=>\\|\u21D2\\)")
 
 (defconst scala-syntax:after-reserved-symbol-re
-  (concat "\\($\\|" scala-syntax:comment-start-re 
+  (concat "\\($\\|" scala-syntax:comment-start-re
           "\\|[^" scala-syntax:opchar-group "]\\)"))
 
 (defconst scala-syntax:reserved-symbols-re
   ;; reserved symbols and XML starts ('<!' and '<?')
-  (concat "\\(^\\|[^" scala-syntax:opchar-group "]\\)" 
+  (concat "\\(^\\|[^" scala-syntax:opchar-group "]\\)"
           scala-syntax:reserved-symbols-unsafe-re
           "\\(" scala-syntax:after-reserved-symbol-re "\\)"))
 
 (defconst scala-syntax:colon-re
-  (concat "\\(^\\|[^" scala-syntax:opchar-group "]\\)" 
+  (concat "\\(^\\|[^" scala-syntax:opchar-group "]\\)"
           "\\(:\\)"
           "\\(" scala-syntax:after-reserved-symbol-re "\\)"))
 
 
 (defconst scala-syntax:modifiers-re
-  (regexp-opt '("override" "abstract" "final" "sealed" "implicit" "lazy" 
+  (regexp-opt '("override" "abstract" "final" "sealed" "implicit" "lazy"
                 "private" "protected") 'words))
 
-(defconst scala-syntax:body-start-re 
+(defconst scala-syntax:body-start-re
   (concat "=" scala-syntax:end-of-code-line-re)
   "A regexp for detecting if a line ends with '='")
 
@@ -305,10 +331,7 @@
   (regexp-opt '("var" "val" "import") 'words)
   ("Keywords that can start a list"))
 
-(defconst scala-syntax:multiLineStringLiteral-start-re
-  "\\(\"\\)\"\"")
-
-(defconst scala-syntax:multiLineStringLiteral-end-re 
+(defconst scala-syntax:multiLineStringLiteral-end-re
   "\"\"+\\(\"\\)")
 
 (defconst scala-syntax:case-re
@@ -337,7 +360,7 @@
     ;; parentheses, so all others marked as parentheses in the parent
     ;; table must be marked as symbols, nothing is a punctuation
     ;; unless otherwise stated
-    (map-char-table 
+    (map-char-table
      #'(lambda (key value)
          (when (or (= (syntax-class value) 4) ; open
                    (= (syntax-class value) 5) ; close
@@ -370,7 +393,7 @@
 
     ;; for clarity, the \ is alone here and not in the string above
     (modify-syntax-entry ?\\ "." syntab)
-  
+
     ;; scala strings cannot span lines, so we mark
     ;; " as punctuation, but do the real stuff
     ;; in syntax-propertize-function for properly
@@ -399,7 +422,7 @@
     (modify-syntax-entry ?\*  ". 23n"   syntab)
     (modify-syntax-entry ?\n  "> b" syntab)
     (modify-syntax-entry ?\r  "> b" syntab)
-    
+
     (setq scala-syntax:syntax-table syntab)))
 
 (defun scala-syntax:propertize-extend-region (start end)
@@ -410,9 +433,9 @@
 (defmacro scala-syntax:put-syntax-table-property (match-group value)
   "Add 'syntax-table entry 'value' to the region marked by the
 match-group 'match-group'"
-  `(put-text-property (match-beginning ,match-group) 
-                      (match-end ,match-group) 
-                      'syntax-table 
+  `(put-text-property (match-beginning ,match-group)
+                      (match-end ,match-group)
+                      'syntax-table
                       ,value))
 
 (defun scala-syntax:propertize-char-and-string-literals (start end)
@@ -423,11 +446,11 @@ marked with 15 (generic string delimiter). Multi-line string
 literals are marked even if they are unbalanced. One-line string
 literals have to be balanced to get marked. This means invalid
 characters and one-line strings will not be fontified."
-        
+
   (let* ((string-state (nth 3 (syntax-ppss start)))
          (unbalanced-p (eq string-state t)))
 
-    (if (and string-state (not unbalanced-p)) 
+    (if (and string-state (not unbalanced-p))
         ;; a normal string is open, let's de-propertize
         (remove-text-properties start end '(syntax-table nil))
       (save-excursion
@@ -438,38 +461,52 @@ characters and one-line strings will not be fontified."
           (scala-syntax:put-syntax-table-property 1 '(15 . nil)))
         ;; match any balanced one-line or multi-line literals
         (catch 'break
-          (while (re-search-forward 
+          (while (re-search-forward
                   scala-syntax:relaxed-char-and-string-literal-re end t)
             ;; Expects the following groups:
             ;; group 1 = char start, 3 = char end
-            ;; group 4 = multi-line string start, 7 = end
-            ;; group 8 = string start, 10 = end
+            ;; group 4 = multi-line string start, 6 = end
+            ;; group 7 = string start, 9 = end
             (cond
              ((match-beginning 1)
               (scala-syntax:put-syntax-table-property 1 '(7 . nil))
               (scala-syntax:put-syntax-table-property 3 '(7 . nil)))
-             ((match-beginning 4) ;; balanced multi-line literal
+             ((match-beginning 4) ;; start of multi-line literal
               (scala-syntax:put-syntax-table-property 4 '(15 . nil))
-              (scala-syntax:put-syntax-table-property 7 '(15 . nil)))
-             ((or  
+              (if (match-beginning 6)
+                  ;; balanced multi-line
+                  (scala-syntax:put-syntax-table-property 6 '(15 . nil))
+                ;; un-balanced multi-line
+                (throw 'break nil)))
+             ((or
                ;; normal string, content is not empty
-               (match-beginning 9) 
+               (match-beginning 8)
                ;; empty string at line end
-               (= (match-end 10) (line-end-position)) 
+               (= (match-end 9) (line-end-position))
                ;; no " after empty string
                (not (= (char-after (match-end 10)) ?\")))
               (when (save-excursion
-                      (goto-char (match-beginning 8))
+                      (goto-char (match-beginning 7))
                       ;; really valid?
                       (looking-at-p scala-syntax:oneLineStringLiteral-re))
-                (scala-syntax:put-syntax-table-property 8 '(7 . nil))
-                (scala-syntax:put-syntax-table-property 10 '(7 . nil))))
-             (t ;; backtrack and continue to next while loop
-              (goto-char (match-beginning 0))
-              (throw 'break nil)))))
-        ;; match any start of multi-line literals that are not yet balanced
-        (when (re-search-forward scala-syntax:multiLineStringLiteral-start-re end t)
-          (scala-syntax:put-syntax-table-property 1 '(15 . nil)))))))
+                (scala-syntax:put-syntax-table-property 7 '(7 . nil))
+                (scala-syntax:put-syntax-table-property 9 '(7 . nil))))
+             (t (throw 'break nil)))))))))
+
+(defun scala-syntax:propertize-shell-preamble (start end)
+  "Mark a shell preamble pair (#!/!#) at the beginning of a script as a comment."
+  (save-excursion
+    (let ((comment-start (nth 8 (syntax-ppss))))
+      (goto-char start)
+      (when (and (= start 1)
+                 (looking-at scala-syntax:preamble-start-re))
+        (scala-syntax:put-syntax-table-property 0 '(11 . nil))
+        (setq comment-start 1))
+      (when (and (eq comment-start 1)
+                 (goto-char comment-start)
+                 (looking-at scala-syntax:preamble-start-re)
+                 (re-search-forward scala-syntax:preamble-end-re end t))
+        (scala-syntax:put-syntax-table-property 1 '(12 . nil))))))
 
 (defun scala-syntax:propertize-underscore-and-idrest (start end)
   "Mark all underscores (_) as symbol constituents (syntax 3) or
@@ -480,7 +517,7 @@ symbol constituents (syntax 3)"
     (while (re-search-forward "_" end t)
       (let ((match-beg (match-beginning 0))
             (match-end (match-end 0)))
-        (put-text-property 
+        (put-text-property
          match-beg match-end 'syntax-table
          (if (= match-beg (line-beginning-position))
              (if (looking-at scala-syntax:after-reserved-symbol-underscore-re)
@@ -498,8 +535,9 @@ symbol constituents (syntax 3)"
 
 
 (defun scala-syntax:propertize (start end)
-  "See syntax-propertize-function" 
+  "See syntax-propertize-function"
   (scala-syntax:propertize-char-and-string-literals start end)
+  (scala-syntax:propertize-shell-preamble start end)
   (scala-syntax:propertize-underscore-and-idrest start end))
 
 
@@ -577,7 +615,7 @@ stableId"
          (looking-at-p scala-syntax:empty-line-re))))
 
 (defun scala-syntax:skip-forward-ignorable ()
-  "Moves forward over ignorable whitespace and comments. A 
+  "Moves forward over ignorable whitespace and comments. A
 completely empty line is not ignorable and will not be mobed over."
   (interactive)
   (save-match-data
@@ -659,7 +697,7 @@ one."
 (defun scala-syntax:newlines-disabled-p (&optional point)
   "Return true if newlines are disabled at the current point (or
 point 'point') as specified by SLS chapter 1.2"
-  ;; newlines are disabled if 
+  ;; newlines are disabled if
   ;; - in '()' or '[]'
   ;; - between 'case' and '=>'
   ;; - XML mode (not implemented here)
@@ -669,9 +707,9 @@ point 'point') as specified by SLS chapter 1.2"
            (parenthesisPos (nth 1 state)))
       (when parenthesisPos ;; if no parenthesis, then this cannot be a case block either
         (goto-char parenthesisPos)
-        (or 
+        (or
          ;; the trivial cases of being inside ( or [
-         (= (char-after) ?\() 
+         (= (char-after) ?\()
          (= (char-after) ?\[)
          ;; else we have to see about case
          (progn
@@ -693,7 +731,7 @@ point 'point') as specified by SLS chapter 1.2"
                (unless (scala-syntax:looking-at-reserved-symbol
                         scala-syntax:double-arrow-unsafe-re)
                  (scala-syntax:forward-sexp)
-                 
+
                  (and (<= (point) point) ;; check that we were inside in the first place
                       (progn (scala-syntax:skip-forward-ignorable)
                              (not (looking-at scala-syntax:class-or-object-re)))))))))))))
@@ -704,6 +742,7 @@ id, reserved symbol, keyword, block, or literal. Delimiters (.,;)
 and comments are skipped silently. Position is placed at the
 beginning of the skipped expression."
   (interactive)
+  (syntax-propertize (point-max))
   ;; emacs knows how to properly skip: lists, varid, capitalid,
   ;; strings, symbols, chars, quotedid. What we have to handle here is
   ;; most of all ids made of op chars
@@ -714,26 +753,27 @@ beginning of the skipped expression."
   (while (< 0 (+ (skip-syntax-forward " ")
                  (skip-chars-forward scala-syntax:delimiter-group))))
 
-  ;; emacs can handle everything but opchars  
+  ;; emacs can handle everything but opchars
   (when (= (skip-syntax-forward ".") 0)
     (goto-char (or (scan-sexps (point) 1) (buffer-end 1)))))
-    
-(defun scala-syntax:backward-sexp () 
+
+(defun scala-syntax:backward-sexp ()
   "Move backward one scala expression. It can be: parameter
   list (value or type), id, reserved symbol, keyword, block, or
   literal. Delimiters (.,;) and comments are skipped
   silently. Position is placed at the beginning of the skipped
   expression."
   (interactive)
+  (syntax-propertize (point))
   ;; for implementation comments, see scala-syntax:forward-sexp
   (forward-comment (- (buffer-size)))
   (while (> 0 (+ (skip-syntax-backward " ")
                  (skip-chars-backward scala-syntax:delimiter-group))))
-  
+
   (when (= (skip-syntax-backward ".") 0)
     (goto-char (or (scan-sexps (point) -1) (buffer-end -1)))
-    (backward-prefix-chars)))   
-    
+    (backward-prefix-chars)))
+
 (defun scala-syntax:has-char-before (char end)
   (save-excursion
     (while (and (< (point) end)
@@ -748,7 +788,7 @@ beginning of the skipped expression."
   "Searches backward sexps until it reaches re, empty line or ;.
 If re is found, point is set to beginning of re and the position
 is returned, otherwise nil is returned"
-  (let ((found (save-excursion 
+  (let ((found (save-excursion
                  (while (not (or (bobp)
                                  (scala-syntax:looking-back-empty-line-p)
                                  (scala-syntax:looking-back-token "[;,]")
@@ -758,7 +798,7 @@ is returned, otherwise nil is returned"
                      (point)
                    nil))))
     (when found (goto-char found))))
-              
+
 (defun scala-syntax:list-p (&optional point)
   "Returns the start of the list, if the current point (or point
 'point') is on the first line of a list element > 1, or nil if
@@ -782,3 +822,5 @@ not. A list must be either enclosed in parentheses or start with
               (scala-syntax:backward-sexp)))
           (when (looking-at scala-syntax:list-keywords-re)
             (goto-char (match-end 0))))))))
+
+(provide 'scala-mode2-syntax)

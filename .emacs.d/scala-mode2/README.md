@@ -18,25 +18,78 @@ standard emacs motions work ofcourse.
 The mode has been developed on 24.2 and uses features not available
 in emacs prior to version 24.
 
-2. Download the files to a local directory. You can use the *git clone*
-command, this will create a new directory called scala-mode2.
-```
-git clone git://github.com/hvesalai/scala-mode2.git
-```
+2. There are two mechanisms that can be used for the installation of
+the mode into Emacs. The preferred manner is to use the built-in
+package manager of Emacs 24 (i.e. `package.el`) and
+the other is to manually clone the git repository, add the path to the mode
+to the load-path and then to require it. For more information regarding
+`package.el` please refer to the [EmacsWiki](http://emacswiki.org/emacs/ELPA).
 
-3. Include the following in your `.emacs`  file. If you have been
-using the old scala-mode, make sure it is no longer in *load-path*.
-```
-(add-to-list 'load-path "/path/to/scala-mode2/")
-(require 'scala-mode)
-```
+    1. Package.el:
+        Using the package.el within Emacs installation is the recommended
+        manner to install scala-mode2 as it allows for continuous, easy
+        updating from within Emacs itself. 
+        
+        Adding the MELPA or Marmalade repository to your emacs
+        initialization will be required to locate the packages.
+       
+        Add the following to your emacs config (.emacs, init.el, etc), and
+        if such a definition already exists, ensure that it contains
+        the MELPA or Marmalade declaration, for example:
 
-4. That's it. Next you can start emacs and take a look at the
+        ```lisp
+        (require 'package)
+        (add-to-list 'package-archives
+                     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+        (package-initialize)
+        (unless (package-installed-p 'scala-mode2)
+          (package-refresh-contents) (package-install 'scala-mode2))
+        ```
+        
+        or you could use ```customize``` to add a repository:
+        
+        ```
+        M-x customize-variable [RET] package-archives
+        ```
+        
+        and add MELPA or Marmalade, for example:
+        
+        ```
+        marmalade   http://marmalade-repo.org/packages/
+        ```
+        
+        and then use package install to install it:
+        
+        ```
+        M-x package-install [RET] scala-mode2 [RET]
+        ```
+        
+
+    2. Manual:
+        Download the files to a local directory. You can use the *git clone*
+        command, this will create a new directory called scala-mode2.
+
+        ```
+        git clone git://github.com/hvesalai/scala-mode2.git
+        ```
+
+        Include the following in your Emacs config file. If you have been
+        using the old scala-mode, make sure it is no longer in *load-path*.
+
+        ```lisp
+        (add-to-list 'load-path "/path/to/scala-mode2/")
+        (require 'scala-mode2)
+        ```
+
+3. That's it. Next you can start emacs and take a look at the
 customization menu for scala-mode (use **M-x** *customize-mode* when
 in scala-mode or use **M-x** *customize-variable* to customize one
 variable). Also be sure to check the customization tips on various
 keyboard commands and general emacs parameters which cannot be
 modified from the scala-mode customization menu.
+
+    For scala console (aka *REPL*) or **sbt** support, see
+    [sbt-mode](https://github.com/hvesalai/sbt-mode).
 
 ## Indenting modes
 
@@ -54,7 +107,7 @@ and the **eager** for strictly functional style. A third mode called
 The difference between the modes is how they treat run-on lines. For
 example, the *eager* mode will indent *map* in the following code
 
-```
+```scala
 val x = List(1, 2, 3)
   map(x => x + 1)
 ```
@@ -62,7 +115,7 @@ val x = List(1, 2, 3)
 The *operators* and *eager* modes will indent the second row in the
 following code, as the first line ends with an operator character.
 
-```
+```scala
 val x = 20 +
   21
 ```
@@ -72,7 +125,7 @@ case. However, all three modes will indent the second line in these
 examples as it is clear that the first line cannot terminate a statement
 (see the *Scala Language Specification 2.9*, section 1.2).
 
-```
+```scala
 val x = List(0, 1, 2, 3, 4, 5, 6, 7, 8, 9).
   map (x => x + 1) // last token of previous line cannot terminate a statement
 
@@ -83,7 +136,7 @@ val y = (List(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 You can use empty lines in the *eager* mode to stop it from indenting a
 line. For example
 
-```
+```scala
 val x = foo("bar")
            ("zot", "kala") // indented as curry
 
@@ -100,7 +153,7 @@ line will toggle between the modes.
 When this variable is set to *nil* (default), body of a value
 expressions will be indented in the traditional way.
 
-```
+```scala
 val x = try {
   some()
 } catch {
@@ -114,7 +167,7 @@ However, when the variable is set to *t*, the body will be indented
 one extra step to make the *val*, *var* or *def* stand out. For
 example:
 
-```
+```scala
 val x = try {
     some()
   } catch {
@@ -130,7 +183,7 @@ When this variable is set to *nil* (default), parameters and run-on
 lines in parameter lists will not align under or acording to the
 first parameter.
 
-```
+```scala
 val y = List( "Alpha", "Bravo",
   "Charlie" )
 
@@ -140,7 +193,7 @@ val x = equals(List(1,2,3) map (x =>
 
 When the variable is set to *t*, the same will be indented as:
 
-```
+```scala
 val y = List( "Alpha", "Bravo",
               "Charlie" )
 
@@ -153,7 +206,7 @@ val x = equals(List(1,2,3) map (x =>
 When this variable is set to *nil* (default), *if*, *for* and *try*
 forms are not aligned specially.
 
-```
+```scala
 val x = if (kala)
   foo
 else if (koira)
@@ -171,7 +224,7 @@ yield i
 
 When the variable is set to *t*, the same will be indented as:
 
-```
+```scala
 val x = if (kala)
           foo
         else if (koira)
@@ -244,6 +297,18 @@ To re-fill a paragraph, use the *fill-paragraph* command ( **M-q**
 command. To set the default, you use the *customize-variable* command
 or a mode-hook.
 
+## Joinin lines (delete indentation)
+
+Scala-mode defines its own *scala-indent:join-line' function.  Besides
+doing what the normal *join-line* (aka *delete-indentation*) function
+does, it also removes comment marks (asterisks and slashes) when
+comment lines are joined and space when code lines are joined and the
+uppper line ended with a dot.
+
+In scala-mode2 buffers *scala-indent:join-line* replaces
+*delete-indentation* in your key bindings. The default binding is
+**M-^**.
+
 ## Motion
 
 Basic emacs motion will work as expected.
@@ -274,12 +339,14 @@ you may want to try. Just copy-paste it to your `.emacs` file.
   ;; 'reindent-then-newline-and-indent' command.
   (local-set-key (kbd "RET") 'newline-and-indent)
 
-  ;; Bind the 'join-line' command to C-M-j. This command is normally
-  ;; bound to M-^ which is hard to access, especially on some European
-  ;; keyboards. The 'join-line' command has the effect or joining the
-  ;; current line with the previous while fixing whitespace at the
-  ;; joint.
-  (local-set-key (kbd "C-M-j") 'join-line)
+  ;; Alternatively, bind the 'newline-and-indent' command and
+  ;; 'scala-indent:insert-asterisk-on-multiline-comment' to RET in
+  ;; order to get indentation and asterisk-insertion within multi-line
+  ;; comments.
+  ;; (local-set-key (kbd "RET") '(lambda ()
+  ;;   (interactive)
+  ;;   (newline-and-indent)
+  ;;   (scala-indent:insert-asterisk-on-multiline-comment)))
 
   ;; Bind the backtab (shift tab) to
   ;; 'scala-indent:indent-with-reluctant-strategy command. This is usefull
@@ -387,3 +454,8 @@ Contributors and valuable feedback:
 - Eiríkr Åsheim (aka Erik Osheim)
 - Seth Tisue
 - Gary Pamparà
+- Evan Meagher
+- Andrew Jones
+- Vasya Novikov
+- Hugh Giddens
+- Nic Ferrier

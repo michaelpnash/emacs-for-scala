@@ -2,9 +2,7 @@
 ;;; Copyright (c) 2012 Heikki Vesalainen
 ;;; For information on the License, see the LICENSE file
 
-(provide 'scala-mode-lib)
-
-(defvar scala-mode:debug-messages 
+(defvar scala-mode:debug-messages
   "If true, some debug messages may be printed printed."
   nil)
 
@@ -22,5 +20,7 @@
   (save-excursion
     (end-of-line)
     (skip-syntax-backward " ")
-    (unless (bolp) 
+    (unless (bolp)
       (delete-char (- (line-end-position) (point))))))
+
+(provide 'scala-mode2-lib)

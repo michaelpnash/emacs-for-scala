@@ -2,9 +2,7 @@
 ;;; Copyright (c) 2012 Heikki Vesalainen
 ;;; For information on the License, see the LICENSE file
 
-(provide 'scala-mode-fontlock)
-
-(require 'scala-mode-syntax)
+(require 'scala-mode2-syntax)
 
 (defcustom scala-font-lock:constant-list '()
   "A list of strigs that should be fontified in constant
@@ -296,7 +294,7 @@ Does not continue past limit.
 (defun scala-font-lock:mark-string-escapes (limit)
   (when (re-search-forward scala-syntax:string-escape-re limit t)
     (goto-char (match-end 0))
-    (or (= (nth 3 (save-excursion (syntax-ppss (match-beginning 0)))) ?\")
+    (or (eq (nth 3 (save-excursion (syntax-ppss (match-beginning 0)))) ?\")
         (scala-font-lock:mark-string-escapes limit))))
 
 (defun scala-font-lock:mark-numberLiteral (re limit)
@@ -489,6 +487,7 @@ Does not continue past limit.
            (save-excursion
              (goto-char (nth 8 state))
              (looking-at "/\\*\\*\\($\\|[^*]\\)")))
+      ;; scaladoc (starts with /** only)
       font-lock-doc-face
     (if (nth 3 state) font-lock-string-face font-lock-comment-face)))
 
@@ -499,3 +498,6 @@ Does not continue past limit.
 
 (defvar scala-font-lock:var-face 'scala-font-lock:var-face
   "Face for scala variable names.")
+
+
+(provide 'scala-mode2-fontlock)

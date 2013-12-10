@@ -122,7 +122,7 @@
 (defun scala-find-class ()
   "Find-name-grep in current directory for class trait or object"
   (interactive)
-  (setq name (read-from-minibuffer "Object/Trait/Class:"))
+  (setq name (read-from-minibuffer "Class:"))
   (find-grep-dired (format "%s/src" project-dir) (format "class %s" name))
   )
   
@@ -275,10 +275,6 @@
 (add-to-list 'load-path "~/.emacs.d/dirtree")
 (require 'dirtree)
 (global-set-key (kbd "s-d") 'dirtree)
-;;(load-file "~/.emacs.d/auto-publish-subscribe-rudel.el")
-;;(global-rudel-auto-choose-mode-minor-mode 1)
-;;(global-rudel-auto-publish-minor-mode 1)
-;;(global-rudel-auto-subscribe-minor-mode 1)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
 (load-theme 'solarized-dark)
