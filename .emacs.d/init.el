@@ -72,7 +72,8 @@
 (load-file "~/.emacs.d/find-file-in-project.el")
 
 (global-linum-mode 1)
-(global-set-key (kbd "s-o") 'find-grep-dired)
+;;(global-set-key (kbd "s-o") 'find-grep-dired)
+(global-set-key (kbd "s-o") 'ensime-search)
 (global-set-key (kbd "s-k") 'magit-status)
 (global-set-key (kbd "s-D") 'sunrise)
 (global-set-key (kbd "s-B") 'list-buffers)
