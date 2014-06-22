@@ -1,7 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/scala-mode2")
 (require 'scala-mode2)
 ;; Load the ensime lisp code...
-(add-to-list 'load-path "~/.emacs.d/ensime/ensime_2.10.2-0.9.8.10/elisp")
+(add-to-list 'load-path "~/.emacs.d/ensime/ensime_2.10.2-0.9.8.11-SNAPSHOT/")
 (require 'ensime)
 
 (add-to-list 'load-path "~/.emacs.d/sunrise-commander")
