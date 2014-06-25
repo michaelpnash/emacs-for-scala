@@ -1,7 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/scala-mode2")
 (require 'scala-mode2)
 ;; Load the ensime lisp code...
-(add-to-list 'load-path "~/.emacs.d/ensime/ensime_2.10.2-0.9.8.11-SNAPSHOT/")
+(add-to-list 'load-path "~/.emacs.d/ensime/ensime_2.10.0-0.9.8.9/elisp")
 (require 'ensime)
 
 (add-to-list 'load-path "~/.emacs.d/sunrise-commander")
@@ -285,3 +285,4 @@
 (global-auto-revert-mode 1)
 (global-set-key (kbd "s-j") 'dired-jump)
 (setq server-socket-dir "~/.emacs.d/server")
+
