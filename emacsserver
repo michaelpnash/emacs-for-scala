@@ -1,0 +1,12 @@
+SERVERS=`ps -fe | grep Emacs | grep Applications | wc -l`
+if [ "$1" == "stop" ]; then
+  echo "Stopping emacs server..."
+  /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -nw -s ~/.emacs.d/server/server -e "(kill-emacs)"
+else
+  if [ $SERVERS != 0 ]; then
+    echo "Server already running"
+  else
+    echo "Starting emacs server..."
+    /Applications/Emacs.app/Contents/MacOS/Emacs --daemon
+  fi
+fi
