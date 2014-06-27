@@ -4,13 +4,6 @@
 (add-to-list 'load-path "~/.emacs.d/ensime/ensime_2.10.0-0.9.8.9/elisp")
 (require 'ensime)
 
-(add-to-list 'load-path "~/.emacs.d/sunrise-commander")
-(require 'sunrise-commander)
-(require 'sunrise-x-tree)
-(require 'sunrise-x-buttons)
-(require 'sunrise-x-loop)
-(require 'sunrise-x-mirror)
-
 (require 'flymake)
 
 (require 'table)
@@ -72,19 +65,14 @@
 (load-file "~/.emacs.d/find-file-in-project.el")
 
 (global-linum-mode 1)
-;;(global-set-key (kbd "s-o") 'find-grep-dired)
-(global-set-key (kbd "s-o") 'ensime-search)
-(global-set-key (kbd "s-k") 'magit-status)
-(global-set-key (kbd "s-D") 'sunrise)
-(global-set-key (kbd "s-B") 'list-buffers)
-(global-set-key (kbd "s-b") 'ido-switch-buffer)
-(global-set-key (kbd "s-/") 'comment-or-uncomment-region)
-(global-set-key (kbd "s-O") 'find-file-in-project)
+(global-set-key [f7] 'kill-whole-line)
+(global-set-key (kbd "M-s M-m") 'magit-status)
+(global-set-key (kbd "M-s M-/") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-x C-M-f") 'find-file-in-project)
 (global-set-key (kbd "C-c C-r r") 'ensime-refactor-rename)
 (global-set-key (kbd "C-c C-o i") 'ensime-refactor-organize-imports)
 (global-set-key (kbd "C-c C-i l") 'ensime-refactor-inline-local)
 (global-set-key (kbd "C-c C-t i") 'ensime-inspect-by-path)
-(global-set-key (kbd "s-.") 'ensime-edit-definition-other-window)
 (put 'dired-find-alternate-file 'disabled nil)
 (menu-bar-mode -1)
 (setq ensime-sbt-compile-on-save nil)
@@ -93,13 +81,12 @@
   "Save all buffers without prompting"
   (interactive)
   (save-some-buffers t))
-(global-set-key (kbd "s-s") 'save-silently)
+(global-set-key (kbd "M-s M-s") 'save-silently)
 
-(global-set-key (kbd "s-N") 'scala-find-name)
-(global-set-key (kbd "s-n") 'scala-find-class)
-(global-set-key (kbd "s-i") 'ensime-inspect-type-at-point)
-(global-set-key (kbd "s-t") 'scala-test-only)
-(global-set-key (kbd "s-T") 'jump-to-test)
+;;(global-set-key (kbd "s-N") 'scala-find-name)
+;;(global-set-key (kbd "s-n") 'scala-find-class)
+(global-set-key (kbd "M-s M-t") 'scala-test-only)
+(global-set-key (kbd "M-s M-T") 'jump-to-test)
 
 (setq project-dir (getenv "PWD"))
 
@@ -140,8 +127,8 @@
 (global-set-key [kp-subtract] 'undo) ; [Undo] 
 (global-set-key [insert]    'overwrite-mode) ; [Ins] 
 (global-set-key [kp-insert] 'overwrite-mode) ; [Ins] 
-(global-set-key "\C-l" 'goto-line) ; [Ctrl]-l] 
-(global-set-key "\C-L" 'recenter-top-bottom)
+(global-set-key (kbd "C-l") 'goto-line) ; [Ctrl]-l] 
+(global-set-key (kbd "C-L") 'recenter-top-bottom)
 (global-set-key [f2] 'split-window-vertically) 
 (global-set-key [f1] 'remove-split) 
 
@@ -157,14 +144,17 @@
 (dired-details-install)
 
 (add-to-list 'load-path "~/.emacs.d/ace-jump-mode")
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
 (autoload
   'ace-jump-mode
   "ace-jump-mode"
   "Emacs quick move minor mode"
  t)
-(define-key global-map (kbd "C-0") 'ace-jump-mode)
-(define-key global-map (kbd "C-1") 'ace-jump-line-mode)
-(define-key global-map (kbd "C-2") 'ace-jump-char-mode)
+;;(define-key global-map (kbd "C-0") 'ace-jump-mode)
+(define-key global-map (kbd "<f6>") 'ace-jump-line-mode)
+;;(define-key global-map (kbd "C-2") 'ace-jump-char-mode)
 
 (autoload
   'ace-jump-mode-pop-mark
@@ -182,7 +172,7 @@
   (interactive)
   (org-agenda-file-to-front)
   (org-todo-list))
-(define-key global-map (kbd "s-T") 'todo-agenda-current-file)
+;;(define-key global-map (kbd "s-T") 'todo-agenda-current-file)
 
 (dolist (command '(yank yank-pop))
   (eval `(defadvice ,command (after indent-region activate)
@@ -209,41 +199,41 @@
 ;;(key-chord-define-global "DL" 'kill-whole-line)
 ;;(key-chord-define-global "OO" 'overwrite-mode)
   
-;;(defun search-to-brace ()
-;;  "Jump to the next open brace"
-;;  (interactive)
-;;  (search-forward "{"))
-;;(key-chord-define-global "s[" 'search-to-brace)
+(defun search-to-brace ()
+  "Jump to the next open brace"
+  (interactive)
+  (search-forward "{"))
+(define-key global-map (kbd "M-s {") 'search-to-brace)
 
-;;(defun search-to-prev-brace ()
-;;    "Jump to the previous brace"
-;;    (interactive)
-;;    (search-backward "{"))
-;;(key-chord-define-global "p[" 'search-to-prev-brace)
+(defun search-to-prev-brace ()
+    "Jump to the previous brace"
+    (interactive)
+    (search-backward "{"))
+(define-key global-map (kbd "M-S {") 'search-to-prev-brace)
 
-;;(defun search-to-close-brace ()
-;;  "Jump to the next close brace"
-;;  (interactive)
-;;  (search-forward "}"))
-;;(key-chord-define-global "s]" 'search-to-close-brace)
+(defun search-to-close-brace ()
+  "Jump to the next close brace"
+  (interactive)
+  (search-forward "}"))
+(define-key global-map (kbd "M-s }") 'search-to-close-brace)
 
-;;(defun search-to-prev-close-brace ()
-;;  "Jump to the previous close brace"
-;;  (interactive)
-;;  (search-backward "}"))
-;;(key-chord-define-global "p]" 'search-to-prev-brace)
+(defun search-to-prev-close-brace ()
+  "Jump to the previous close brace"
+  (interactive)
+  (search-backward "}"))
+(define-key global-map (kbd "M-S }") 'search-to-prev-brace)
 
-;;(defun search-to-next-def ()
-;;  "Jump to the next def"
-;;  (interactive)
-;;  (search-forward "def "))
-;;(key-chord-define-global "SD" 'search-to-next-def)
+(defun search-to-next-def ()
+  "Jump to the next def"
+  (interactive)
+  (search-forward "def "))
+(define-key global-map (kbd "M-s d") 'search-to-prev-def)
 
-;;(defun search-to-prev-def ()
-;;  "Jump to the previous def"
-;;  (interactive)
-;;  (search-backward "def "))
-;;(key-chord-define-global "PD" 'search-to-prev-def)
+(defun search-to-prev-def ()
+  "Jump to the previous def"
+  (interactive)
+  (search-backward "def "))
+(define-key global-map (kbd "M-S d") 'search-to-prev-def)
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -276,7 +266,7 @@
 (add-to-list 'load-path "~/.emacs.d/tree")
 (add-to-list 'load-path "~/.emacs.d/dirtree")
 (require 'dirtree)
-(global-set-key (kbd "s-d") 'dirtree)
+;;(global-set-key (kbd "s-d") 'dirtree)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
 (load-theme 'solarized-dark)
