@@ -1,7 +1,7 @@
 emacs-for-scala
 ===============
 
-My Emacs setup for Scala development.
+My Emacs setup for Scala development, including a fully-configured Ensime.
 
 The .emacs.d contained in this repo has a specific set of keybindings set up for Emacs. Mostly these are the defaults from whatever included modules have been used, but in a few cases they've been customized to play well together.
 
@@ -11,5 +11,7 @@ Please see <a href="http://jglobal.com/emacs-for-scala/" target="_new">http://jg
 
 For faster startup of Emacs, you can do two things: Compile the elisp, or use Emacs in client-server mode.
 
-For client-server mode, use the script emacsserver.sh once at startup to launch the background server, then use the script "emacs" to launch the client. Remove the "-nw" if you want GUI mode emacs for some reason.
+For client-server mode, put the scripts 'emacsserver' and 'emacs' found in this repo in your path (before any other emacs), and then run "emacs ." - if the server is not running, it will start it, then subsequent launches of emacs will be very quick.
+
+The scripts are intended for OSX, but could easily be adapted.
 
