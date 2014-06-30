@@ -1,12 +1,19 @@
 (add-to-list 'load-path "~/.emacs.d/scala-mode2")
 (require 'scala-mode2)
+
+(add-to-list 'load-path (concat user-emacs-directory "dash"))
+
+(add-to-list 'load-path (concat user-emacs-directory "auto-complete"))
+
 ;; Load the ensime lisp code...
-(add-to-list 'load-path "~/.emacs.d/ensime/ensime_2.10.0-0.9.8.9/elisp")
+(add-to-list 'load-path (concat user-emacs-directory "ensime"))
 (require 'ensime)
 
 (require 'flymake)
 
 (require 'table)
+
+
 
 (add-to-list 'load-path "~/.emacs.d/magit")
 (require 'magit)
