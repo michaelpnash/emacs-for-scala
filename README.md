@@ -15,3 +15,5 @@ For client-server mode, put the scripts 'emacsserver' and 'emacs' found in this 
 
 The scripts are intended for OSX, but could easily be adapted.
 
+I've modified my keybindings to not use the "Super" key, so that text-mode emacs works without doing anything special within iTerm. For me, much of the power of Emacs is due to being able to combine it with Tmux and such, so text-mode is a big deal for me.
+
