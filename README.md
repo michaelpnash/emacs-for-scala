@@ -18,7 +18,8 @@ The scripts are intended for OSX, but could easily be adapted.
 -----------------------------------
 # Keybindings
 
-Shorthand | Press | On OSX 
+Shorthand | Press | On OSX
+  --------|-------|---------
 C-x | Control-x | Control-x
 M-x |  Meta-x | Alt/Option-x
 s-x | Super-x | Command-x
@@ -26,6 +27,7 @@ s-x | Super-x | Command-x
 ## Finding Files
 
 Keys | Description Command
+-----|--------------------
 C-x C-f | Prompt to open file | ido-find-file
  |        Start dirtree, prompts for directory |       dirtree
 C-x C-M-f |          Find file in project (current dir up to the .git directory) |          find-name-dired
