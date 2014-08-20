@@ -26,432 +26,46 @@ s-x | Super-x | Command-x
 
 ## Finding Files
 
-Keys | Description Command
------|--------------------
+Keys | Description | Command
+-----|-------------|-------
 C-x C-f | Prompt to open file | ido-find-file
  |        Start dirtree, prompts for directory |       dirtree
 C-x C-M-f |          Find file in project (current dir up to the .git directory) |          find-name-dired
  |          Find file by regex | find-grep-dired
 C-x C-v |          Revert file to version on disk |          revert-buffer
 
-<div class="clear">
-</div>
+## Movement
 
-<p class="trigger ">
-  <a href="#toggle_134894284453f1f8e6974bf">Movement</a>
-</p>
-
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <table border="1">
-      <tr>
-        <td align="left" valign="top" nowrap="nowrap">
-          <strong>Keys</strong>
-        </td>
-        
-        <td align="left" valign="top">
-          <strong>Description</strong>
-        </td>
-        
-        <td align="left" valign="top">
-          <strong>Command</strong>
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-n
-        </td>
-        
-        <td align="left" valign="top">
-          Next line
-        </td>
-        
-        <td align="left" valign="top">
-          next-line
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-f
-        </td>
-        
-        <td align="left" valign="top">
-          Forward a word
-        </td>
-        
-        <td align="left" valign="top">
-          forward-word
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-b
-        </td>
-        
-        <td align="left" valign="top">
-          Backwards a word
-        </td>
-        
-        <td align="left" valign="top">
-          backward-word
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-M-b
-        </td>
-        
-        <td align="left" valign="top">
-          Go to previous open brace/comma/bracket
-        </td>
-        
-        <td align="left" valign="top">
-          backward-sexp
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-M-f
-        </td>
-        
-        <td align="left" valign="top">
-          Go to next ending brace/comma/bracket
-        </td>
-        
-        <td align="left" valign="top">
-          forward-sexp
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-M-u
-        </td>
-        
-        <td align="left" valign="top">
-          Move up in parenthesis structure
-        </td>
-        
-        <td align="left" valign="top">
-          backward-up-list
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-M-d
-        </td>
-        
-        <td align="left" valign="top">
-          Move down in parenthesis structure
-        </td>
-        
-        <td align="left" valign="top">
-          down-list
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-<
-        </td>
-        
-        <td align="left" valign="top">
-          Beginning of buffer
-        </td>
-        
-        <td align="left" valign="top">
-          beginning-of-buffer
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M->
-        </td>
-        
-        <td align="left" valign="top">
-          End of buffer
-        </td>
-        
-        <td align="left" valign="top">
-          end-of-buffer
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-m
-        </td>
-        
-        <td align="left" valign="top">
-          Back to indendation
-        </td>
-        
-        <td align="left" valign="top">
-          back-to-indentation
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          Shift-TAB
-        </td>
-        
-        <td align="left" valign="top">
-          Undent
-        </td>
-        
-        <td align="left" valign="top">
-          scala-indent:indent-with-reluctant-strategy
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-u C-x TAB
-        </td>
-        
-        <td align="left" valign="top">
-          Indent region 4 spaces
-        </td>
-        
-        <td align="left" valign="top">
-          universal-argument indent-rigidly
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-v
-        </td>
-        
-        <td align="left" valign="top">
-          Scroll up
-        </td>
-        
-        <td align="left" valign="top">
-          scroll-down-command
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-k
-        </td>
-        
-        <td align="left" valign="top">
-          Kill remainder of line
-        </td>
-        
-        <td align="left" valign="top">
-          kill-line
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          <f7>
-        </td>
-        
-        <td align="left" valign="top">
-          Kill whole line
-        </td>
-        
-        <td align="left" valign="top">
-          kill-whole-line
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-a
-        </td>
-        
-        <td align="left" valign="top">
-          Beginning of line
-        </td>
-        
-        <td align="left" valign="top">
-          move-beginning-of-line
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-e
-        </td>
-        
-        <td align="left" valign="top">
-          Ending of line
-        </td>
-        
-        <td align="left" valign="top">
-          move-end-of-line
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-v
-        </td>
-        
-        <td align="left" valign="top">
-          Scroll down
-        </td>
-        
-        <td align="left" valign="top">
-          scroll-down-command
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-l
-        </td>
-        
-        <td align="left" valign="top">
-          Goto line
-        </td>
-        
-        <td align="left" valign="top">
-          goto-line
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-c SPACE
-        </td>
-        
-        <td align="left" valign="top">
-          Ace Jump to a word
-        </td>
-        
-        <td align="left" valign="top">
-          ace-jump-word-mode
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-u C-c SPACE
-        </td>
-        
-        <td align="left" valign="top">
-          Ace Jump Character Mode
-        </td>
-        
-        <td align="left" valign="top">
-          ace-jump-char-mode
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-u C-u C-c SPACE <i>OR</i> <f6>
-        </td>
-        
-        <td align="left" valign="top">
-          Ace Jump Line Mode
-        </td>
-        
-        <td align="left" valign="top">
-          ace-jump-line-mode
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-s }
-        </td>
-        
-        <td align="left" valign="top">
-          Jump to next }
-        </td>
-        
-        <td align="left" valign="top">
-          search-to-close-brace
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-S }
-        </td>
-        
-        <td align="left" valign="top">
-          Jump to previous }
-        </td>
-        
-        <td align="left" valign="top">
-          search-to-prev-close-brace
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-s {
-        </td>
-        
-        <td align="left" valign="top">
-          Jump to next {
-        </td>
-        
-        <td align="left" valign="top">
-          search-to-brace
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-S {
-        </td>
-        
-        <td align="left" valign="top">
-          Jump to previous {
-        </td>
-        
-        <td align="left" valign="top">
-          search-to-prev-brace
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-S d
-        </td>
-        
-        <td align="left" valign="top">
-          Jump to previous &#8220;def &#8220;
-        </td>
-        
-        <td align="left" valign="top">
-          search-to-next-def
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-s d
-        </td>
-        
-        <td align="left" valign="top">
-          Jump to next &#8220;def &#8220;
-        </td>
-        
-        <td align="left" valign="top">
-          search-to-next-def
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
+Keys | Description | Command
+  ----|--------|-----
+ C-n |          Next line |          next-line
+M-f |          Forward a word |          forward-word
+          M-b |          Backwards a word |          backward-word
+          C-M-b |  Go to previous open brace/comma/bracket |    backward-sexp      
+          C-M-f |   Go to next ending brace/comma/bracket  |          forward-sexp
+          C-M-u |   Move up in parenthesis structure |  backward-up-list
+          C-M-d |   Move down in parenthesis structure |          down-list
+          M-< |  Beginning of buffer |          beginning-of-buffer
+          M-> |          End of buffer |           end-of-buffer
+          M-m |           Back to indendation |          back-to-indentation
+          Shift-TAB |          Undent |          scala-indent:indent-with-reluctant-strategy
+          C-u C-x TAB |          Indent region 4 spaces |          universal-argument indent-rigidly
+          C-v |           Scroll up |          scroll-down-command
+          C-k |          Kill remainder of line |        kill-line
+          <f7> |           Kill whole line |          kill-whole-line
+          C-a |           Beginning of line |          move-beginning-of-line
+          C-e |           Ending of line |  move-end-of-line
+          M-v |           Scroll down |           scroll-down-command
+          C-l |           Goto line |           goto-line
+          C-c SPACE |           Ace Jump to a word |          ace-jump-word-mode
+          C-u C-c SPACE |           Ace Jump Character Mode |          ace-jump-char-mode
+          C-u C-u C-c SPACE <i>OR</i> <f6>  |           Ace Jump Line Mode |          ace-jump-line-mode
+          M-s } |           Jump to next } |           search-to-close-brace
+          M-S } |           Jump to previous } |           search-to-prev-close-brace
+          M-s { |           Jump to next { |           search-to-brace
+          M-S { |  Jump to previous { |           search-to-prev-brace
+          M-S d |  Jump to previous &#8220;def &#8220; |          search-to-next-def
+          M-s d |           Jump to next &#8220;def &#8220; |           search-to-next-def
 
 <div class="clear">
 </div>
