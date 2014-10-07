@@ -70,159 +70,20 @@ M-f |          Forward a word |          forward-word
 <div class="clear">
 </div>
 
-<p class="trigger ">
-  <a href="#toggle_121146410653f1f8e697590">General</a>
-</p>
-
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <p>
-      <a name="general"></a>
-    </p>
-    
-    <table border="1">
-      <tr>
-        <td align="left" valign="top" nowrap="nowrap">
-          <strong>Keys</strong>
-        </td>
-        
-        <td align="left" valign="top">
-          <strong>Description</strong>
-        </td>
-        
-        <td align="left" valign="top">
-          <strong>Command</strong>
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-s M-s
-        </td>
-        
-        <td align="left" valign="top">
-          Save all modified buffers
-        </td>
-        
-        <td align="left" valign="top">
-          save-silently
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-u 3
-        </td>
-        
-        <td align="left" valign="top">
-          Repeat next command 3 times
-        </td>
-        
-        <td align="left" valign="top">
-          universal-argument
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Prompt for input mode (tex for unicode)
-        </td>
-        
-        <td align="left" valign="top">
-          toggle-input-mode
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-t
-        </td>
-        
-        <td align="left" valign="top">
-          Transpose words
-        </td>
-        
-        <td align="left" valign="top">
-          transpose-words
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x C-t
-        </td>
-        
-        <td align="left" valign="top">
-          Transpose lines
-        </td>
-        
-        <td align="left" valign="top">
-          transpose-lines
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-t
-        </td>
-        
-        <td align="left" valign="top">
-          Transpose characters
-        </td>
-        
-        <td align="left" valign="top">
-          transpose-chars
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-M-o
-        </td>
-        
-        <td align="left" valign="top">
-          &#8220;Open&#8221; line at insertion point
-        </td>
-        
-        <td align="left" valign="top">
-          split-line
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-^
-        </td>
-        
-        <td align="left" valign="top">
-          Join the current and previous line
-        </td>
-        
-        <td align="left" valign="top">
-          delete-indentation
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x C-b
-        </td>
-        
-        <td align="left" valign="top">
-          List all buffers
-        </td>
-        
-        <td align="left" valign="top">
-          list-buffers
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x k
+## General
+  
+  Keys | Description | Command
+  ----|--------|-----
+M-s M-s | Save all modified buffers | save-silently
+C-u 3 |  Repeat next command 3 times | universal-argument
+ |    Prompt for input mode (tex for unicode) |       toggle-input-mode
+  M-t |   Transpose words| transpose-words
+ C-x C-t |  Transpose lines |          transpose-lines
+  C-t | Transpose characters | transpose-chars
+ C-M-o | Open line at insertion point | split-line
+ M-^ |  Join the current and previous line | delete-indentation
+ C-x C-b | List all buffers |  list-buffers
+ C-x k
         </td>
         
         <td align="left" valign="top">
@@ -316,100 +177,20 @@ M-f |          Forward a word |          forward-word
         <td align="left" valign="top">
           isearch-backward
         </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
 
-<div class="clear">
-</div>
 
-<p class="trigger ">
-  <a href="#toggle_65882681953f1f8e697665">Ensime</a>
-</p>
-
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <p>
+## Ensime
+  
       <a href="http://ensime.github.io/" target="_new">Full Ensime Manual</a>
-    </p>
-    
-    <table border="1" width="100%">
-      <tr>
-        <td align="left" valign="top" nowrap="nowrap">
-          C-c C-b b
-        </td>
-        
-        <td align="left" valign="top">
-          Rebuild entire project (clean build)
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-builder-build
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-c C-b r
-        </td>
-        
-        <td align="left" valign="top">
-          Rebuild project incrementally
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-builder-rebuild
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Reload the .ensime file and recompile the project
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-reload
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Start the automatic configuration file generator
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-config-get
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top" nowrap="nowrap">
-          C-c C-v z
-        </td>
-        
-        <td align="left" valign="top">
-          Launch REPL
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-inf-switch
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-c C-v i
-        </td>
-        
-        <td align="left" valign="top">
-          Launch type inspector on symbol under cursor <br /> <table border="1">
+
+  Keys | Description | Command
+  ----|--------|-----
+   C-c C-b b |  Rebuild entire project (clean build) | ensime-builder-build
+ C-c C-b r | Rebuild project incrementally | ensime-builder-rebuild
+ |  Reload the .ensime file and recompile the project | ensime-reload
+ | Start the automatic configuration file generator | ensime-config-get
+C-c C-v z |  Launch REPL| ensime-inf-switch
+ C-c C-v i |  Launch type inspector on symbol under cursor <br /> <table border="1">
             <tr>
               <td>
                 ,
@@ -1722,17 +1503,10 @@ M-f |          Forward a word |          forward-word
 </div>
 
 <p class="trigger ">
-  <a href="#toggle_132846890953f1f8e697cda">Table Mode</a>
-</p>
-
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <p>
+### Table Mode
       <a href="http://table.sourceforge.net/" target="_new">Sourceforge Page for Table Mode</a>
-    </p>
-    
-    <table border="1">
-      <tr>
+
+        <tr>
         <td align="left" valign="top">
         </td>
         
