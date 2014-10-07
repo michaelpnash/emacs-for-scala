@@ -67,9 +67,6 @@ M-f |          Forward a word |          forward-word
           M-S d |  Jump to previous &#8220;def &#8220; |          search-to-next-def
           M-s d |           Jump to next &#8220;def &#8220; |           search-to-next-def
 
-<div class="clear">
-</div>
-
 ## General
   
   Keys | Description | Command
@@ -83,101 +80,13 @@ C-u 3 |  Repeat next command 3 times | universal-argument
  C-M-o | Open line at insertion point | split-line
  M-^ |  Join the current and previous line | delete-indentation
  C-x C-b | List all buffers |  list-buffers
- C-x k
-        </td>
-        
-        <td align="left" valign="top">
-          Kill buffer
-        </td>
-        
-        <td align="left" valign="top">
-          ido-kill-buffer
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-h c
-        </td>
-        
-        <td align="left" valign="top">
-          Show command run by given key sequence
-        </td>
-        
-        <td align="left" valign="top">
-          describe-key-briefly
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x b
-        </td>
-        
-        <td align="left" valign="top">
-          Select another buffer
-        </td>
-        
-        <td align="left" valign="top">
-          ido-switch-buffer
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-up
-        </td>
-        
-        <td align="left" valign="top">
-          Move current line or selection up
-        </td>
-        
-        <td align="left" valign="top">
-          move-text-up
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-down
-        </td>
-        
-        <td align="left" valign="top">
-          Move current line or selection down
-        </td>
-        
-        <td align="left" valign="top">
-          move-text-down
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-s
-        </td>
-        
-        <td align="left" valign="top">
-          Start an incremental search forward.
-        </td>
-        
-        <td align="left" valign="top">
-          isearch-forward
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-r
-        </td>
-        
-        <td align="left" valign="top">
-          Start an incremental search backwards
-        </td>
-        
-        <td align="left" valign="top">
-          isearch-backward
-        </td>
-
+ C-x k | Kill buffer | ido-kill-buffer
+ C-h c | Show command run by given key sequence | describe-key-briefly
+ C-x b |  Select another buffer |  ido-switch-buffer
+ M-up | Move current line or selection up | move-text-up
+ M-down | Move current line or selection down | move-text-down
+ C-s | Start an incremental search forward. | isearch-forward
+ C-r |  Start an incremental search backwards | isearch-backward
 
 ## Ensime
   
@@ -190,164 +99,19 @@ C-u 3 |  Repeat next command 3 times | universal-argument
  |  Reload the .ensime file and recompile the project | ensime-reload
  | Start the automatic configuration file generator | ensime-config-get
 C-c C-v z |  Launch REPL| ensime-inf-switch
- C-c C-v i |  Launch type inspector on symbol under cursor <br /> <table border="1">
-            <tr>
-              <td>
-                ,
-              </td>
-              
-              <td>
-                back
-              </td>
-            </tr>
-            
-            <tr>
-              <td>
-                .
-              </td>
-              
-              <td>
-                forward
-              </td>
-            </tr>
-          </table>
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-inspect-type-at-point
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-c C-v 5 i
-        </td>
-        
-        <td align="left" valign="top">
-          Launch type inspector on symbol under cursor in other frame
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-inspect-type-at-point
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-c C-v o
-        </td>
-        
-        <td align="left" valign="top">
-          Open the inspector on the current project&#8217;s main package
-        </td>
-        
-        <td align="left" valign="top">
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Open inspector on arbitrary type or package
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-inspect-by-path
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-s
-        </td>
-        
-        <td align="left" valign="top">
-          Search through completion candidates
-        </td>
-        
-        <td align="left" valign="top">
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-c C-o i
-        </td>
-        
-        <td align="left" valign="top">
-          Organize imports
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-refactor-organize-imports
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-c C-v v or s-o
-        </td>
-        
-        <td align="left" valign="top">
-          Search globally for methods or types
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-search
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-c C-v .
-        </td>
-        
-        <td align="left" valign="top">
-          Select the surrounding syntactic context. Use . and , to grow and shrinkselection
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-expand-selection-command
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-,
-        </td>
-        
-        <td align="left" valign="top">
-          Pop back to previously visited position
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-pop-find-definition-stack
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-.
-        </td>
-        
-        <td align="left" valign="top">
-          Jump to definition of symbol under cursor
-        </td>
-        
-        <td align="left" valign="top">
-          ensime-edit-definition
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-c C-v i
-        </td>
-        
-        <td align="left" valign="top">
-          Inspect type under cursor<br /> <table>
+ C-c C-v i |  Launch type inspector on symbol under cursor
+  #                ,    back
+  #     .   forward |  ensime-inspect-type-at-point
+   C-c C-v 5 i |  Launch type inspector on symbol under cursor in other frame |  ensime-inspect-type-at-point
+  C-c C-v o |  Open the inspector on the current project&#8217;s main package |
+        |  Open inspector on arbitrary type or package |  ensime-inspect-by-path
+  C-s | Search through completion candidates |
+  C-c C-o i |   Organize imports |  ensime-refactor-organize-imports
+ C-c C-v v or s-o |   Search globally for methods or types | ensime-search
+  C-c C-v . |  Select the surrounding syntactic context. Use . and , to grow and shrink selection |  ensime-expand-selection-command
+ M-, |  Pop back to previously visited position |  ensime-pop-find-definition-stack
+  M-. |  Jump to definition of symbol under cursor |  ensime-edit-definition
+  C-c C-v i |  Inspect type under cursor<br /> <table>
             <tr>
               <td>
                 .
