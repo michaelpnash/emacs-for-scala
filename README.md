@@ -170,444 +170,58 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
   U | Move all hunks out of staging |
   c | Prompt for Commit message |      
    C-c C-c | Commit |
-      
-      <tr>
-        <td align="left" valign="top">
-          P P
-        </td>
-        
-        <td align="left" valign="top">
-          Push
-        </td>
-        
-        <td align="left" valign="top">
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          F F
-        </td>
-        
-        <td align="left" valign="top">
-          Pull
-        </td>
-        
-        <td align="left" valign="top">
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
+ P P | Push |      
+ F F |  Pull |
 
-<div class="clear">
-</div>
+## Ensime Sbt Window
 
-<p class="trigger ">
-  <a href="#toggle_153406473753f1f8e6979a1">Ensime Sbt Window</a>
-</p>
+      Keys | Description | Command
+  ----|--------|-----    
+ M-p | Previously entered command |
+ M-n |  Next entered command |
 
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <table border="1">
-      <tr>
-        <td align="left" valign="top">
-          M-p
-        </td>
-        
-        <td align="left" valign="top">
-          Previously entered command
-        </td>
-        
-        <td align="left" valign="top">
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-n
-        </td>
-        
-        <td align="left" valign="top">
-          Next entered command
-        </td>
-        
-        <td align="left" valign="top">
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
+## Shell Commands
 
-<div class="clear">
-</div>
+      Keys | Description | Command
+  ----|--------|-----  
+ M-! | Execute a shell command |  shell-command
+  M-| | Run shell command on region | shell-command-on-region
+ C-u M-| |  Filter region through shell command |     
+  |  Start shell in window *shell* | shell
 
-<p class="trigger ">
-  <a href="#toggle_179736096853f1f8e697a6d">Shell Commands</a>
-</p>
 
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <table border="1">
-      <tr>
-        <td align="left" valign="top">
-          M-!
-        </td>
-        
-        <td align="left" valign="top">
-          Execute a shell command
-        </td>
-        
-        <td align="left" valign="top">
-          shell-command
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-|
-        </td>
-        
-        <td align="left" valign="top">
-          Run shell command on region
-        </td>
-        
-        <td align="left" valign="top">
-          shell-command-on-region
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-u M-|
-        </td>
-        
-        <td align="left" valign="top">
-          Filter region through shell command
-        </td>
-        
-        <td align="left" valign="top">
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Start shell in window *shell*
-        </td>
-        
-        <td align="left" valign="top">
-          shell
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
+## Org Mode
 
-<div class="clear">
-</div>
 
-<p class="trigger ">
-  <a href="#toggle_12896647053f1f8e697b39">Org Mode</a>
-</p>
-
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <p>
       <a href="http://orgmode.org/org.html" target="_new">Org-Mode Full Manual</a>
-    </p>
-    
-    <table border="1">
-      <tr>
-        <td align="left" valign="top">
-          TAB
-        </td>
-        
-        <td align="left" valign="top">
-          Expand or contract current selection
-        </td>
-        
-        <td align="left" valign="top">
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-c C-t
-        </td>
-        
-        <td align="left" valign="top">
-          Rotate TODO state
-        </td>
-        
-        <td align="left" valign="top">
-          org-todo
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          s-T
-        </td>
-        
-        <td align="left" valign="top">
-          Show TODO list in prio order for current file
-        </td>
-        
-        <td align="left" valign="top">
-          todo-agenda-current-file
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
 
-<div class="clear">
-</div>
+        Keys | Description | Command
+  ----|--------|-----  
+  
+ TAB |  Expand or contract current selection |
+ C-c C-t |  Rotate TODO state | org-todo
+ s-T |  Show TODO list in prio order for current file | todo-agenda-current-file
 
-<p class="trigger ">
-  <a href="#toggle_16351606253f1f8e697c06">DirTree</a>
-</p>
-
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <table border="1">
-      <tr>
-        <td align="left" valign="top">
-          s-d
-        </td>
-        
-        <td align="left" valign="top">
-          Start dirtree in it&#8217;s own buffer
-        </td>
-        
-        <td align="left" valign="top">
-          dirtree
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          D
-        </td>
-        
-        <td align="left" valign="top">
-          Delete tree
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-delete-tree
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          p
-        </td>
-        
-        <td align="left" valign="top">
-          Previous node
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-previous-node
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          n
-        </td>
-        
-        <td align="left" valign="top">
-          Next node
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-next-node
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          j
-        </td>
-        
-        <td align="left" valign="top">
-          Next sibling
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-next-sib
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          k
-        </td>
-        
-        <td align="left" valign="top">
-          Previous sibling
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-previous-sib
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-r
-        </td>
-        
-        <td align="left" valign="top">
-          Search backwards
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-isearch-backward
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-s
-        </td>
-        
-        <td align="left" valign="top">
-          Search forward
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-isearch-forward
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          !
-        </td>
-        
-        <td align="left" valign="top">
-          Collapse other except
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-collaps-other-except
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          /
-        </td>
-        
-        <td align="left" valign="top">
-          Keep match
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-keep-match
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Start dirtree in this buffer
-        </td>
-        
-        <td align="left" valign="top">
-          dirtree-in-buffer
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          s
-        </td>
-        
-        <td align="left" valign="top">
-          Sort by tag
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-sort-by-tag
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          e
-        </td>
-        
-        <td align="left" valign="top">
-          Toggle expand
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-toggle-expand
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          E
-        </td>
-        
-        <td align="left" valign="top">
-          Expand level
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-expand-level
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          g
-        </td>
-        
-        <td align="left" valign="top">
-          Reflesh tree
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-reflesh
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          r
-        </td>
-        
-        <td align="left" valign="top">
-          Goto root
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-goto-root
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          u
-        </td>
-        
-        <td align="left" valign="top">
-          Goto parent
-        </td>
-        
-        <td align="left" valign="top">
-          tree-mode-got-parent
+## DirTree
+       Keys | Description | Command
+  ----|--------|-----  
+   s-d | Start dirtree in it's own buffer |  dirtree
+  D | Delete tree | tree-mode-delete-tree
+   p |  Previous node | tree-mode-previous-node
+   n |  Next node |  tree-mode-next-node
+   j |  Next sibling |   tree-mode-next-sib
+  k |   Previous sibling |   tree-mode-previous-sib
+     C-r |  Search backwards |  tree-mode-isearch-backward
+      C-s |   Search forward |   tree-mode-isearch-forward
+          ! | Collapse other except |  tree-mode-collaps-other-except
+          / |   Keep match | tree-mode-keep-match
+    |          Start dirtree in this buffer |  dirtree-in-buffer
+   s |  Sort by tag |   tree-mode-sort-by-tag
+  e |  Toggle expand |  tree-mode-toggle-expand
+  E |  Expand level |   tree-mode-expand-level
+  g | Reflesh tree |    tree-mode-reflesh
+ r |   Goto root |   tree-mode-goto-root
+   u |  Goto parent |  tree-mode-got-parent
         </td>
       </tr>
     </table>
