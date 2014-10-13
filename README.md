@@ -93,7 +93,8 @@ C-u 3 |  Repeat next command 3 times | universal-argument
 M-^ | Delete Indentation | delete-indentation
 
 ## Ensime
-<a href="http://ensime.github.io/" target="_new">Full Ensime Manual</a>
+
+[Full Ensime Manual](http://ensime.github.io/)
 
 Keys | Description | Command
 ----|--------|-----
@@ -142,6 +143,7 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
  C-c C-r o |  Organize imports |  ensime-refactor-organize-imports
 
 ## Ensime Debugger
+  
     Keys | Description | Command
   ----|--------|-----
  C-c C-d d |  Start debugger | ensime-db-start
@@ -197,17 +199,17 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
 ## Org Mode
 
 
-      <a href="http://orgmode.org/org.html" target="_new">Org-Mode Full Manual</a>
+[Org-Mode Full Manual](http://orgmode.org/org.html)
 
-        Keys | Description | Command
-  ----|--------|-----  
-  
+    Keys | Description | Command
+----|--------|-----  
  TAB |  Expand or contract current selection |
  C-c C-t |  Rotate TODO state | org-todo
  s-T |  Show TODO list in prio order for current file | todo-agenda-current-file
 
 ## DirTree
-       Keys | Description | Command
+
+         Keys | Description | Command
   ----|--------|-----  
    s-d | Start dirtree in it's own buffer |  dirtree
   D | Delete tree | tree-mode-delete-tree
@@ -217,8 +219,8 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
   k |   Previous sibling |   tree-mode-previous-sib
      C-r |  Search backwards |  tree-mode-isearch-backward
       C-s |   Search forward |   tree-mode-isearch-forward
-          ! | Collapse other except |  tree-mode-collaps-other-except
-          / |   Keep match | tree-mode-keep-match
+     ! | Collapse other except |  tree-mode-collaps-other-except
+  / |   Keep match | tree-mode-keep-match
     |          Start dirtree in this buffer |  dirtree-in-buffer
    s |  Sort by tag |   tree-mode-sort-by-tag
   e |  Toggle expand |  tree-mode-toggle-expand
@@ -229,11 +231,10 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
 
 ### Table Mode
 
- <a href="http://table.sourceforge.net/" target="_new">Sourceforge Page for Table Mode</a>
+[Sourceforge Page for Table Mode](http://table.sourceforge.net/)
 
        Keys | Description | Command
   ----|--------|-----  
-
   |         Insert new table |  table-insert
  C-+ |  Insert row | table-insert-row
   C-+ | Insert column | table-insert-column
@@ -315,7 +316,7 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
  C-h m |  Tell me about this mode. |  describe-mode
  C-h s | What is the syntax table for this buffer? | describe-syntax
 
-  ## Tmux
+## Tmux
 
 [Tmux Sourceforge Page](http://tmux.sourceforge.net/)
 
@@ -328,12 +329,12 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
 
 ## Dired
   
- <a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html#Dired" target="_new">Dired Manual</a>
+[Dired Manual](http://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html#Dired)
     
-      Perform query-replace-regexp on each of the specified files, replacing matches for regexp with the string todired-do-query-replace-regexptToggle all marks in current directory
+Perform query-replace-regexp on each of the specified files, replacing matches for regexp with the string todired-do-query-replace-regexptToggle all marks in current directory
 
-        Keys | Description | Command
-  -----|--------|-----  
+     Keys | Description | Command
+-----|--------|-----  
  C-x d |  Start dired in a specified directory (prompts for directory) |  dired
   C-n |   Next node |
    <space> |  Next node |
@@ -377,8 +378,8 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
 
 ## Multiple Cursors
 
-          Keys | Description | Command
-  -----|--------|-----  
+       Keys | Description | Command
+ -----|--------|-----  
     C-S-c C-S-c | Multiple cursors on lines in active region | mc/edit-lines
   C-> | Mark next line like this |  mc/mark-next-like-this
  C-< | Mark previous line like this | mc/mark-previous-like-this
