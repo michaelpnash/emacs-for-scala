@@ -159,9 +159,10 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
 
 ## Magit
   
-      <a href="http://magit.github.io/magit/magit.html" target="_new">Magit User Manual</a>
-    Keys | Description | Command
-  ----|--------|-----  
+ <a href="http://magit.github.io/magit/magit.html" target="_new">Magit User Manual</a>
+  
+  Keys | Description | Command
+ ----|--------|-----  
      |     Enter magit mode, view status | magit-status
  S-TAB | Toggle visibility of current section |
  M-S | Show all sections |      
@@ -314,14 +315,12 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
  C-h m |  Tell me about this mode. |  describe-mode
  C-h s | What is the syntax table for this buffer? | describe-syntax
 
-  ##vTmux</a>
+  ## Tmux
 
-      <a href="http://tmux.sourceforge.net/" target="_new">Tmux Sourceforge Page</a>
-    </p>
+[Tmux Sourceforge Page](http://tmux.sourceforge.net/)
 
-        Keys | Description | Command
+    Keys | Description | Command
   -----|--------|-----  
-
   C-b d |  Detach Session |
    C-b ? | Show Keybindings |
   tmux -S /tmp/xyz | Start session in file /tmp/xyz (must chmod to 777 to share) |
@@ -355,398 +354,36 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
     C-t d |  Display thumbnails of marked images in this diredtory | image-dired-display-thumbs
   < | Move up to the previous directory-file line |   dired-prev-dirline
   > | Move down to the next directory-file line | dired-prev-dirline
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-x C-q
-        </td>
-        
-        <td>
-          Toggle WDired mode, <a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Wdired.html#Wdired" target="_new">see this manual for details</a>
-        </td>
-        
-        <td>
-          dired-toggle-read-only
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          d
-        </td>
-        
-        <td>
-          Flag this file for deletion
-        </td>
-        
-        <td>
-          dired-flag-file-deletion
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          u
-        </td>
-        
-        <td>
-          Remove the deletion flag
-        </td>
-        
-        <td>
-          dired-unmark
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          <DEL>
-        </td>
-        
-        <td>
-          Move point to previous line and remove the deletion flag on that line
-        </td>
-        
-        <td>
-          dired-unmark-backward
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          x
-        </td>
-        
-        <td>
-          Delete files flagged for deletion
-        </td>
-        
-        <td>
-          dired-do-flagged-delete
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          * % regexp <RET>
-        </td>
-        
-        <td>
-          Mark with a &#8216;*&#8217; all files whose name matches the specified regexp
-        </td>
-        
-        <td>
-          dired-mark-files-regexp
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          % g regexp <RET>
-        </td>
-        
-        <td>
-          Mark with a &#8216;*&#8217; all files whose <i>contents</i> match the specified regexp
-        </td>
-        
-        <td>
-          dired-mark-files-containing-regexp
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-/
-        </td>
-        
-        <td>
-          Undo changes in the dired buffer
-        </td>
-        
-        <td>
-          dired-undo
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C
-        </td>
-        
-        <td>
-          Copy File
-        </td>
-        
-        <td>
-          dired-do-copy
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          s-j
-        </td>
-        
-        <td>
-          Jump to dired of directory containing the current file
-        </td>
-        
-        <td>
-          dired-jump
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          D
-        </td>
-        
-        <td>
-          Delete file
-        </td>
-        
-        <td>
-          dired-do-delete
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          R
-        </td>
-        
-        <td>
-          Rename file
-        </td>
-        
-        <td>
-          dired-do-rename
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          M
-        </td>
-        
-        <td>
-          Change mode of file
-        </td>
-        
-        <td>
-          dired-do-chmod
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          A regexp <RET>
-        </td>
-        
-        <td>
-          Search all the specified files for the regular expression regexp
-        </td>
-        
-        <td>
-          dired-do-search
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          Q regexp <RET> to <RET>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          m
-        </td>
-        
-        <td>
-          Mark current file/directory
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          u
-        </td>
-        
-        <td>
-          Unmark current file/directory
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          U
-        </td>
-        
-        <td>
-          Unmark all marked in current directory
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M&#8211;
-        </td>
-        
-        <td align="left" valign="top">
-          Toggle Tree View
-        </td>
-        
-        <td align="left" valign="top">
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          m
-        </td>
-        
-        <td align="left" valign="top">
-          Mark one file
-        </td>
-        
-        <td align="left" valign="top">
-        </td>
-      </tr>
-    </table>
-    
-    <p>
-      <a href="http://www.emacswiki.org/emacs/dired-details.el" target="_new">Dired Details on EmacsWiki</a>
-    </p>
-    
-    <table>
-      <tr>
-        <td>
-          )
-        </td>
-        
-        <td>
-          Show more details on each file/dir
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          (
-        </td>
-        
-        <td>
-          Show less details on each file/dir
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
-
-<div class="clear">
-</div>
+  C-x C-q | Toggle WDired mode, [Dired Manual](http://www.gnu.org/software/emacs/manual/html_node/emacs/Wdired.html#Wdired) | dired-toggle-read-only
+ d | Flag this file for deletion | dired-flag-file-deletion
+  u |  Remove the deletion flag | dired-unmark
+ <DEL> |  Move point to previous line and remove the deletion flag on that line | dired-unmark-backward
+  x | Delete files flagged for deletion | dired-do-flagged-delete
+  * % regexp <RET> |  Mark with a &#8216;*&#8217; all files whose name matches the specified regexp | dired-mark-files-regexp
+  % g regexp <RET> |  Mark with a &#8216;*&#8217; all files whose <i>contents</i> match the specified regexp | dired-mark-files-containing-regexp
+          C-/ |  Undo changes in the dired buffer |  dired-undo
+  C |   Copy File |  dired-do-copy
+   s-j |  Jump to dired of directory containing the current file | dired-jump
+   D |  Delete file |  dired-do-delete
+  R |  Rename file |  dired-do-rename
+  M  Change mode of file | dired-do-chmod
+ A regexp <RET> |  Search all the specified files for the regular expression regexp |  dired-do-search
+  m | Mark current file/directory |
+     u |  Unmark current file/directory
+      U |  Unmark all marked in current directory |
+       M&#8211;|  Toggle Tree View  |      [Dired Details on EmacsWiki](http://www.emacswiki.org/emacs/dired-details.el)
+      ) | Show more details on each file/dir |
+      ( | Show less details on each file/dir |
 
 ## Multiple Cursors
 
+          Keys | Description | Command
+  -----|--------|-----  
     C-S-c C-S-c | Multiple cursors on lines in active region | mc/edit-lines
-  C->
-        </td>
-        
-        <td>
-          Mark next line like this
-        </td>
-        
-        <td>
-          mc/mark-next-like-this
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-<
-        </td>
-        
-        <td>
-          Mark previous line like this
-        </td>
-        
-        <td>
-          mc/mark-previous-like-this
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-c C-<
-        </td>
-        
-        <td>
-          Mark all like this (select a region to match first)
-        </td>
-        
-        <td>
-          mc/mark-all-like-this
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-g
-        </td>
-        
-        <td>
-          Cancel multiple cursor mode
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          RET
-        </td>
-        
-        <td>
-          Exit multiple cursor mode
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-j
-        </td>
-        
-        <td>
-          Insert a newline in multiple-cursor mode
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
-
-<div class="clear">
-</div>
+  C-> | Mark next line like this |  mc/mark-next-like-this
+ C-< | Mark previous line like this | mc/mark-previous-like-this
+  C-c C-< |   Mark all like this (select a region to match first) | mc/mark-all-like-this
+  C-g |  Cancel multiple cursor mode |
+  RET | Exit multiple cursor mode |
+    C-j | Insert a newline in multiple-cursor mode |
+  
