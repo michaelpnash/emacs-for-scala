@@ -87,14 +87,17 @@ C-u 3 |  Repeat next command 3 times | universal-argument
  M-down | Move current line or selection down | move-text-down
  C-s | Start an incremental search forward. | isearch-forward
  C-r |  Start an incremental search backwards | isearch-backward
+ C-w | Kill (Cut) | kill
+ M-W | Kill Ring Save (Copy) | kill-ring-save
+ C-y | Yank (Paste) | yank
+M-^ | Delete Indentation | delete-indentation
 
 ## Ensime
-  
-      <a href="http://ensime.github.io/" target="_new">Full Ensime Manual</a>
+<a href="http://ensime.github.io/" target="_new">Full Ensime Manual</a>
 
-  Keys | Description | Command
-  ----|--------|-----
-   C-c C-b b |  Rebuild entire project (clean build) | ensime-builder-build
+Keys | Description | Command
+----|--------|-----
+C-c C-b b |  Rebuild entire project (clean build) | ensime-builder-build
  C-c C-b r | Rebuild project incrementally | ensime-builder-rebuild
  |  Reload the .ensime file and recompile the project | ensime-reload
  | Start the automatic configuration file generator | ensime-config-get
@@ -222,1298 +225,136 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
   g | Reflesh tree |    tree-mode-reflesh
  r |   Goto root |   tree-mode-goto-root
    u |  Goto parent |  tree-mode-got-parent
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
 
-<div class="clear">
-</div>
-
-<p class="trigger ">
 ### Table Mode
-      <a href="http://table.sourceforge.net/" target="_new">Sourceforge Page for Table Mode</a>
 
-        <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Insert new table
-        </td>
-        
-        <td align="left" valign="top">
-          table-insert
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-+
-        </td>
-        
-        <td align="left" valign="top">
-          Insert row
-        </td>
-        
-        <td align="left" valign="top">
-          table-insert-row
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-+
-        </td>
-        
-        <td align="left" valign="top">
-          Insert column
-        </td>
-        
-        <td align="left" valign="top">
-          table-insert-column
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Delete row
-        </td>
-        
-        <td align="left" valign="top">
-          table-delete-row
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Delete column
-        </td>
-        
-        <td align="left" valign="top">
-          table-delete-column
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Recognize all table in current buffer
-        </td>
-        
-        <td align="left" valign="top">
-          table-recognize
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Unrecognize tables in current buffer
-        </td>
-        
-        <td align="left" valign="top">
-          table-unrecognize
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Recognize in region
-        </td>
-        
-        <td align="left" valign="top">
-          table-recognize-region
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Unrecognize in region
-        </td>
-        
-        <td align="left" valign="top">
-          table-unrecognize-region
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Recognize single table
-        </td>
-        
-        <td align="left" valign="top">
-          table-recognize-table
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Unrecognize single table
-        </td>
-        
-        <td align="left" valign="top">
-          table-unrecognize-table
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Recognize a cell at current point
-        </td>
-        
-        <td align="left" valign="top">
-          table-recognize-cell
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Unrecognize cell at point
-        </td>
-        
-        <td align="left" valign="top">
-          table-unrecognize-cell
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Move forward to next Nth cell
-        </td>
-        
-        <td align="left" valign="top">
-          table-forward-cell
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Move previous Nth cell
-        </td>
-        
-        <td align="left" valign="top">
-          table-backward-cell
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-*
-        </td>
-        
-        <td align="left" valign="top">
-          Span current cell in specified direction
-        </td>
-        
-        <td align="left" valign="top">
-          table-span-cell
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C&#8211;
-        </td>
-        
-        <td align="left" valign="top">
-          Split current cell vertically
-        </td>
-        
-        <td align="left" valign="top">
-          table-split-cell-vertically
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-|
-        </td>
-        
-        <td align="left" valign="top">
-          Split current cell horizontally
-        </td>
-        
-        <td align="left" valign="top">
-          table-split-cell-horizontally
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Split current cell vertically or horizontally
-        </td>
-        
-        <td align="left" valign="top">
-          table-split-cell
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-}
-        </td>
-        
-        <td align="left" valign="top">
-          Increase height of current cell
-        </td>
-        
-        <td align="left" valign="top">
-          table-heighten-cell
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-{
-        </td>
-        
-        <td align="left" valign="top">
-          Decrease height of current cell
-        </td>
-        
-        <td align="left" valign="top">
-          table-shorten-cell
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-<
-        </td>
-        
-        <td align="left" valign="top">
-          Narrow current cell
-        </td>
-        
-        <td align="left" valign="top">
-          table-narrow-cell
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C->
-        </td>
-        
-        <td align="left" valign="top">
-          Widen current cell
-        </td>
-        
-        <td align="left" valign="top">
-          table-widen-cell
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-!
-        </td>
-        
-        <td align="left" valign="top">
-          Toggle fixed width mode
-        </td>
-        
-        <td align="left" valign="top">
-          table-fixed-width-mode
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-#
-        </td>
-        
-        <td align="left" valign="top">
-          Compute and report current table dimension
-        </td>
-        
-        <td align="left" valign="top">
-          table-query-dimension
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-^
-        </td>
-        
-        <td align="left" valign="top">
-          Generate source in specified language andinsert into specified buffer
-        </td>
-        
-        <td align="left" valign="top">
-          table-generate-source
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Travel forward inserting specified sequencein cells
-        </td>
-        
-        <td align="left" valign="top">
-          table-insert-sequence
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Convert plant text into table by capturingtext in the region
-        </td>
-        
-        <td align="left" valign="top">
-          table-capture
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Convert table into plain text
-        </td>
-        
-        <td align="left" valign="top">
-          table-release
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-:
-        </td>
-        
-        <td align="left" valign="top">
-          Justify contents of cells
-        </td>
-        
-        <td align="left" valign="top">
-          table-justify
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Disable all table advice
-        </td>
-        
-        <td align="left" valign="top">
-          table-disable-advice
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Enable table advice
-        </td>
-        
-        <td align="left" valign="top">
-          table-enable-advice
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Show version of table mode
-        </td>
-        
-        <td align="left" valign="top">
-          table-version
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          TAB
-        </td>
-        
-        <td align="left" valign="top">
-          Move point to beginning of next cell
-        </td>
-        
-        <td align="left" valign="top">
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
+ <a href="http://table.sourceforge.net/" target="_new">Sourceforge Page for Table Mode</a>
 
-<div class="clear">
-</div>
+       Keys | Description | Command
+  ----|--------|-----  
 
-<p class="trigger ">
-  <a href="#toggle_166401666553f1f8e697daf">Window Commands</a>
-</p>
+  |         Insert new table |  table-insert
+ C-+ |  Insert row | table-insert-row
+  C-+ | Insert column | table-insert-column
+ |  Delete row | table-delete-row
+  |   Delete column |  table-delete-column
+|     Recognize all table in current buffer | table-recognize
+     |     Unrecognize tables in current buffer |    table-unrecognize
+ |  Recognize in region | table-recognize-region
+| Unrecognize in region | table-unrecognize-region
+| Recognize single table |  table-recognize-table
+| Unrecognize single table | table-unrecognize-table
+|  Recognize a cell at current point | table-recognize-cell
+|  Unrecognize cell at point |  table-unrecognize-cell
+| Move forward to next Nth cell | table-forward-cell
+|  Move previous Nth cell | table-backward-cell
+ C-* | Span current cell in specified direction |  table-span-cell
+ C&#8211; | Split current cell vertically | table-split-cell-vertically
+ C-| |  Split current cell horizontally | table-split-cell-horizontally
+ |  Split current cell vertically or horizontally | table-split-cell
+  C-} |  Increase height of current cell | table-heighten-cell
+  C-{ |  Decrease height of current cell | table-shorten-cell
+ C-< |  Narrow current cell | table-narrow-cell
+  C-> |  Widen current cell |  table-widen-cell
+  C-! | Toggle fixed width mode |  table-fixed-width-mode
+  C-# |  Compute and report current table dimension |  table-query-dimension
+ C-^ |  Generate source in specified language andinsert into specified buffer | table-generate-source
+  |   Travel forward inserting specified sequencein cells |  table-insert-sequence
+ |     Convert plant text into table by capturingtext in the region | table-capture
+ |  Convert table into plain text |  table-release
+  C-: |  Justify contents of cells |  table-justify
+|   Disable all table advice | table-disable-advice
+ | Enable table advice |  table-enable-advice
+|  Show version of table mode |  table-version
+ TAB |  Move point to beginning of next cell |
 
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <table border="1">
-      <tr>
-        <td align="left" valign="top">
-          C-x 2
-        </td>
-        
-        <td align="left" valign="top">
-          Divide the current window horizontally in two
-        </td>
-        
-        <td align="left" valign="top">
-          split-window-horizontally
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x 5
-        </td>
-        
-        <td align="left" valign="top">
-          Divide the current window vertically in two.
-        </td>
-        
-        <td align="left" valign="top">
-          split-windws-vertically
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x >
-        </td>
-        
-        <td align="left" valign="top">
-          Scroll the window right.
-        </td>
-        
-        <td align="left" valign="top">
-          scroll-right
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x <
-        </td>
-        
-        <td align="left" valign="top">
-          Scroll the window left.
-        </td>
-        
-        <td align="left" valign="top">
-          scroll-left
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x 0
-        </td>
-        
-        <td align="left" valign="top">
-          Delete the current window.
-        </td>
-        
-        <td align="left" valign="top">
-          delete-window
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x 1
-        </td>
-        
-        <td align="left" valign="top">
-          Delete all the windows except this one.
-        </td>
-        
-        <td align="left" valign="top">
-          delete-other-windows
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Delete all windows open to a particular buff.
-        </td>
-        
-        <td align="left" valign="top">
-          delete-windows-on
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x ^
-        </td>
-        
-        <td align="left" valign="top">
-          Make the current window taller.
-        </td>
-        
-        <td align="left" valign="top">
-          enlarge-window
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Make the current window smaller.
-        </td>
-        
-        <td align="left" valign="top">
-          shrink-window
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x }
-        </td>
-        
-        <td align="left" valign="top">
-          Make the window wider.
-        </td>
-        
-        <td align="left" valign="top">
-          enlarge-window-horizontally
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x {
-        </td>
-        
-        <td align="left" valign="top">
-          Make the window less wide.
-        </td>
-        
-        <td align="left" valign="top">
-          shrink-window-horizontally
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-C-v
-        </td>
-        
-        <td align="left" valign="top">
-          Scroll the other window.
-        </td>
-        
-        <td align="left" valign="top">
-          scroll-other-window
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x 4 f
-        </td>
-        
-        <td align="left" valign="top">
-          Find a file in the other window.
-        </td>
-        
-        <td align="left" valign="top">
-          find-file-other-window
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x 4 b
-        </td>
-        
-        <td align="left" valign="top">
-          Select a buffer in the other window.
-        </td>
-        
-        <td align="left" valign="top">
-          switch-to-buffer-other-window
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          Compare two buffers and show the first diff.
-        </td>
-        
-        <td align="left" valign="top">
-          compare-windows
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
+## Window Commands
 
-<div class="clear">
-</div>
+  Keys | Description | Command
+  -----|--------|-----  
+            C-x 2 |  Divide the current window horizontally in two |  split-window-horizontally
+ C-x 5 |  Divide the current window vertically in two. | split-windws-vertically
+  C-x > |  Scroll the window right. |  scroll-right
+  C-x < | Scroll the window left.|  scroll-left
+ C-x 0 |  Delete the current window. | delete-window
+ C-x 1 |  Delete all the windows except this one. | delete-other-windows
+ |  Delete all windows open to a particular buff. |  delete-windows-on
+ C-x ^ |  Make the current window taller. | enlarge-window
+ |    Make the current window smaller. |  shrink-window
+  C-x } |  Make the window wider. |  enlarge-window-horizontally
+ C-x { |  Make the window less wide. |  shrink-window-horizontally
+  M-C-v |  Scroll the other window. | scroll-other-window
+ C-x 4 f | Find a file in the other window. | find-file-other-window
+ C-x 4 b |  Select a buffer in the other window. |  switch-to-buffer-other-window
+ |  Compare two buffers and show the first diff. | compare-windows
 
-<p class="trigger ">
-  <a href="#toggle_174292440053f1f8e697e7d">Capitalization</a>
-</p>
+ ## Capitalization
 
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <table border="1">
-      <tr>
-        <td align="left" valign="top">
-          M-c
-        </td>
-        
-        <td align="left" valign="top">
-          Capitalize the first letter of current word.
-        </td>
-        
-        <td align="left" valign="top">
-          capitalize-word
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-u
-        </td>
-        
-        <td align="left" valign="top">
-          Make the word all uppercase.
-        </td>
-        
-        <td align="left" valign="top">
-          upcase-word
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          M-l
-        </td>
-        
-        <td align="left" valign="top">
-          Make the word all lowercase.
-        </td>
-        
-        <td align="left" valign="top">
-          downcase-word
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x C-l
-        </td>
-        
-        <td align="left" valign="top">
-          Make the region all lowercase.
-        </td>
-        
-        <td align="left" valign="top">
-          downcase-region
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-x C-u
-        </td>
-        
-        <td align="left" valign="top">
-          Make the region all uppercase.
-        </td>
-        
-        <td align="left" valign="top">
-          uppercase-region
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
+    Keys | Description | Command
+  -----|--------|-----  
+  M-c |  Capitalize the first letter of current word. |  capitalize-word
+  M-u |  Make the word all uppercase. |  upcase-word
+ M-l |  Make the word all lowercase. |  downcase-word
+ C-x C-l | Make the region all lowercase. |  downcase-region
+  C-x C-u |  Make the region all uppercase. |  uppercase-region
 
-<div class="clear">
-</div>
+## Getting Help
 
-<p class="trigger ">
-  <a href="#toggle_45759399353f1f8e697f77">Getting Help</a>
-</p>
+      Keys | Description | Command
+  -----|--------|-----  
+ C-h a | What commands work like this&#8230;? |  command-apropos
+ |  What functions and variables work like this.? | apropos
+  C-h c |  What command does this key sequence do? |  describe-key-briefly
+  C-h b |  What are the key bindings for this buffer? |  describe-bindings
+ C-h k |  What command does this sequence do,and tell me about it. |  describe-key
+ C-h l |  What are the last 100 characters typed? | view-lossage
+ C-h w |  What is the key binding for this? | where-is
+  C-h f |   What does this function do? |  describe-function
+  C-h v |   What is this variable? | describe-variable
+ C-h m |  Tell me about this mode. |  describe-mode
+ C-h s | What is the syntax table for this buffer? | describe-syntax
 
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <table border="1">
-      <tr>
-        <td align="left" valign="top">
-          C-h a
-        </td>
-        
-        <td align="left" valign="top">
-          What commands work like this&#8230;?
-        </td>
-        
-        <td align="left" valign="top">
-          command-apropos
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-        </td>
-        
-        <td align="left" valign="top">
-          What functions and variables work like this.?
-        </td>
-        
-        <td align="left" valign="top">
-          apropos
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-h c
-        </td>
-        
-        <td align="left" valign="top">
-          What command does this key sequence do?
-        </td>
-        
-        <td align="left" valign="top">
-          describe-key-briefly
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-h b
-        </td>
-        
-        <td align="left" valign="top">
-          What are the key bindings for this buffer?
-        </td>
-        
-        <td align="left" valign="top">
-          describe-bindings
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-h k
-        </td>
-        
-        <td align="left" valign="top">
-          What command does this sequence do,and tell me about it.
-        </td>
-        
-        <td align="left" valign="top">
-          describe-key
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-h l
-        </td>
-        
-        <td align="left" valign="top">
-          What are the last 100 characters typed?
-        </td>
-        
-        <td align="left" valign="top">
-          view-lossage
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-h w
-        </td>
-        
-        <td align="left" valign="top">
-          What is the key binding for this?
-        </td>
-        
-        <td align="left" valign="top">
-          where-is
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-h f
-        </td>
-        
-        <td align="left" valign="top">
-          What does this function do?
-        </td>
-        
-        <td align="left" valign="top">
-          describe-function
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-h v
-        </td>
-        
-        <td align="left" valign="top">
-          What is this variable?
-        </td>
-        
-        <td align="left" valign="top">
-          describe-variable
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-h m
-        </td>
-        
-        <td align="left" valign="top">
-          Tell me about this mode.
-        </td>
-        
-        <td align="left" valign="top">
-          describe-mode
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-h s
-        </td>
-        
-        <td align="left" valign="top">
-          What is the syntax table for this buffer?
-        </td>
-        
-        <td align="left" valign="top">
-          describe-syntax
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
+  ##vTmux</a>
 
-<div class="clear">
-</div>
-
-<p class="trigger ">
-  <a href="#toggle_108693708453f1f8e698065">Tmux</a>
-</p>
-
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <p>
       <a href="http://tmux.sourceforge.net/" target="_new">Tmux Sourceforge Page</a>
     </p>
-    
-    <table border="1">
-      <tr>
-        <td align="left" valign="top">
-          Keys
-        </td>
-        
-        <td align="left" valign="top">
-          Description
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-b d
-        </td>
-        
-        <td align="left" valign="top">
-          Detach Session
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          C-b ?
-        </td>
-        
-        <td align="left" valign="top">
-          Show Keybindings
-        </td>
-      </tr>
-    </table>
-    
-    <table border="1">
-      <tr>
-        <td align="left" valign="top">
-          tmux -S /tmp/xyz
-        </td>
-        
-        <td align="left" valign="top">
-          Start session in file /tmp/xyz (must chmod to 777 to share)
-        </td>
-      </tr>
-      
-      <tr>
-        <td align="left" valign="top">
-          tmux -S /tmp/xyz attach
-        </td>
-        
-        <td align="left" valign="top">
-          Attach to an existing session in /tmp/xyz
-        </td>
-      </tr>
-    </table>
-  </div></p>
-</div>
 
-<div class="clear">
-</div>
+        Keys | Description | Command
+  -----|--------|-----  
 
-<p class="trigger ">
-  <a href="#toggle_38825162153f1f8e69813e">Dired</a>
-</p>
+  C-b d |  Detach Session |
+   C-b ? | Show Keybindings |
+  tmux -S /tmp/xyz | Start session in file /tmp/xyz (must chmod to 777 to share) |
+  tmux -S /tmp/xyz attach | Attach to an existing session in /tmp/xyz |
 
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <p>
-      <a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html#Dired" target="_new">Dired Manual</a>
-    </p>
+## Dired
+  
+ <a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html#Dired" target="_new">Dired Manual</a>
     
-    <p>
       Perform query-replace-regexp on each of the specified files, replacing matches for regexp with the string todired-do-query-replace-regexptToggle all marks in current directory
-    </p>
-    
-    <table>
-      <tr>
-        <td>
-          C-x d
-        </td>
-        
-        <td>
-          Start dired in a specified directory (prompts for directory)
-        </td>
-        
-        <td>
-          dired
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-n
-        </td>
-        
-        <td>
-          Next node
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          <space>
-        </td>
-        
-        <td>
-          Next node
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          n
-        </td>
-        
-        <td>
-          Next node
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-p
-        </td>
-        
-        <td>
-          Previous node
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          <del>
-        </td>
-        
-        <td>
-          Move up and unflag
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          j
-        </td>
-        
-        <td>
-          Prompt for filename, move to the line with that file name
-        </td>
-        
-        <td>
-          dired-goto-file
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          i
-        </td>
-        
-        <td>
-          Insert contents of directory at point
-        </td>
-        
-        <td>
-          dired-maybe-insert-subdir
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          l
-        </td>
-        
-        <td>
-          Refresh directory contents
-        </td>
-        
-        <td>
-          dired-do-redisplay
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          ^
-        </td>
-        
-        <td>
-          Move point to parent directory entry
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          $
-        </td>
-        
-        <td>
-          Hide/Unhide subdirectory, leaving only header line visible
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          M-$
-        </td>
-        
-        <td>
-          Hide/Unhide all subdirectories, leaving only header lines visible
-        </td>
-        
-        <td>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-M-n
-        </td>
-        
-        <td>
-          Go to next subdirectory header line, regardless of level
-        </td>
-        
-        <td>
-          dired-next-subdir
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-M-p
-        </td>
-        
-        <td>
-          Go to previous subdirectory header line, regardless of level
-        </td>
-        
-        <td>
-          dired-prev-subdir
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-M-u
-        </td>
-        
-        <td>
-          Go up to the parent directory&#8217;s header line
-        </td>
-        
-        <td>
-          dired-tree-up
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-M-d
-        </td>
-        
-        <td>
-          Go down in the directory tree, to the first subdirectory&#8217;s header line
-        </td>
-        
-        <td>
-          dired-tree-down
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          M-x image-dired
-        </td>
-        
-        <td>
-          Enter image-dired mode, show thumbnails of images in this directory
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C-t d
-        </td>
-        
-        <td>
-          Display thumbnails of marked images in this diredtory
-        </td>
-        
-        <td>
-          image-dired-display-thumbs
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          <
-        </td>
-        
-        <td>
-          Move up to the previous directory-file line
-        </td>
-        
-        <td>
-          dired-prev-dirline
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          >
-        </td>
-        
-        <td>
-          Move down to the next directory-file line
-        </td>
-        
-        <td>
-          dired-prev-dirline
+
+        Keys | Description | Command
+  -----|--------|-----  
+ C-x d |  Start dired in a specified directory (prompts for directory) |  dired
+  C-n |   Next node |
+   <space> |  Next node |
+     n | Next node |
+     C-p |  Previous node |
+    <del> |  Move up and unflag |
+       j | Prompt for filename, move to the line with that file name|  dired-goto-file
+    i | Insert contents of directory at point |      dired-maybe-insert-subdir
+   l |  Refresh directory contents | dired-do-redisplay
+  ^ |  Move point to parent directory entry |
+   $ |  Hide/Unhide subdirectory, leaving only header line visible |
+   M-$ |  Hide/Unhide all subdirectories, leaving only header lines visible |
+  C-M-n |  Go to next subdirectory header line, regardless of level | dired-next-subdir
+ C-M-p | Go to previous subdirectory header line, regardless of level | dired-prev-subdir
+ C-M-u | Go up to the parent directory&#8217;s header line | dired-tree-up
+   C-M-d |  Go down in the directory tree, to the first subdirectory&#8217;s header line | dired-tree-down
+   M-x image-dired | Enter image-dired mode, show thumbnails of images in this directory |
+    C-t d |  Display thumbnails of marked images in this diredtory | image-dired-display-thumbs
+  < | Move up to the previous directory-file line |   dired-prev-dirline
+  > | Move down to the next directory-file line | dired-prev-dirline
         </td>
       </tr>
       
@@ -1822,30 +663,10 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
 <div class="clear">
 </div>
 
-<p class="trigger ">
-  <a href="#toggle_86341151153f1f8e698213">Multiple Cursors</a>
-</p>
+## Multiple Cursors
 
-<div class="toggle_container" style="display:none;">
-  <div class="block">
-    <table>
-      <tr>
-        <td>
-          C-S-c C-S-c
-        </td>
-        
-        <td>
-          Multiple cursors on lines in active region
-        </td>
-        
-        <td>
-          mc/edit-lines
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          C->
+    C-S-c C-S-c | Multiple cursors on lines in active region | mc/edit-lines
+  C->
         </td>
         
         <td>
