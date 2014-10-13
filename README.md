@@ -290,7 +290,7 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
  C-x 4 b |  Select a buffer in the other window. |  switch-to-buffer-other-window
  |  Compare two buffers and show the first diff. | compare-windows
 
- ## Capitalization
+## Capitalization
 
     Keys | Description | Command
   -----|--------|-----  
@@ -337,7 +337,7 @@ Perform query-replace-regexp on each of the specified files, replacing matches f
 -----|--------|-----  
  C-x d |  Start dired in a specified directory (prompts for directory) |  dired
   C-n |   Next node |
-   <space> |  Next node |
+  <space> |  Next node |
      n | Next node |
      C-p |  Previous node |
     <del> |  Move up and unflag |
@@ -362,29 +362,29 @@ Perform query-replace-regexp on each of the specified files, replacing matches f
   x | Delete files flagged for deletion | dired-do-flagged-delete
   * % regexp <RET> |  Mark with a &#8216;*&#8217; all files whose name matches the specified regexp | dired-mark-files-regexp
   % g regexp <RET> |  Mark with a &#8216;*&#8217; all files whose <i>contents</i> match the specified regexp | dired-mark-files-containing-regexp
-          C-/ |  Undo changes in the dired buffer |  dired-undo
+  C-/ |  Undo changes in the dired buffer |  dired-undo
   C |   Copy File |  dired-do-copy
-   s-j |  Jump to dired of directory containing the current file | dired-jump
-   D |  Delete file |  dired-do-delete
+  s-j |  Jump to dired of directory containing the current file | dired-jump
+  D |  Delete file |  dired-do-delete
   R |  Rename file |  dired-do-rename
   M  Change mode of file | dired-do-chmod
- A regexp <RET> |  Search all the specified files for the regular expression regexp |  dired-do-search
+  A regexp <RET> |  Search all the specified files for the regular expression regexp |  dired-do-search
   m | Mark current file/directory |
-     u |  Unmark current file/directory
-      U |  Unmark all marked in current directory |
-       M&#8211;|  Toggle Tree View  |      [Dired Details on EmacsWiki](http://www.emacswiki.org/emacs/dired-details.el)
-      ) | Show more details on each file/dir |
-      ( | Show less details on each file/dir |
+  u |  Unmark current file/directory
+  U |  Unmark all marked in current directory |
+  M&#8211;|  Toggle Tree View  |      [Dired Details on EmacsWiki](http://www.emacswiki.org/emacs/dired-details.el)
+  ) | Show more details on each file/dir |
+  ( | Show less details on each file/dir |
 
 ## Multiple Cursors
 
-       Keys | Description | Command
- -----|--------|-----  
-    C-S-c C-S-c | Multiple cursors on lines in active region | mc/edit-lines
-  C-> | Mark next line like this |  mc/mark-next-like-this
+Keys | Description | Command
+-----|--------|-----  
+ C-S-c C-S-c | Multiple cursors on lines in active region | mc/edit-lines
+ C-> | Mark next line like this |  mc/mark-next-like-this
  C-< | Mark previous line like this | mc/mark-previous-like-this
-  C-c C-< |   Mark all like this (select a region to match first) | mc/mark-all-like-this
-  C-g |  Cancel multiple cursor mode |
-  RET | Exit multiple cursor mode |
-    C-j | Insert a newline in multiple-cursor mode |
+ C-c C-< |   Mark all like this (select a region to match first) | mc/mark-all-like-this
+ C-g |  Cancel multiple cursor mode |
+ RET | Exit multiple cursor mode |
+ C-j | Insert a newline in multiple-cursor mode |
   
