@@ -88,12 +88,13 @@
   "Save all buffers without prompting"
   (interactive)
   (save-some-buffers t))
+  
 (global-set-key (kbd "M-s M-s") 'save-silently)
+(global-set-key (kbd "S-s") 'save-silently)
 
-;;(global-set-key (kbd "s-N") 'scala-find-name)
-;;(global-set-key (kbd "s-n") 'scala-find-class)
 (global-set-key (kbd "M-s M-t") 'scala-test-only)
 (global-set-key (kbd "M-s M-T") 'jump-to-test)
+(global-set-key (kbd "S-t") 'jump-to-test)
 
 (setq project-dir (getenv "PWD"))
 
@@ -102,6 +103,8 @@
   (interactive)
   (find-name-dired (format "%s/src" project-dir) (format "%s%s" (read-from-minibuffer "Scala File:") ".scala")))    
 
+(global-set-key (kbd "S-n") 'scala-find-name)
+  
 (defun scala-test-only ()
   "Run the tests in the current file"
   (setq current-file (format "test-only *.%s" (file-name-nondirectory (file-name-sans-extension buffer-file-name)))) 
@@ -121,6 +124,8 @@
   (setq name (read-from-minibuffer "Class:"))
   (find-grep-dired (format "%s/src" project-dir) (format "class %s" name))
   )
+
+(global-set-key (kbd "S-N") 'scala-find-class)
   
 (defun make-play-doc-url (type &optional member)
   (ensime-make-java-doc-url-helper "http://www.playframework.com/documentation/api/2.1.1/scala/" type member))
@@ -131,7 +136,8 @@
       "http://slick.typesafe.com/doc/1.0.0/api/" type member)) 
 (add-to-list 'ensime-doc-lookup-map '("^scala\\.slick\\." . make-slick-doc-url)) 
 
-(global-set-key [kp-subtract] 'undo) ; [Undo] 
+(global-set-key [kp-subtract] 'undo) ; [Undo]
+(global-set-key (kbd "S-z") 'undo)
 (global-set-key [insert]    'overwrite-mode) ; [Ins] 
 (global-set-key [kp-insert] 'overwrite-mode) ; [Ins] 
 (global-set-key (kbd "C-l") 'goto-line) ; [Ctrl]-l] 
@@ -234,7 +240,7 @@
   "Jump to the next def"
   (interactive)
   (search-forward "def "))
-(define-key global-map (kbd "M-s d") 'search-to-prev-def)
+(define-key global-map (kbd "M-s d") 'search-to-next-def)
 
 (defun search-to-prev-def ()
   "Jump to the previous def"

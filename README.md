@@ -66,12 +66,15 @@ M-f |          Forward a word |          forward-word
           M-S { |  Jump to previous { |           search-to-prev-brace
           M-S d |  Jump to previous &#8220;def &#8220; |          search-to-next-def
           M-s d |           Jump to next &#8220;def &#8220; |           search-to-next-def
+  C-c SPC | Ace Jump Mode | ace-jump-mode
+  [f6] | Ace Jump Line Mode | ace-jump-line-mode
+  C-x SPC | Ace Jump Mode Pop Mark | ace-jump-mode-pop-mark
 
 ## General
   
   Keys | Description | Command
   ----|--------|-----
-M-s M-s | Save all modified buffers | save-silently
+M-s M-s OR S-s | Save all modified buffers | save-silently
 C-u 3 |  Repeat next command 3 times | universal-argument
  |    Prompt for input mode (tex for unicode) |       toggle-input-mode
   M-t |   Transpose words| transpose-words
@@ -91,6 +94,13 @@ C-u 3 |  Repeat next command 3 times | universal-argument
  M-W | Kill Ring Save (Copy) | kill-ring-save
  C-y | Yank (Paste) | yank
 M-^ | Delete Indentation | delete-indentation
+  S-z | Undo | undo
+  M-s { | Search to brace | search-to-brace
+  M-S { | Search to prev brace | search-to-prev-brace
+  M-s } | Search to close brace | search-to-close-brace
+  M-S } | Search to previous close brace | search-to-prev-brace
+  M-s d | Search to next def | search-to-next-def
+  M-S d | Search to previous def | search-to-prev-def
 
 ## Ensime
 
@@ -130,7 +140,11 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
   C-c C-v f |  Format the current Scala file |  ensime-format-source
  C-c C-v e |  Show all errors and warnings in the project |  ensime-show-all-errors-and-warnings
   C-c C-v x | Scalex Documentation Search | ensime-scalex
-
+  M-s M-t | Test-Only Current Buffer | scala-test-only
+  M-s M-T OR S-t | Jump to test | jump-to-test
+  S-n | Scala Find Name | scala-find-name
+  S-N | Scala Find class/trait | scala-find-class
+  
 ## Ensime Refactoring
 
   Keys | Description | Command
@@ -204,6 +218,7 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
     Keys | Description | Command
 ----|--------|-----  
  TAB |  Expand or contract current selection |
+  <backtab> | Scala indent with reluctant strategy | scala-indent:indent-with-reluctant-strategy
  C-c C-t |  Rotate TODO state | org-todo
  s-T |  Show TODO list in prio order for current file | todo-agenda-current-file
 
@@ -275,6 +290,8 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
   Keys | Description | Command
   -----|--------|-----  
             C-x 2 |  Divide the current window horizontally in two |  split-window-horizontally
+  [f2] | Split window vertically | split-window-vertically
+  [f1] | Remove split | remove-split
  C-x 5 |  Divide the current window vertically in two. | split-windws-vertically
   C-x > |  Scroll the window right. |  scroll-right
   C-x < | Scroll the window left.|  scroll-left
