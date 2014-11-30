@@ -1,3 +1,4 @@
+(x-focus-frame nil)
 (add-to-list 'load-path "~/.emacs.d/scala-mode2")
 (require 'scala-mode2)
 
