@@ -280,7 +280,7 @@
 (add-to-list 'load-path "~/.emacs.d/tree")
 (add-to-list 'load-path "~/.emacs.d/dirtree")
 (require 'dirtree)
-;;(global-set-key (kbd "s-d") 'dirtree)
+(global-set-key (kbd "s-d") 'dirtree)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
 (load-theme 'solarized-dark)
