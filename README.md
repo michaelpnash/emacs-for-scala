@@ -28,10 +28,10 @@ s-x | Super-x | Command-x
 
 ## Finding Files
 
-Keys | Description | Command
------|-------------|-------
+Keys    | Description | Command
+--------|-------------|-------
 C-x C-f | Prompt to open file | ido-find-file
- |        Start dirtree, prompts for directory |       dirtree
+S-d     | Start dirtree, prompts for directory |       dirtree
 C-x C-M-f |          Find file in project (current dir up to the .git directory) |          find-name-dired
  |          Find file by regex | find-grep-dired
 C-x C-v |          Revert file to version on disk |          revert-buffer
