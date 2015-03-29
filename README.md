@@ -110,6 +110,7 @@ M-^ | Delete Indentation | delete-indentation
 
 Keys | Description | Command
 ----|--------|-----
+S-e | Start Ensime | ensime
 C-c C-b b |  Rebuild entire project (clean build) | ensime-builder-build
  C-c C-b r | Rebuild project incrementally | ensime-builder-rebuild
  |  Reload the .ensime file and recompile the project | ensime-reload
@@ -350,8 +351,6 @@ C-c C-v z |  Launch REPL| ensime-inf-switch
   
 [Dired Manual](http://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html#Dired)
     
-Perform query-replace-regexp on each of the specified files, replacing matches for regexp with the string todired-do-query-replace-regexptToggle all marks in current directory
-
      Keys | Description | Command
 -----|--------|-----  
  C-x d |  Start dired in a specified directory (prompts for directory) |  dired
