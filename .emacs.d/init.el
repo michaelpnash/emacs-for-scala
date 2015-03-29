@@ -14,7 +14,7 @@
 
 (require 'table)
 
-
+(global-set-key (kbd "S-e") 'ensime)
 
 (add-to-list 'load-path "~/.emacs.d/magit")
 (require 'magit)
