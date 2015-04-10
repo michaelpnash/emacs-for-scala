@@ -68,6 +68,8 @@
     (package . font-lock-preprocessor-face)
 ))
 
+(set-face-attribute 'default nil :height 160)
+
 (require 'find-file-in-project)
 
 (global-linum-mode 1)
