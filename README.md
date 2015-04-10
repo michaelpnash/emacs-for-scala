@@ -3,6 +3,15 @@ emacs-for-scala
 
 My Emacs setup for Scala development, including a fully-configured Ensime.
 
+Intended for use with Emacs for OSX version 24.4
+
+To install additional packages not included by default on startup:
+
+Use M-x package-list-packages
+Select the package you want and select "install"
+
+The first time you run load Emacs, it will download the internet. No, it will only feel that way - it will download all package you don't already have installed from MELPA and install them: this only happens the first time.
+
 The .emacs.d contained in this repo has a specific set of keybindings set up for Emacs. Mostly these are the defaults from whatever included modules have been used, but in a few cases they've been customized to play well together.
 
 Please see the full list of keybindings at <a href="http://jglobal.com/emacs-for-scala-keybindings/" target="_new">http://jglobal.com/emacs-for-scala-keybindings/</a>
