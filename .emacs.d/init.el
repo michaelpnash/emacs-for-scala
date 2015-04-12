@@ -188,4 +188,7 @@
 (global-set-key (kbd "s-<down>") 'shrink-window)
 (global-set-key (kbd "s-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "s-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "M-k") 'kill-whole-line)
+
+(global-set-key (kbd "s-1") 'ace-jump-line-mode)
 
