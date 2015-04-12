@@ -1,4 +1,5 @@
 (x-focus-frame nil)
+(setq mac-command-modifier 'super)
 
 (require 'package)
 (add-to-list 'package-archives
@@ -179,4 +180,12 @@
 
 (setq server-socket-dir "~/.emacs.d/server")
 
+;; window command shortcuts
+(global-set-key (kbd "s-|") 'split-window-horizontally)
+(global-set-key (kbd "s--") 'split-window-vertically)
+(global-set-key (kbd "s-+") 'remove-split)
+(global-set-key (kbd "s-<up>") 'enlarge-window)
+(global-set-key (kbd "s-<down>") 'shrink-window)
+(global-set-key (kbd "s-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "s-<left>") 'shrink-window-horizontally)
 
