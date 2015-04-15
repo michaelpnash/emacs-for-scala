@@ -192,3 +192,4 @@
 
 (global-set-key (kbd "s-1") 'ace-jump-line-mode)
 
+(global-set-key (kbd "s-f") 'find-file-in-project)
