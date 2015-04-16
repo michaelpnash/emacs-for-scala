@@ -193,3 +193,10 @@
 (global-set-key (kbd "s-1") 'ace-jump-line-mode)
 
 (global-set-key (kbd "s-f") 'find-file-in-project)
+
+;; Put temporary and backup files elsewhere
+(setq auto-save-file-name-transforms
+          `((".*" ,(concat user-emacs-directory "auto-save/") t))) 
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name
+                 (concat user-emacs-directory "backups")))))
