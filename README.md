@@ -33,9 +33,9 @@ The scripts are intended for OSX, but again could easily be adapted.
 Other apps
 ----------
 If your an Emacs user on OSX, you might also want to check out
-     - the ChromEmacs add-on for Chrome
+     - the Emacsome add-on for Chrome
      - the Amethyst window manager
      - Spectacles (a simpler window manager)
-     - Alfred or Quicksilver
+     - Alfred
 
-With a bit of work, you can work mostly rodent-free.
+With a bit of work, you can work mostly rodent-free. Key bindings for each of these are included in the cheatsheet.
