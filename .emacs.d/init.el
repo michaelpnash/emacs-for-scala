@@ -9,7 +9,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; List the package we want
-(setq package-list '(ensime magit multiple-cursors move-text find-file-in-project dired-details ace-jump-mode dirtree color-theme color-theme-solarized yasnippet window-number))
+(setq package-list '(ensime magit multiple-cursors move-text find-file-in-project dired-details ace-jump-mode dirtree color-theme color-theme-solarized yasnippet window-number expand-region))
 
 (package-initialize) 
 
@@ -205,3 +205,7 @@
        
 (require 'window-number)
 (window-number-meta-mode 1)
+
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
