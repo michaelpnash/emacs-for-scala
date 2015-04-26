@@ -1,0 +1,13 @@
+package $0
+
+import org.scalatest.FreeSpec
+
+class `(file-name-base)` extends FreeSpec {
+	"a thing" - {
+		"under some circumstance" in {
+			$1
+		}
+	}
+}
+
+
