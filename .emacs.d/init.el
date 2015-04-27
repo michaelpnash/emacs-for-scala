@@ -9,7 +9,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; List the package we want
-(setq package-list '(ensime magit multiple-cursors move-text find-file-in-project dired-details ace-jump-mode dirtree color-theme color-theme-solarized yasnippet window-numbering expand-region))
+(setq package-list '(ensime magit multiple-cursors move-text find-file-in-project dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree))
 
 (package-initialize) 
 
@@ -84,7 +84,9 @@
 (global-set-key (kbd "C-c C-t i") 'ensime-inspect-by-path)
 (put 'dired-find-alternate-file 'disabled nil)
 (menu-bar-mode -1)
-(setq ensime-sbt-compile-on-save nil)
+
+;; Uncomment below if you want to disable compile on save
+;; (setq ensime-sbt-compile-on-save nil)
 
 ;; Some general-purpose key bindings
 (global-set-key [kp-subtract] 'undo) ; [Undo]
@@ -163,8 +165,6 @@
 
 (define-key global-map (kbd "<backtab>") 'scala-indent:indent-with-reluctant-strategy)
 
-(require 'dirtree)
-(global-set-key (kbd "s-d") 'dirtree)
 
 (require 'color-theme)
 (require 'color-theme-solarized)
@@ -210,4 +210,11 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 (global-set-key (kbd "s-s") 'save-some-buffers)
+
+(global-set-key (kbd "s-R") 'ensime-inf-eval-buffer)
+(global-set-key (kbd "s-r") 'ensime-inf-eval-region)
+
+(require 'neotree)
+(global-set-key (kbd "s-d") 'neotree)
+(neotree)
 
