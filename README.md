@@ -23,7 +23,7 @@ The .emacs.d contained in this repo has a specific set of keybindings set up for
 
 The full list of keybindings is in the file "cheatsheet.pdf" included here.
 
-Please see <a href="http://jglobal.com/emacs-for-scala/" target="_new">http://jglobal.com/emacs-for-scala/</a> for a series of articles describing the Emacs config I've published here.
+Please see <a href="http://michaelpnash.github.io/categories.html#emacs-ref" target="_new">here</a> for a series of articles describing the Emacs config I've published here.
 
 By default, the "emacs" launch script here is set up to launch Emacs in GUI mode, using the Emacs for OSX, and not to use client-server mode. If you want to use character-mode, add the param "-nw" to the startup script. This is useful if you want to use Emacs on a remote system, or to use it with Tmux or Screen.
   
