@@ -3,7 +3,8 @@ emacs-for-scala
 
 My Emacs setup for Scala development, including a fully-configured Ensime.
 
-!(./emacs2.tiff)
+![What does it look like?]
+(./emacs2.tiff)
 
 This latest version uses MELPA to download packages instead of installing them directly, and excludes a bunch of packages I've experimented with, but that didn't find their way into my day-to-day workflow.
 
