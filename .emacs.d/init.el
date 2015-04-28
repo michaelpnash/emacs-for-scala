@@ -83,7 +83,9 @@
 (global-set-key (kbd "C-c C-i l") 'ensime-refactor-inline-local)
 (global-set-key (kbd "C-c C-t i") 'ensime-inspect-by-path)
 (put 'dired-find-alternate-file 'disabled nil)
-(menu-bar-mode -1)
+
+;;Uncomment the below to hide the menu
+;;(menu-bar-mode -1)
 
 ;; Uncomment below if you want to disable compile on save
 ;; (setq ensime-sbt-compile-on-save nil)
