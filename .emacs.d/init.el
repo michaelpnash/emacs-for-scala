@@ -184,6 +184,7 @@
 
 ;; window command shortcuts
 (global-set-key (kbd "s-|") 'split-window-horizontally)
+(global-set-key (kbd "C-x 9") 'split-window-horizontally)
 (global-set-key (kbd "s--") 'split-window-vertically)
 (global-set-key (kbd "s-+") 'remove-split)
 (global-set-key (kbd "s-<up>") 'enlarge-window)
@@ -202,6 +203,8 @@
 (setq backup-directory-alist
       `(("." . ,(expand-file-name
                  (concat user-emacs-directory "backups")))))
+(setq create-lockfiles nil)
+
 (require 'yasnippet)
 (yas-global-mode 1)
        
@@ -211,7 +214,8 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-(global-set-key (kbd "s-s") 'save-some-buffers)
+(defun save-all () (interactive) (save-some-buffers t))
+(global-set-key (kbd "S-s") 'save-all)
 
 (global-set-key (kbd "s-R") 'ensime-inf-eval-buffer)
 (global-set-key (kbd "s-r") 'ensime-inf-eval-region)
