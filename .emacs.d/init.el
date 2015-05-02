@@ -224,3 +224,8 @@
 (global-set-key (kbd "s-d") 'neotree)
 (neotree)
 
+(require 'whitespace)
+(setq whitespace-line-column 120)
+(setq whitespace-style '(face lines-tail))
+(global-whitespace-mode +1)
+
