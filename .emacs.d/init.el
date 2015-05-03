@@ -26,7 +26,7 @@
 ;; Start ensime mode whenever we open scala mode, e.g. open a .scala file
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 ;; Start ensime with Super-e
-(global-set-key (kbd "S-e") 'ensime)
+(global-set-key (kbd "C-c C-c c") 'ensime)
 
 ;; Don't show the magit instructions every time
 (setq magit-last-seen-setup-instructions "1.4.0")
