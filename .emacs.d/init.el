@@ -229,3 +229,5 @@
 (setq whitespace-style '(face lines-tail))
 (global-whitespace-mode +1)
 
+(setq show-paren-delay 0)
+(show-paren-mode 1)
