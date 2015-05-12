@@ -9,7 +9,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; List the package we want
-(setq package-list '(ensime magit multiple-cursors move-text find-file-in-project dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree))
+(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree))
 
 (package-initialize) 
 
@@ -71,13 +71,13 @@
 
 (set-face-attribute 'default nil :height 160)
 
-(require 'find-file-in-project)
+(require 'find-file-in-repository)
 
 (global-linum-mode 1)
 (global-set-key [f7] 'kill-whole-line)
 (global-set-key (kbd "M-s M-m") 'magit-status)
 (global-set-key (kbd "M-s M-/") 'comment-or-uncomment-region)
-(global-set-key (kbd "C-x C-M-f") 'find-file-in-project)
+(global-set-key (kbd "C-x C-M-f") 'find-file-in-repository)
 (global-set-key (kbd "C-c C-r r") 'ensime-refactor-rename)
 (global-set-key (kbd "C-c C-o i") 'ensime-refactor-organize-imports)
 (global-set-key (kbd "C-c C-i l") 'ensime-refactor-inline-local)
@@ -195,7 +195,7 @@
 
 (global-set-key (kbd "s-1") 'ace-jump-line-mode)
 
-(global-set-key (kbd "s-f") 'find-file-in-project)
+(global-set-key (kbd "s-f") 'find-file-in-repository)
 
 ;; Put temporary and backup files elsewhere
 (setq auto-save-file-name-transforms
