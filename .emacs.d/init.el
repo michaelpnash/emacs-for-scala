@@ -9,7 +9,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; List the package we want
-(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree))
+(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme))
 
 (package-initialize) 
 
@@ -167,13 +167,17 @@
 
 (define-key global-map (kbd "<backtab>") 'scala-indent:indent-with-reluctant-strategy)
 
-
+;; Solarized theme
 (require 'color-theme)
 (require 'color-theme-solarized)
 (load-theme 'solarized t)
 ;; Use M-x customize-variable frame-background-mode to change
 (setq frame-background-mode 'dark)
 (color-theme-solarized)
+
+;; Un-comment below lines for Monokai theme
+;; (require 'monokai-theme)
+;; (load-theme 'monokai t)
 
 ;; Always pick up the most recent file from the filesystem
 (global-auto-revert-mode 1)
