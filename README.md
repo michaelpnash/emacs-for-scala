@@ -43,5 +43,11 @@ If your an Emacs user on OSX, you might also want to check out
 
 With a bit of work, you can work mostly rodent-free. Key bindings for each of these are included in the cheatsheet.
 
+# Movement Keys
+
 ![Movement](Movement.png)
+
+# Scrolling Keys
+
+![Scrolling](Scrolling.png)
 
