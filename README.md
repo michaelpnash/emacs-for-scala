@@ -51,3 +51,7 @@ With a bit of work, you can work mostly rodent-free. Key bindings for each of th
 
 ![Scrolling](Scrolling.png)
 
+# Ensime
+
+![Ensime](Ensime.png)
+
