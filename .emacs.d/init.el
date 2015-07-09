@@ -9,7 +9,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; List the package we want
-(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord))
+(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord markdown-mode))
 
 (package-initialize) 
 
