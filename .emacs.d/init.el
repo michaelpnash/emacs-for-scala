@@ -272,3 +272,6 @@ by using nxml's indentation rules."
 (require 'cl)
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
            (flet ((process-list ())) ad-do-it))
+
+(add-hook 'markdown-mode-hook (lambda () (electric-indent-local-mode -1)))
+
