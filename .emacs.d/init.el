@@ -275,3 +275,14 @@ by using nxml's indentation rules."
 
 (add-hook 'markdown-mode-hook (lambda () (electric-indent-local-mode -1)))
 
+;; Control and mouse-wheel-up to increase font size in buffer, down to decrease    
+(global-set-key [C-wheel-up] '(lambda () (interactive) (text-scale-increase 1)))
+(global-set-key [C-wheel-down] '(lambda () (interactive) (text-scale-decrease 1)))
+
+;; Super wheel-up to increase font size in all buffers
+(defun change-font-height (delta)
+  (set-face-attribute 'default 
+                      (selected-frame)
+                      :height (+ (face-attribute 'default :height) delta)))
+(global-set-key [M-wheel-up] '(lambda () (interactive) (change-font-height +4)))
+(global-set-key [M-wheel-down] '(lambda () (interactive) (change-font-height -4)))
