@@ -286,3 +286,7 @@ by using nxml's indentation rules."
                       :height (+ (face-attribute 'default :height) delta)))
 (global-set-key [M-wheel-up] '(lambda () (interactive) (change-font-height +4)))
 (global-set-key [M-wheel-down] '(lambda () (interactive) (change-font-height -4)))
+
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
+
+
