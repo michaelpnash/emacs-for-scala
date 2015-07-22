@@ -226,7 +226,7 @@
 (global-set-key (kbd "s-r") 'ensime-inf-eval-region)
 
 (require 'neotree)
-(global-set-key (kbd "s-d") 'neotree)
+(global-set-key (kbd "s-d") 'neotree-toggle)
 (neotree)
 
 (require 'whitespace)
