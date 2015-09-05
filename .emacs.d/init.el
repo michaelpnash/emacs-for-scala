@@ -9,7 +9,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; List the package we want
-(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord markdown-mode slime))
+(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord markdown-mode slime yafolding))
 
 (package-initialize) 
 
@@ -288,5 +288,12 @@ by using nxml's indentation rules."
 (global-set-key [M-wheel-down] '(lambda () (interactive) (change-font-height -4)))
 
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
+
+;; Turn on yafolding-mode for scala files
+(add-hook 'prog-mode-hook
+          (lambda () (yafolding-mode)))
+(add-hook 'scala-mode-hook
+          (lambda () (yafolding-mode) (yafolding-toggle-all)))
+
 
 
