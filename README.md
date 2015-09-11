@@ -41,7 +41,14 @@ If your an Emacs user on OSX, you might also want to check out
      - Spectacles (a simpler window manager)
      - Alfred
 
-With a bit of work, you can work mostly rodent-free. Key bindings for each of these are included in the cheatsheet.
+With a bit of work, you can work mostly rodent-free. On OSX the keys map as follows:
+
+| Abbreviation | OSX Key | Notes   |
+|--------------|---------|---------|
+| M            | Option  | Meta    |
+| S            | Command | Super   |
+| C            | Control | Control |
+
 
 # Movement Keys
 
