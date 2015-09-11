@@ -57,5 +57,6 @@ With a bit of work, you can work mostly rodent-free. Key bindings for each of th
 
 # Spectacle
 
-![Spectacle](spectacle.png)
+![Spectacle](Spectacle.png)
+
 
