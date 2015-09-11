@@ -21,8 +21,6 @@ The first time you run load Emacs, it will download the internet. No, it will on
 
 The .emacs.d contained in this repo has a specific set of keybindings set up for Emacs. Mostly these are the defaults from whatever included modules have been used, but in a few cases they've been customized to play well together.
 
-The full list of keybindings is in the file "cheatsheet.pdf" included here.
-
 Please see <a href="http://michaelpnash.github.io/categories.html#emacs-ref" target="_new">here</a> for a series of articles describing the Emacs config I've published here.
 
 By default, the "emacs" launch script here is set up to launch Emacs in GUI mode, using the Emacs for OSX, and not to use client-server mode. If you want to use character-mode, add the param "-nw" to the startup script. This is useful if you want to use Emacs on a remote system, or to use it with Tmux or Screen.
