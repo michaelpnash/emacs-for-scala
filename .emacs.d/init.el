@@ -296,4 +296,10 @@ by using nxml's indentation rules."
           (lambda () (yafolding-mode) (yafolding-toggle-all)))
 
 
+(defun jump-to-test ()
+  "Jump to correspnding test file"
+  (interactive)
+  (find-file-other-window (format "%s%sTest.scala" (replace-regexp-in-string "app\/" "test\/" (file-name-directory buffer-file-name)) (file-name-nondirectory (file-name-sans-extension buffer-file-name)))))
+
+(global-set-key (kbd "s-T") 'jump-to-test)
 
