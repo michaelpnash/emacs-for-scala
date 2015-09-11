@@ -47,11 +47,15 @@ With a bit of work, you can work mostly rodent-free. Key bindings for each of th
 
 ![Movement](Movement.png)
 
-# Scrolling Keys
+# Files, Windows, Scrolling Keys
 
 ![Scrolling](Scrolling.png)
 
 # Ensime
 
 ![Ensime](Ensime.png)
+
+# Spectacle
+
+![Spectacle](spectacle.png)
 
