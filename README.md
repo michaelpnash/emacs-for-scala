@@ -65,3 +65,11 @@ With a bit of work, you can work mostly rodent-free. On OSX the keys map as foll
 ![Spectacle](Spectacle.png)
 
 
+-------
+
+Emacs.d Unplugged
+-----------------
+There is a file emacs.d.zip that contains a snapshot of a .emacs.d directory with all of the above installed
+and configured. In envronments where it is not possible for Emacs to contact melpa and download all the 
+dependencies directly, you can unzip this file and be up and running immediately - no further downloads should be needed.
+
