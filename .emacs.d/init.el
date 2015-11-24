@@ -305,3 +305,4 @@ by using nxml's indentation rules."
 
 (ido-grid-mode 1)
 
+(global-set-key (kbd "s-b") 'ido-display-buffer)
