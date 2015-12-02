@@ -9,7 +9,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; List the package we want
-(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord markdown-mode slime yafolding ido-grid-mode))
+(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord markdown-mode slime yafolding ido-grid-mode highlight-current-line))
 
 (package-initialize) 
 
@@ -292,8 +292,9 @@ by using nxml's indentation rules."
 ;; Turn on yafolding-mode for scala files
 (add-hook 'prog-mode-hook
           (lambda () (yafolding-mode)))
-(add-hook 'scala-mode-hook
-          (lambda () (yafolding-mode) (yafolding-toggle-all)))
+;; Uncomment below to start with all elements folded
+;; (add-hook 'scala-mode-hook
+;;          (lambda () (yafolding-mode) (yafolding-toggle-all)))
 
 
 (defun jump-to-test ()
@@ -306,3 +307,4 @@ by using nxml's indentation rules."
 (ido-grid-mode 1)
 
 (global-set-key (kbd "s-b") 'ido-display-buffer)
+
