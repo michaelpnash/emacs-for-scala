@@ -1,6 +1,12 @@
 (x-focus-frame nil)
 (setq mac-command-modifier 'super)
 
+;; Org mode
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
@@ -9,7 +15,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; List the package we want
-(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord markdown-mode slime yafolding ido-grid-mode))
+(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord markdown-mode slime yafolding ido-grid-mode highlight-current-line))
 
 (package-initialize) 
 
@@ -46,14 +52,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(custom-safe-themes
+   (quote
+    ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(org-agenda-files
+   (quote
+    ("~/Dropbox/org/business.org" "~/Dropbox/org/personal.org")))
+ '(org-support-shift-select t)
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C")))))
 
 (setq ensime-sem-high-faces
   '(
@@ -63,13 +75,19 @@
     (valField . (:foreground "#dddddd"))
     (functionCall . (:foreground "#84BEE3"))
     (param . (:foreground "#ffffff"))
-    (class . font-lock-type-face)
+    (class . (:foreground "green"))
     (trait . (:foreground "#084EA8"))
     (object . (:foreground "#026DF7"))
     (package . font-lock-preprocessor-face)
+    (implicitConversion . (:underline (:style wave :color "blue")))
+    (implicitParams . (:underline (:style wave :color "blue")))
+    (deprecated . (:strike-through "dark gray"))
 ))
 
 (set-face-attribute 'default nil :height 160)
+
+;; Highlight current line - mostly useful for demos, etc
+;;(set-face-background hl-line-face "gold")
 
 (require 'find-file-in-repository)
 
@@ -168,16 +186,17 @@
 (define-key global-map (kbd "<backtab>") 'scala-indent:indent-with-reluctant-strategy)
 
 ;; Solarized theme
-(require 'color-theme)
-(require 'color-theme-solarized)
-(load-theme 'solarized t)
+;; (require 'color-theme)
+;; (require 'color-theme-solarized)
+;;(load-theme 'solarized t)
 ;; Use M-x customize-variable frame-background-mode to change
-(setq frame-background-mode 'dark)
-(color-theme-solarized)
+;;(color-theme-solarized)
 
 ;; Un-comment below lines for Monokai theme
-;; (require 'monokai-theme)
-;; (load-theme 'monokai t)
+(require 'monokai-theme)
+(load-theme 'monokai t)
+(setq frame-background-mode 'dark)
+
 
 ;; Always pick up the most recent file from the filesystem
 (global-auto-revert-mode 1)
@@ -292,8 +311,9 @@ by using nxml's indentation rules."
 ;; Turn on yafolding-mode for scala files
 (add-hook 'prog-mode-hook
           (lambda () (yafolding-mode)))
-(add-hook 'scala-mode-hook
-          (lambda () (yafolding-mode) (yafolding-toggle-all)))
+;; Uncomment below to start with all elements folded
+;; (add-hook 'scala-mode-hook
+;;          (lambda () (yafolding-mode) (yafolding-toggle-all)))
 
 
 (defun jump-to-test ()
@@ -305,6 +325,5 @@ by using nxml's indentation rules."
 
 (ido-grid-mode 1)
 
-(global-hl-line-mode +1)
+(global-set-key (kbd "s-b") 'ido-display-buffer)
 
-(set-face-background hl-line-face "gold")
