@@ -67,24 +67,33 @@
  ;; If there is more than one, they won't work right.
  '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C")))))
 
-(setq ensime-sem-high-faces
-  '(
-  (var . (:foreground "#ff2222"))
-    (val . (:foreground "#dddddd"))
-    (varField . (:foreground "#ff3333"))
-    (valField . (:foreground "#dddddd"))
-    (functionCall . (:foreground "#84BEE3"))
-    (param . (:foreground "#ffffff"))
-    (class . (:foreground "green"))
-    (trait . (:foreground "#084EA8"))
-    (object . (:foreground "#026DF7"))
-    (package . font-lock-preprocessor-face)
-    (implicitConversion . (:underline (:style wave :color "blue")))
-    (implicitParams . (:underline (:style wave :color "blue")))
-    (deprecated . (:strike-through "dark gray"))
-))
-
 (set-face-attribute 'default nil :height 160)
+
+(setq ensime-sem-high-faces
+        '(
+           (implicitConversion nil)
+           (var . (:foreground "#ff2222"))
+           (val . (:foreground "#dddddd"))
+           (varField . (:foreground "#ff3333"))
+           (valField . (:foreground "#dddddd"))
+           (functionCall . (:foreground "#dc9157"))
+           (param . (:foreground "#ffffff"))
+           (object . (:foreground "#D884E3"))
+           (class . (:foreground "green"))
+           (trait . (:foreground "#009933")) ;; "#084EA8")) 
+           (operator . (:foreground "#cc7832"))
+           (object . (:foreground "#6897bb" :slant italic))
+           (package . (:foreground "yellow"))
+           (implicitConversion . (:underline (:style wave :color "blue")))
+           (implicitParams . (:underline (:style wave :color "blue")))
+           (deprecated . (:strike-through "#a9b7c6"))
+           (implicitParams nil)
+         )
+        ;; ensime-completion-style 'company
+        ;; ensime-sem-high-enabled-p nil ;; disable semantic highlighting
+        ensime-tooltip-hints t ;; disable type-inspecting tooltips
+        ensime-tooltip-type-hints t ;; disable typeinspecting tooltips
+  )
 
 ;; Highlight current line - mostly useful for demos, etc
 ;;(set-face-background hl-line-face "gold")
