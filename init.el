@@ -15,7 +15,16 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; List the package we want
-(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord markdown-mode slime yafolding ido-grid-mode highlight-current-line))
+(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord markdown-mode slime yafolding ido-grid-mode highlight-current-line findr))
+
+(autoload 'findr "findr" "Find file name." t)
+(define-key global-map [(meta control S)] 'findr)
+
+(autoload 'findr-search "findr" "Find text in files." t)
+(define-key global-map [(meta control s)] 'findr-search)
+
+(autoload 'findr-query-replace "findr" "Replace text in files." t)
+(define-key global-map [(meta control r)] 'findr-query-replace)
 
 (package-initialize) 
 
@@ -263,6 +272,7 @@
 (global-whitespace-mode +1)
 
 (setq show-paren-delay 0)
+(setq blink-matching-paren 1)
 (show-paren-mode 1)
 
 (defun bf-pretty-print-xml-region (begin end)
