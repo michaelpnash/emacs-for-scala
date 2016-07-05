@@ -15,7 +15,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; List the package we want
-(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord markdown-mode slime yafolding ido-grid-mode highlight-current-line findr))
+(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord markdown-mode slime yafolding ido-grid-mode highlight-current-line findr dumb-jump))
 
 (autoload 'findr "findr" "Find file name." t)
 (define-key global-map [(meta control S)] 'findr)
@@ -131,7 +131,7 @@
 (global-set-key (kbd "S-z") 'undo)
 (global-set-key [insert]    'overwrite-mode) ; [Ins]
 (global-set-key [kp-insert] 'overwrite-mode) ; [Ins]
-(global-set-key (kbd "C-l") 'goto-line) ; [Ctrl]-l]
+(global-set-key (kbd "M-g") 'goto-line) ; [Ctrl]-l]
 (global-set-key (kbd "C-L") 'recenter-top-bottom)
 (global-set-key [f2] 'split-window-vertically)
 (global-set-key [f1] 'remove-split)
