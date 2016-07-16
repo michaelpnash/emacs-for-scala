@@ -15,7 +15,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; List the package we want
-(setq package-list '(ensime magit multiple-cursors move-text find-file-in-repository dired-details ace-jump-mode color-theme color-theme-solarized yasnippet window-numbering expand-region neotree monokai-theme tidy rainbow-delimiters key-chord markdown-mode slime yafolding ido-grid-mode highlight-current-line findr dumb-jump))
+(setq package-list '(ensime magit multiple-cursors find-file-in-repository ace-jump-mode yasnippet window-numbering expand-region neotree monokai-theme rainbow-delimiters markdown-mode slime yafolding ido-grid-mode dumb-jump))
 
 (autoload 'findr "findr" "Find file name." t)
 (define-key global-map [(meta control S)] 'findr)
@@ -52,9 +52,6 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
-(require 'move-text)
-(move-text-default-bindings)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -142,9 +139,6 @@
 (setq ido-use-filename-at-point 'guess)
 (setq ido-create-new-buffer 'always)
 (setq ido-file-extensions-order '(".scala" ".org" ".txt" ".py" ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
-
-(require 'dired-details)
-(dired-details-install)
 
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
@@ -264,7 +258,8 @@
 
 (require 'neotree)
 (global-set-key (kbd "s-d") 'neotree-toggle)
-(neotree)
+;;uncomment to have a neotree window open initially
+;;(neotree)
 
 (require 'whitespace)
 (setq whitespace-line-column 120)
@@ -299,10 +294,6 @@ by using nxml's indentation rules."
   (interactive)
   (save-some-buffers t))
 (add-hook 'focus-out-hook 'save-all)
-
-(require 'key-chord)
-(key-chord-mode 1)
-;;(key-chord-define-global "jx" 'smex)
 
 (set-frame-font "Source Code Pro-18" nil t)
 
