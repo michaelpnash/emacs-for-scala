@@ -1,6 +1,8 @@
 (x-focus-frame nil)
 (setq mac-command-modifier 'super)
 
+(global-unset-key (kbd "C-z"))
+
 ;; Org mode
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
@@ -13,6 +15,8 @@
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+
+(electric-pair-mode 1)
 
 ;; List the package we want
 (setq package-list '(ensime magit multiple-cursors find-file-in-repository ace-jump-mode yasnippet window-numbering expand-region neotree monokai-theme rainbow-delimiters markdown-mode slime yafolding ido-grid-mode dumb-jump))
@@ -65,6 +69,7 @@
    (quote
     ("~/Dropbox/org/business.org" "~/Dropbox/org/personal.org")))
  '(org-support-shift-select t)
+ '(send-mail-function (quote smtpmail-send-it))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
