@@ -16,10 +16,11 @@
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
-(electric-pair-mode 1)
+;; Automatically close brackets/braces - I found this more annoying than helpful
+;;  (electric-pair-mode 1)
 
 ;; List the package we want
-(setq package-list '(ensime magit multiple-cursors find-file-in-repository ace-jump-mode yasnippet window-numbering expand-region neotree monokai-theme rainbow-delimiters markdown-mode slime yafolding ido-grid-mode dumb-jump))
+(setq package-list '(ensime magit multiple-cursors find-file-in-repository ace-jump-mode yasnippet window-numbering expand-region neotree monokai-theme rainbow-delimiters markdown-mode slime yafolding ido-grid-mode dumb-jump ag))
 
 (autoload 'findr "findr" "Find file name." t)
 (define-key global-map [(meta control S)] 'findr)
